@@ -133,3 +133,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Usless Md files
+HELP.md
