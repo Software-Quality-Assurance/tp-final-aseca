@@ -61,3 +61,5 @@ Eso lo configura para este repositorio. Para verificarlo:
 ```bash
 git config --get core.hooksPath
 ```
+
+small change
