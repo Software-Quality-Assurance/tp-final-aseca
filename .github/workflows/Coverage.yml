@@ -30,21 +30,18 @@ jobs:
 
       - name: Run tests and Kover coverage
         run: ./gradlew clean test koverXmlReport koverHtmlReport --stacktrace
-        env:
-          GITHUB_ACTOR: ${{ github.actor }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload coverage HTML
         uses: actions/upload-artifact@v4
         with:
           name: kover-html
-          path: build/reports/kover/html
+          path: portfolio-tracker/build/reports/kover/html
 
       - name: PR comment (Kover)
         if: github.event_name == 'pull_request'
         uses: mi-kas/kover-report@v1
         with:
-          path: ${{ github.workspace }}/build/reports/kover/report.xml
+          path: ${{ github.workspace }}/portfolio-tracker/build/reports/kover/report.xml
           title: "Kover Coverage"
           update-comment: true
           min-coverage-overall: 90
