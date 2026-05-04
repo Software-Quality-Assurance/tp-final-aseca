@@ -6,13 +6,13 @@ import java.util.TimeZone
 
 @SpringBootApplication
 class PortfolioTrackerApplication {
-	companion object {
-		init {
-			TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
-		}
-	}
+    companion object {
+        init {
+            TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
+        }
+    }
 }
 
 fun main(args: Array<String>) {
-	runApplication<PortfolioTrackerApplication>(*args)
+    runApplication<PortfolioTrackerApplication>(*args)
 }
