@@ -1,4 +1,4 @@
-name: Coverage.yml
+name: coverage.yml
 
 on:
   pull_request:

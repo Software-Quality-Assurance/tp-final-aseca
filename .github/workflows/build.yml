@@ -1,4 +1,4 @@
-name: Build.yml
+name: build.yml
 
 on:
   pull_request:
