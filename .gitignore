@@ -7,7 +7,6 @@ target/
 
 # Gradle
 gradle-app.setting
-!gradle/wrapper/gradle-wrapper.jar
 
 # Maven
 .mvn/timing.properties
