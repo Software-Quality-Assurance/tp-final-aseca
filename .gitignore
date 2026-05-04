@@ -134,5 +134,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Codex
+codex/
+.gradle-codex
+
 # Usless Md files
 HELP.md
