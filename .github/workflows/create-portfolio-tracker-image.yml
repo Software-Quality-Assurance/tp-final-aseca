@@ -32,8 +32,8 @@ jobs:
       - name: Set tags
         id: tags
         run: |
-          REPO_LC=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-          IMAGE="ghcr.io/${REPO_LC}"
+          OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          IMAGE="ghcr.io/${OWNER_LC}/portfolio-tracker"
 
           if [ "${{ github.event_name }}" = "push" ]; then
             TAG=$(./gradlew -q :portfolio-tracker:properties | grep "^version:" | awk '{print $2}')
