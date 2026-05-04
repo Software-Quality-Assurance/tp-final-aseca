@@ -41,3 +41,23 @@ docker compose down -v
 ```
 
 Borrar volumenes resetea la base de datos.
+
+## Activar hooks de Git
+
+Si los hooks del repositorio estan en `.github/hooks`, hay que indicarselo a Git:
+
+```bash
+git config core.hooksPath .github/hooks
+```
+
+Tambien hay que dar permisos de ejecucion a los hooks:
+
+```bash
+chmod +x .github/hooks/*
+```
+
+Eso lo configura para este repositorio. Para verificarlo:
+
+```bash
+git config --get core.hooksPath
+```
