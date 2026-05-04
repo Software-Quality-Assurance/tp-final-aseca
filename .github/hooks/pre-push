@@ -1,0 +1,10 @@
+#!/bin/sh
+echo "Executing pre-push hook..."
+
+echo "running build"
+
+./gradlew build
+if [ $? -ne 0 ]; then
+  echo "build failed, fix issues before committing this"
+  exit 1
+fi

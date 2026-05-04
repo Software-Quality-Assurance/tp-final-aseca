@@ -1,0 +1,13 @@
+#!/bin/sh
+# Check for staged Kotlin files
+if git diff --cached --name-only | grep -E '\.kt$' > /dev/null; then
+  echo "running ktlintCheck"
+  ./gradlew ktlintCheck
+  if [ $? -ne 0 ]; then
+    echo "ktlint check failed, running ktlintFormat"
+    ./gradlew ktlintFormat
+    exit 1
+  fi
+else
+  echo "No staged Kotlin files, skipping ktlintCheck"
+fi
