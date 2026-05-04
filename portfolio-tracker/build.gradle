@@ -45,4 +45,9 @@ allOpen {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	systemProperty 'user.timezone', 'UTC'
+}
+
+tasks.withType(JavaExec).configureEach {
+	jvmArgs '-Duser.timezone=UTC'
 }

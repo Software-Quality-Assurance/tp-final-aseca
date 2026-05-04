@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:16
+    container_name: portfolio-postgres
+    environment:
+      POSTGRES_DB: portfolio_tracker
+      POSTGRES_USER: portfolio_user
+      POSTGRES_PASSWORD: portfolio_pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  portfolio-api:
+    profiles:
+      - api
+    build:
+      context: .
+      dockerfile: portfolio-tracker/Dockerfile
+    container_name: portfolio-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/portfolio_tracker
+      SPRING_DATASOURCE_USERNAME: portfolio_user
+      SPRING_DATASOURCE_PASSWORD: portfolio_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+volumes:
+  db_data:
