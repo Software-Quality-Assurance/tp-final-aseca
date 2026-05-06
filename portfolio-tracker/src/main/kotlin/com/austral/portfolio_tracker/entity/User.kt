@@ -6,8 +6,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.Table
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
-import org.springframework.core.annotation.MergedAnnotationPredicates.unique
-import java.util.UUID
+import java.util.*
 
 private val emailRegex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
 
@@ -16,16 +15,20 @@ private val emailRegex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
 data class User(
     @Id
     @NotBlank
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, unique = true)
     val id: String = UUID.randomUUID().toString(),
     @NotBlank
+    @Column(name = "name", nullable = false)
     val name: String,
     @NotBlank
+    @Column(name = "lastName", nullable = false)
     val lastName: String,
     @Email
     @NotBlank
+    @Column(name = "email", nullable = false, unique = true)
     val email: String,
     @NotBlank
+    @Column(name = "password", nullable = false)
     val password: String
 )
 {

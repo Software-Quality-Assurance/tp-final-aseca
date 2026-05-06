@@ -75,6 +75,51 @@ class UserTests {
         assertNotNull(column)
         assertEquals("id", column.name)
         assertEquals(false, column.nullable)
+        assertEquals(true, column.unique)
     }
 
+    @Test
+    fun `0010 name must be a column`() {
+        val column = User::class.java
+            .getDeclaredField("name")
+            .getAnnotation(Column::class.java)
+
+        assertNotNull(column)
+        assertEquals("name", column.name)
+        assertEquals(false, column.nullable)
+    }
+
+    @Test
+    fun `0011 lastName must be a column`() {
+        val column = User::class.java
+            .getDeclaredField("lastName")
+            .getAnnotation(Column::class.java)
+
+        assertNotNull(column)
+        assertEquals("lastName", column.name)
+        assertEquals(false, column.nullable)
+    }
+
+    @Test
+    fun `0012 email must be a column`() {
+        val column = User::class.java
+            .getDeclaredField("email")
+            .getAnnotation(Column::class.java)
+
+        assertNotNull(column)
+        assertEquals("email", column.name)
+        assertEquals(false, column.nullable)
+        assertEquals(true, column.unique)
+    }
+
+    @Test
+    fun `0013 password must be a column`() {
+        val column = User::class.java
+            .getDeclaredField("password")
+            .getAnnotation(Column::class.java)
+
+        assertNotNull(column)
+        assertEquals("password", column.name)
+        assertEquals(false, column.nullable)
+    }
 }
