@@ -2,9 +2,12 @@ package com.austral.portfolio_tracker.user
 
 import com.austral.portfolio_tracker.entity.User
 import jakarta.persistence.Entity
+import jakarta.persistence.Table
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertNotNull
+import kotlin.jvm.java
 import kotlin.test.Test
 
 class UserTests {
@@ -54,7 +57,12 @@ class UserTests {
     }
 
 
-
-
+    // User Table
+    @Test
+    fun `008 user must be mapped to users table`() {
+        val tableAnnotation = User::class.java.getAnnotation(Table::class.java)
+        assertNotNull(tableAnnotation)
+        assertEquals("users", tableAnnotation.name)
+    }
 
 }
