@@ -1,6 +1,7 @@
 package com.austral.portfolio_tracker.user
 
 import com.austral.portfolio_tracker.entity.User
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -63,6 +64,17 @@ class UserTests {
         val tableAnnotation = User::class.java.getAnnotation(Table::class.java)
         assertNotNull(tableAnnotation)
         assertEquals("users", tableAnnotation.name)
+    }
+
+    @Test
+    fun `009 id must be a column`() {
+        val column = User::class.java
+            .getDeclaredField("id")
+            .getAnnotation(Column::class.java)
+
+        assertNotNull(column)
+        assertEquals("id", column.name)
+        assertEquals(false, column.nullable)
     }
 
 }

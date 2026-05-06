@@ -1,10 +1,12 @@
 package com.austral.portfolio_tracker.entity
 
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
+import org.springframework.core.annotation.MergedAnnotationPredicates.unique
 import java.util.UUID
 
 private val emailRegex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
@@ -14,6 +16,7 @@ private val emailRegex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
 data class User(
     @Id
     @NotBlank
+    @Column(name = "id", nullable = false)
     val id: String = UUID.randomUUID().toString(),
     @NotBlank
     val name: String,
