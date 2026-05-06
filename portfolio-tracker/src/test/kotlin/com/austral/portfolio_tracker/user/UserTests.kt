@@ -34,7 +34,12 @@ class UserTests {
 
     @Test
     fun `004 new user must not have an empty field and should throw an exception`() {
-        assertThrows(IllegalArgumentException::class.java) {  User(" ", " ", " ", " ", " ") }
+        assertThrows(IllegalArgumentException::class.java) {  User(" ", "John", "Doe", "johndoe@gmail.com", "mysecretpassword") }
+        assertThrows(IllegalArgumentException::class.java) {  User("1", " ", "Doe", "johndoe@gmail.com", "mysecretpassword") }
+        assertThrows(IllegalArgumentException::class.java) {  User("1", "John", " ", "johndoe@gmail.com", "mysecretpassword") }
+        assertThrows(IllegalArgumentException::class.java) {  User("1", "John", "Doe", " ", "mysecretpassword") }
+        assertThrows(IllegalArgumentException::class.java) {  User("1", "John" , "Doe", "johndoe@gmail.com", " ") }
+
     }
 
     // Each specified field
