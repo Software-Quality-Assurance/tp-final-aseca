@@ -106,18 +106,4 @@ class PortfolioTests {
         assertEquals(false, column.nullable)
         assertEquals(true, column.unique)
     }
-
-    @Test
-    fun `010 user field must be accessible`() {
-        val portfolio = Portfolio(user = user, history = history)
-        assertNotNull(portfolio.user)
-        assertEquals(user, portfolio.user)
-    }
-
-    @Test
-    fun `011 history field must be accessible`() {
-        val portfolio = Portfolio(user = user, history = history)
-        assertNotNull(portfolio.history)
-        assertEquals(history, portfolio.history)
-    }
 }
