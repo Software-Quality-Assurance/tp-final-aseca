@@ -6,7 +6,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.Table
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
-import java.util.*
+import java.util.UUID
 
 private val emailRegex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
 
@@ -29,9 +29,8 @@ data class User(
     val email: String,
     @NotBlank
     @Column(name = "password", nullable = false)
-    val password: String
-)
-{
+    val password: String,
+) {
     init {
         require(id.isNotBlank()) { "Id must not be blank" }
         require(name.isNotBlank()) { "Name must not be blank" }
