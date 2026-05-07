@@ -1,0 +1,45 @@
+package com.austral.portfolio_tracker.entity
+
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.Table
+import jakarta.validation.constraints.Email
+import jakarta.validation.constraints.NotBlank
+import java.util.UUID
+
+private val emailRegex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
+
+@Entity
+@Table(name = "users")
+data class User(
+    @Id
+    @NotBlank
+    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: String = UUID.randomUUID().toString(),
+    @NotBlank
+    @Column(name = "name", nullable = false)
+    val name: String,
+    @NotBlank
+    @Column(name = "lastName", nullable = false)
+    val lastName: String,
+    @Email
+    @NotBlank
+    @Column(name = "email", nullable = false, unique = true)
+    val email: String,
+    @NotBlank
+    @Column(name = "password", nullable = false)
+    val password: String,
+) {
+    init {
+        require(id.isNotBlank()) { "Id must not be blank" }
+        require(name.isNotBlank()) { "Name must not be blank" }
+        require(lastName.isNotBlank()) { "Surname must not be blank" }
+        require(email.isNotBlank()) { "Email must not be blank" }
+        require(password.isNotBlank()) { "Password must not be blank" }
+        require(emailRegex.matches(email)) { "Email must be valid" }
+    }
+}
