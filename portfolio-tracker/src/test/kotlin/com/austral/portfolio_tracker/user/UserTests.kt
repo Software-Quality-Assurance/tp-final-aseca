@@ -12,7 +12,6 @@ import kotlin.jvm.java
 import kotlin.test.Test
 
 class UserTests {
-
     // Create user
     @Test
     fun `001 should create a new user`() {
@@ -34,12 +33,11 @@ class UserTests {
 
     @Test
     fun `004 new user must not have an empty field and should throw an exception`() {
-        assertThrows(IllegalArgumentException::class.java) {  User(" ", "John", "Doe", "johndoe@gmail.com", "mysecretpassword") }
-        assertThrows(IllegalArgumentException::class.java) {  User("1", " ", "Doe", "johndoe@gmail.com", "mysecretpassword") }
-        assertThrows(IllegalArgumentException::class.java) {  User("1", "John", " ", "johndoe@gmail.com", "mysecretpassword") }
-        assertThrows(IllegalArgumentException::class.java) {  User("1", "John", "Doe", " ", "mysecretpassword") }
-        assertThrows(IllegalArgumentException::class.java) {  User("1", "John" , "Doe", "johndoe@gmail.com", " ") }
-
+        assertThrows(IllegalArgumentException::class.java) { User(" ", "John", "Doe", "johndoe@gmail.com", "mysecretpassword") }
+        assertThrows(IllegalArgumentException::class.java) { User("1", " ", "Doe", "johndoe@gmail.com", "mysecretpassword") }
+        assertThrows(IllegalArgumentException::class.java) { User("1", "John", " ", "johndoe@gmail.com", "mysecretpassword") }
+        assertThrows(IllegalArgumentException::class.java) { User("1", "John", "Doe", " ", "mysecretpassword") }
+        assertThrows(IllegalArgumentException::class.java) { User("1", "John", "Doe", "johndoe@gmail.com", " ") }
     }
 
     // Each specified field
@@ -54,14 +52,15 @@ class UserTests {
     // email
     @Test
     fun `006 a invalid email field should not throw an exception`() {
-        assertThrows(IllegalArgumentException::class.java) {  User(name = "John", lastName = "Doe", email = "johndoe", password = "mysecretpassword") }
+        assertThrows(IllegalArgumentException::class.java) {
+            User(name = "John", lastName = "Doe", email = "johndoe", password = "mysecretpassword")
+        }
     }
 
     @Test
     fun `007 a valid email field should not throw an exception`() {
         assertDoesNotThrow { User(name = "John", lastName = "Doe", email = "johndoe@gmail.com", password = "mysecretpassword") }
     }
-
 
     // User Table
     @Test
@@ -73,9 +72,10 @@ class UserTests {
 
     @Test
     fun `009 id must be a column`() {
-        val column = User::class.java
-            .getDeclaredField("id")
-            .getAnnotation(Column::class.java)
+        val column =
+            User::class.java
+                .getDeclaredField("id")
+                .getAnnotation(Column::class.java)
 
         assertNotNull(column)
         assertEquals("id", column.name)
@@ -85,9 +85,10 @@ class UserTests {
 
     @Test
     fun `0010 name must be a column`() {
-        val column = User::class.java
-            .getDeclaredField("name")
-            .getAnnotation(Column::class.java)
+        val column =
+            User::class.java
+                .getDeclaredField("name")
+                .getAnnotation(Column::class.java)
 
         assertNotNull(column)
         assertEquals("name", column.name)
@@ -96,9 +97,10 @@ class UserTests {
 
     @Test
     fun `0011 lastName must be a column`() {
-        val column = User::class.java
-            .getDeclaredField("lastName")
-            .getAnnotation(Column::class.java)
+        val column =
+            User::class.java
+                .getDeclaredField("lastName")
+                .getAnnotation(Column::class.java)
 
         assertNotNull(column)
         assertEquals("lastName", column.name)
@@ -107,9 +109,10 @@ class UserTests {
 
     @Test
     fun `0012 email must be a column`() {
-        val column = User::class.java
-            .getDeclaredField("email")
-            .getAnnotation(Column::class.java)
+        val column =
+            User::class.java
+                .getDeclaredField("email")
+                .getAnnotation(Column::class.java)
 
         assertNotNull(column)
         assertEquals("email", column.name)
@@ -119,9 +122,10 @@ class UserTests {
 
     @Test
     fun `0013 password must be a column`() {
-        val column = User::class.java
-            .getDeclaredField("password")
-            .getAnnotation(Column::class.java)
+        val column =
+            User::class.java
+                .getDeclaredField("password")
+                .getAnnotation(Column::class.java)
 
         assertNotNull(column)
         assertEquals("password", column.name)
