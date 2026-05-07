@@ -22,7 +22,7 @@ data class Portfolio(
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     val user: User,
     @Column(name = "history", nullable = false, unique = true)
-    val history: List<String>,
+    val history: List<String> = emptyList(),
 ) {
     init {
         require(id.isNotBlank()) { "Id must not be blank" }

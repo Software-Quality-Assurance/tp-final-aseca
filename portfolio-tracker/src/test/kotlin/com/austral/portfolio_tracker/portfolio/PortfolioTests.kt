@@ -38,26 +38,38 @@ class PortfolioTests {
     }
 
     @Test
-    fun `004 id must be generated automatically`() {
+    fun `004 user must exist`() {
+        val portfolio = Portfolio("10928310", user, history)
+        assertNotNull(portfolio.user)
+    }
+
+    @Test
+    fun `005 history must be empty by default`() {
+        val portfolio = Portfolio(user = user)
+        assertNotNull(portfolio.history)
+    }
+
+    @Test
+    fun `006 id must be generated automatically`() {
         val portfolio = Portfolio(user = user, history = history)
         assertNotNull(portfolio.id)
     }
 
     @Test
-    fun `005 portfolio must be an entity table`() {
+    fun `007 portfolio must be an entity table`() {
         val tableAnnotation = Portfolio::class.java.getAnnotation(jakarta.persistence.Table::class.java)
         assertNotNull(tableAnnotation)
     }
 
     @Test
-    fun `006 portfolio must be mapped to an entity table`() {
+    fun `008 portfolio must be mapped to an entity table`() {
         val tableAnnotation = Portfolio::class.java.getAnnotation(jakarta.persistence.Table::class.java)
         assertNotNull(tableAnnotation)
         assertEquals("portfolio", tableAnnotation.name)
     }
 
     @Test
-    fun `007 id must be a column`() {
+    fun `009 id must be a column`() {
         val column =
             Portfolio::class.java
                 .getDeclaredField("id")
@@ -70,7 +82,7 @@ class PortfolioTests {
     }
 
     @Test
-    fun `008 user_id must be a column`() {
+    fun `010 user_id must be a column`() {
         val joinColumn =
             Portfolio::class.java
                 .getDeclaredField("user")
@@ -83,7 +95,7 @@ class PortfolioTests {
     }
 
     @Test
-    fun `009 id must be a column`() {
+    fun `011 id must be a column`() {
         val column =
             Portfolio::class.java
                 .getDeclaredField("history")
