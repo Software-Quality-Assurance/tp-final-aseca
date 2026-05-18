@@ -1,134 +1,156 @@
 package com.austral.portfolio_tracker.user
 
+import com.austral.portfolio_tracker.entity.Company
+import com.austral.portfolio_tracker.entity.History
+import com.austral.portfolio_tracker.entity.TransactionTypeEnum
 import com.austral.portfolio_tracker.entity.User
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Table
+import com.austral.portfolio_tracker.entity.Watchlist
+import com.austral.portfolio_tracker.repository.CompanyRepository
+import com.austral.portfolio_tracker.repository.UserRepository
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertThrows
-import org.junit.jupiter.api.assertDoesNotThrow
-import org.junit.jupiter.api.assertNotNull
-import kotlin.jvm.java
-import kotlin.test.Test
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest
+import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.test.context.ActiveProfiles
+import java.math.BigDecimal
+import java.time.Instant
 
+@DataJpaTest
+@ActiveProfiles("test")
 class UserTests {
-    // Create user
+
+    @Autowired
+    private lateinit var userRepository: UserRepository
+
+    @Autowired
+    private lateinit var companyRepository: CompanyRepository
+
     @Test
-    fun `001 should create a new user`() {
-        val user = User("1", "John", "Doe", "johndoe@gmail.com", "mysecretpassword")
-        assertNotNull(user)
+    fun `should save a user with all required fields`() {
+        val user = User(
+            mail = "user@example.com",
+            password = "hashedPassword123",
+            history = mutableListOf(),
+            watchlist = mutableListOf()
+        )
+
+        val savedUser = userRepository.save(user)
+
+        assertNotNull(savedUser.id)
+        assertEquals("user@example.com", savedUser.mail)
+        assertEquals("hashedPassword123", savedUser.password)
+        assertEquals(0, savedUser.history.size)
+        assertEquals(0, savedUser.watchlist.size)
     }
 
     @Test
-    fun `002 new user must have id`() {
-        val user = User("1", "John", "Doe", "johndoe@gmail.com", "mysecretpassword")
-        assertNotNull(user.id)
+    fun `should retrieve a user by mail`() {
+        val user = User(
+            mail = "test@example.com",
+            password = "hashedPassword",
+            history = mutableListOf(),
+            watchlist = mutableListOf()
+        )
+        userRepository.save(user)
+
+        val foundUser = userRepository.findByMail("test@example.com")
+
+        assertNotNull(foundUser)
+        assertEquals("test@example.com", foundUser?.mail)
     }
 
     @Test
-    fun `003 user must be a JPA entity`() {
-        val entityAnnotation = User::class.java.getAnnotation(Entity::class.java)
-        assertNotNull(entityAnnotation)
+    fun `should update user watchlist`() {
+        val company = companyRepository.save(
+            Company(
+                ticker = "AAPL",
+                companyName = "Apple Inc.",
+                cik = "0000320193",
+                companyPrices = BigDecimal("150.25")
+            )
+        )
+
+        val user = User(
+            mail = "watchlist@example.com",
+            password = "hashedPassword",
+            history = mutableListOf(),
+            watchlist = mutableListOf()
+        )
+
+        val watchEntry = Watchlist(
+            user = user,
+            company = company
+        )
+        user.watchlist.add(watchEntry)
+
+        val savedUser = userRepository.save(user)
+
+        assertEquals(1, savedUser.watchlist.size)
+        assertNotNull(savedUser.watchlist[0].id)
+        assertEquals(company.id, savedUser.watchlist[0].company?.id)
     }
 
     @Test
-    fun `004 new user must not have an empty field and should throw an exception`() {
-        assertThrows(IllegalArgumentException::class.java) { User(" ", "John", "Doe", "johndoe@gmail.com", "mysecretpassword") }
-        assertThrows(IllegalArgumentException::class.java) { User("1", " ", "Doe", "johndoe@gmail.com", "mysecretpassword") }
-        assertThrows(IllegalArgumentException::class.java) { User("1", "John", " ", "johndoe@gmail.com", "mysecretpassword") }
-        assertThrows(IllegalArgumentException::class.java) { User("1", "John", "Doe", " ", "mysecretpassword") }
-        assertThrows(IllegalArgumentException::class.java) { User("1", "John", "Doe", "johndoe@gmail.com", " ") }
+    fun `should update user history`() {
+        val company = companyRepository.save(
+            Company(
+                ticker = "MSFT",
+                companyName = "Microsoft Corporation",
+                cik = "0000789019",
+                companyPrices = BigDecimal("420.10")
+            )
+        )
+
+        val user = User(
+            mail = "history@example.com",
+            password = "hashedPassword",
+            history = mutableListOf(),
+            watchlist = mutableListOf()
+        )
+
+        val historyEntry = History(
+            numberOfStocks = 3,
+            transactionValue = BigDecimal("123.45"),
+            transactionTypeEnum = TransactionTypeEnum.BUY,
+            timestamp = Instant.parse("2026-05-15T10:15:30Z"),
+            user = user,
+            company = company
+        )
+        user.history.add(historyEntry)
+
+        val savedUser = userRepository.save(user)
+
+        assertEquals(1, savedUser.history.size)
+        val savedHist = savedUser.history[0]
+        assertNotNull(savedHist.id)
+        assertEquals(3, savedHist.numberOfStocks)
+        assertEquals(BigDecimal("123.45"), savedHist.transactionValue)
+        assertEquals(TransactionTypeEnum.BUY, savedHist.transactionTypeEnum)
+        assertEquals(company.id, savedHist.company?.id)
     }
 
-    // Each specified field
-
-    // id
     @Test
-    fun `005 id must be generated automatically`() {
-        val user = User(name = "John", lastName = "Doe", email = "johndoe@gmail.com", password = "mysecretpassword")
-        assertNotNull(user.id)
-    }
+    fun `should throw exception when saving a user with duplicate mail`() {
+        val user1 = User(
+            mail = "duplicate@example.com",
+            password = "hashedPassword1",
+            history = mutableListOf(),
+            watchlist = mutableListOf()
+        )
+        userRepository.save(user1)
 
-    // email
-    @Test
-    fun `006 a invalid email field should not throw an exception`() {
-        assertThrows(IllegalArgumentException::class.java) {
-            User(name = "John", lastName = "Doe", email = "johndoe", password = "mysecretpassword")
+        val user2 = User(
+            mail = "duplicate@example.com",
+            password = "hashedPassword2",
+            history = mutableListOf(),
+            watchlist = mutableListOf()
+        )
+
+        assertThrows<DataIntegrityViolationException> {
+            userRepository.save(user2)
         }
-    }
-
-    @Test
-    fun `007 a valid email field should not throw an exception`() {
-        assertDoesNotThrow { User(name = "John", lastName = "Doe", email = "johndoe@gmail.com", password = "mysecretpassword") }
-    }
-
-    // User Table
-    @Test
-    fun `008 user must be mapped to users table`() {
-        val tableAnnotation = User::class.java.getAnnotation(Table::class.java)
-        assertNotNull(tableAnnotation)
-        assertEquals("users", tableAnnotation.name)
-    }
-
-    @Test
-    fun `009 id must be a column`() {
-        val column =
-            User::class.java
-                .getDeclaredField("id")
-                .getAnnotation(Column::class.java)
-
-        assertNotNull(column)
-        assertEquals("id", column.name)
-        assertEquals(false, column.nullable)
-        assertEquals(true, column.unique)
-    }
-
-    @Test
-    fun `0010 name must be a column`() {
-        val column =
-            User::class.java
-                .getDeclaredField("name")
-                .getAnnotation(Column::class.java)
-
-        assertNotNull(column)
-        assertEquals("name", column.name)
-        assertEquals(false, column.nullable)
-    }
-
-    @Test
-    fun `0011 lastName must be a column`() {
-        val column =
-            User::class.java
-                .getDeclaredField("lastName")
-                .getAnnotation(Column::class.java)
-
-        assertNotNull(column)
-        assertEquals("lastName", column.name)
-        assertEquals(false, column.nullable)
-    }
-
-    @Test
-    fun `0012 email must be a column`() {
-        val column =
-            User::class.java
-                .getDeclaredField("email")
-                .getAnnotation(Column::class.java)
-
-        assertNotNull(column)
-        assertEquals("email", column.name)
-        assertEquals(false, column.nullable)
-        assertEquals(true, column.unique)
-    }
-
-    @Test
-    fun `0013 password must be a column`() {
-        val column =
-            User::class.java
-                .getDeclaredField("password")
-                .getAnnotation(Column::class.java)
-
-        assertNotNull(column)
-        assertEquals("password", column.name)
-        assertEquals(false, column.nullable)
     }
 }
