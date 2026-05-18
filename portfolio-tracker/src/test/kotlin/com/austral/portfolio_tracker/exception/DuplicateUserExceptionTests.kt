@@ -16,9 +16,7 @@ class DuplicateUserExceptionTests {
 
     @Test
     fun `should extend RuntimeException`() {
-        val exception = DuplicateUserException("Test")
-
-        assert(exception is RuntimeException)
+        assert(RuntimeException::class.java.isAssignableFrom(DuplicateUserException::class.java))
     }
 
     @Test
