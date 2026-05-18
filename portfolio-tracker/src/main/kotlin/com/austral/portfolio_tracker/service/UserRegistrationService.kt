@@ -12,12 +12,13 @@ import java.util.regex.Pattern
 @Service
 class UserRegistrationService(
     private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder
+    private val passwordEncoder: PasswordEncoder,
 ) {
     companion object {
-        private val EMAIL_REGEX = Pattern.compile(
-            "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$"
-        )
+        private val EMAIL_REGEX =
+            Pattern.compile(
+                "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$",
+            )
     }
 
     fun register(request: RegisterUserRequest): UserResponse {
@@ -42,28 +43,30 @@ class UserRegistrationService(
 
         // Check if user exists with different case (case-insensitive search)
         val allUsers = userRepository.findAll()
-        val duplicateByCase = allUsers.any {
-            it.mail.lowercase() == request.email.lowercase() &&
-            it.mail != request.email
-        }
+        val duplicateByCase =
+            allUsers.any {
+                it.mail.lowercase() == request.email.lowercase() &&
+                    it.mail != request.email
+            }
         if (duplicateByCase) {
             throw DuplicateUserException("User with email ${request.email} already exists")
         }
 
         // Create and save user with hashed password
         val hashedPassword: String = requireNotNull(passwordEncoder.encode(request.password))
-        val newUser = User(
-            mail = request.email,
-            password = hashedPassword,
-            history = mutableListOf(),
-            watchlist = mutableListOf()
-        )
+        val newUser =
+            User(
+                mail = request.email,
+                password = hashedPassword,
+                history = mutableListOf(),
+                watchlist = mutableListOf(),
+            )
         val savedUser = userRepository.save(newUser)
 
         // Return response without exposing password
         return UserResponse(
             id = savedUser.id,
-            email = savedUser.mail
+            email = savedUser.mail,
         )
     }
 }

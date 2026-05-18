@@ -16,22 +16,16 @@ data class Company(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-
     @Column(nullable = false, unique = true)
     val ticker: String,
-
     @Column(nullable = false)
     val companyName: String,
-
     @Column(nullable = false, unique = true)
     val cik: String,
-
     @Column(nullable = false, precision = 19, scale = 2)
     val companyPrices: BigDecimal,
-
     @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], orphanRemoval = true)
     val history: MutableList<History> = mutableListOf(),
-
     @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], orphanRemoval = true)
-    val watchlist: MutableList<Watchlist> = mutableListOf()
+    val watchlist: MutableList<Watchlist> = mutableListOf(),
 )

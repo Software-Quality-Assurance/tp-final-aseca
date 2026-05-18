@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 
 class DuplicateUserExceptionTests {
-
     @Test
     fun `should create exception with message`() {
         val message = "User with email already exists"
@@ -33,4 +32,3 @@ class DuplicateUserExceptionTests {
         }
     }
 }
-

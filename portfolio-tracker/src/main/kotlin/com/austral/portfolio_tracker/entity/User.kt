@@ -15,16 +15,12 @@ data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-
     @Column(nullable = false, unique = true)
     val mail: String,
-
     @Column(nullable = false)
     val password: String,
-
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
     val history: MutableList<History> = mutableListOf(),
-
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
-    val watchlist: MutableList<Watchlist> = mutableListOf()
+    val watchlist: MutableList<Watchlist> = mutableListOf(),
 )

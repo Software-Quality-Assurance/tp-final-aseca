@@ -21,7 +21,6 @@ import java.time.Instant
 @DataJpaTest
 @ActiveProfiles("test")
 class HistoryTests {
-
     @Autowired
     private lateinit var historyRepository: HistoryRepository
 
@@ -33,32 +32,35 @@ class HistoryTests {
 
     @Test
     fun `should save a history entry with required relations`() {
-        val user = userRepository.save(
-            User(
-                mail = "huser@example.com",
-                password = "pwd",
-                history = mutableListOf(),
-                watchlist = mutableListOf()
+        val user =
+            userRepository.save(
+                User(
+                    mail = "huser@example.com",
+                    password = "pwd",
+                    history = mutableListOf(),
+                    watchlist = mutableListOf(),
+                ),
             )
-        )
 
-        val company = companyRepository.save(
-            Company(
-                ticker = "HST",
-                companyName = "History Corp",
-                cik = "0009000001",
-                companyPrices = BigDecimal("100.00")
+        val company =
+            companyRepository.save(
+                Company(
+                    ticker = "HST",
+                    companyName = "History Corp",
+                    cik = "0009000001",
+                    companyPrices = BigDecimal("100.00"),
+                ),
             )
-        )
 
-        val history = History(
-            numberOfStocks = 5,
-            transactionValue = BigDecimal("500.00"),
-            transactionTypeEnum = TransactionTypeEnum.SELL,
-            timestamp = Instant.parse("2026-05-16T09:00:00Z"),
-            user = user,
-            company = company
-        )
+        val history =
+            History(
+                numberOfStocks = 5,
+                transactionValue = BigDecimal("500.00"),
+                transactionTypeEnum = TransactionTypeEnum.SELL,
+                timestamp = Instant.parse("2026-05-16T09:00:00Z"),
+                user = user,
+                company = company,
+            )
 
         val saved = historyRepository.save(history)
 
@@ -72,45 +74,49 @@ class HistoryTests {
 
     @Test
     fun `should fail when saving history without user or company`() {
-        val company = companyRepository.save(
-            Company(
-                ticker = "HST2",
-                companyName = "History Two",
-                cik = "0009000002",
-                companyPrices = BigDecimal("50.00")
+        val company =
+            companyRepository.save(
+                Company(
+                    ticker = "HST2",
+                    companyName = "History Two",
+                    cik = "0009000002",
+                    companyPrices = BigDecimal("50.00"),
+                ),
             )
-        )
 
-        val histNoUser = History(
-            numberOfStocks = 1,
-            transactionValue = BigDecimal("50.00"),
-            transactionTypeEnum = TransactionTypeEnum.BUY,
-            timestamp = Instant.now(),
-            user = null,
-            company = company
-        )
+        val histNoUser =
+            History(
+                numberOfStocks = 1,
+                transactionValue = BigDecimal("50.00"),
+                transactionTypeEnum = TransactionTypeEnum.BUY,
+                timestamp = Instant.now(),
+                user = null,
+                company = company,
+            )
 
         assertThrows<DataIntegrityViolationException> {
             historyRepository.save(histNoUser)
         }
 
-        val user = userRepository.save(
-            User(
-                mail = "huser2@example.com",
-                password = "pwd",
-                history = mutableListOf(),
-                watchlist = mutableListOf()
+        val user =
+            userRepository.save(
+                User(
+                    mail = "huser2@example.com",
+                    password = "pwd",
+                    history = mutableListOf(),
+                    watchlist = mutableListOf(),
+                ),
             )
-        )
 
-        val histNoCompany = History(
-            numberOfStocks = 1,
-            transactionValue = BigDecimal("50.00"),
-            transactionTypeEnum = TransactionTypeEnum.BUY,
-            timestamp = Instant.now(),
-            user = user,
-            company = null
-        )
+        val histNoCompany =
+            History(
+                numberOfStocks = 1,
+                transactionValue = BigDecimal("50.00"),
+                transactionTypeEnum = TransactionTypeEnum.BUY,
+                timestamp = Instant.now(),
+                user = user,
+                company = null,
+            )
 
         assertThrows<DataIntegrityViolationException> {
             historyRepository.save(histNoCompany)
@@ -119,30 +125,33 @@ class HistoryTests {
 
     @Test
     fun `should cascade delete history when deleting user`() {
-        val user = User(
-            mail = "cascade-user@example.com",
-            password = "pwd",
-            history = mutableListOf(),
-            watchlist = mutableListOf()
-        )
-
-        val company = companyRepository.save(
-            Company(
-                ticker = "CDEL",
-                companyName = "Cascade Delete Inc",
-                cik = "0009000010",
-                companyPrices = BigDecimal("75.00")
+        val user =
+            User(
+                mail = "cascade-user@example.com",
+                password = "pwd",
+                history = mutableListOf(),
+                watchlist = mutableListOf(),
             )
-        )
 
-        val historyEntry = History(
-            numberOfStocks = 3,
-            transactionValue = BigDecimal("225.00"),
-            transactionTypeEnum = TransactionTypeEnum.BUY,
-            timestamp = Instant.parse("2026-05-16T10:00:00Z"),
-            user = user,
-            company = company
-        )
+        val company =
+            companyRepository.save(
+                Company(
+                    ticker = "CDEL",
+                    companyName = "Cascade Delete Inc",
+                    cik = "0009000010",
+                    companyPrices = BigDecimal("75.00"),
+                ),
+            )
+
+        val historyEntry =
+            History(
+                numberOfStocks = 3,
+                transactionValue = BigDecimal("225.00"),
+                transactionTypeEnum = TransactionTypeEnum.BUY,
+                timestamp = Instant.parse("2026-05-16T10:00:00Z"),
+                user = user,
+                company = company,
+            )
 
         // Add history to user and save user so cascade persists the history
         user.history.add(historyEntry)
@@ -161,44 +170,48 @@ class HistoryTests {
 
     @Test
     fun `should save and retrieve multiple transaction types`() {
-        val user = userRepository.save(
-            User(
-                mail = "multi-trans@example.com",
-                password = "pwd",
-                history = mutableListOf(),
-                watchlist = mutableListOf()
+        val user =
+            userRepository.save(
+                User(
+                    mail = "multi-trans@example.com",
+                    password = "pwd",
+                    history = mutableListOf(),
+                    watchlist = mutableListOf(),
+                ),
             )
-        )
 
-        val company = companyRepository.save(
-            Company(
-                ticker = "MULTI",
-                companyName = "Multi Transaction Corp",
-                cik = "0009000030",
-                companyPrices = BigDecimal("100.00")
+        val company =
+            companyRepository.save(
+                Company(
+                    ticker = "MULTI",
+                    companyName = "Multi Transaction Corp",
+                    cik = "0009000030",
+                    companyPrices = BigDecimal("100.00"),
+                ),
             )
-        )
 
         // Save a BUY transaction
-        val buyHistory = History(
-            numberOfStocks = 10,
-            transactionValue = BigDecimal("1000.00"),
-            transactionTypeEnum = TransactionTypeEnum.BUY,
-            timestamp = Instant.parse("2026-05-16T11:00:00Z"),
-            user = user,
-            company = company
-        )
+        val buyHistory =
+            History(
+                numberOfStocks = 10,
+                transactionValue = BigDecimal("1000.00"),
+                transactionTypeEnum = TransactionTypeEnum.BUY,
+                timestamp = Instant.parse("2026-05-16T11:00:00Z"),
+                user = user,
+                company = company,
+            )
         val savedBuy = historyRepository.save(buyHistory)
 
         // Save a SELL transaction
-        val sellHistory = History(
-            numberOfStocks = 5,
-            transactionValue = BigDecimal("550.00"),
-            transactionTypeEnum = TransactionTypeEnum.SELL,
-            timestamp = Instant.parse("2026-05-16T12:00:00Z"),
-            user = user,
-            company = company
-        )
+        val sellHistory =
+            History(
+                numberOfStocks = 5,
+                transactionValue = BigDecimal("550.00"),
+                transactionTypeEnum = TransactionTypeEnum.SELL,
+                timestamp = Instant.parse("2026-05-16T12:00:00Z"),
+                user = user,
+                company = company,
+            )
         val savedSell = historyRepository.save(sellHistory)
 
         // Verify both exist

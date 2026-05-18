@@ -21,7 +21,6 @@ import java.time.Instant
 @DataJpaTest
 @ActiveProfiles("test")
 class UserTests {
-
     @Autowired
     private lateinit var userRepository: UserRepository
 
@@ -30,12 +29,13 @@ class UserTests {
 
     @Test
     fun `should save a user with all required fields`() {
-        val user = User(
-            mail = "user@example.com",
-            password = "hashedPassword123",
-            history = mutableListOf(),
-            watchlist = mutableListOf()
-        )
+        val user =
+            User(
+                mail = "user@example.com",
+                password = "hashedPassword123",
+                history = mutableListOf(),
+                watchlist = mutableListOf(),
+            )
 
         val savedUser = userRepository.save(user)
 
@@ -48,12 +48,13 @@ class UserTests {
 
     @Test
     fun `should retrieve a user by mail`() {
-        val user = User(
-            mail = "test@example.com",
-            password = "hashedPassword",
-            history = mutableListOf(),
-            watchlist = mutableListOf()
-        )
+        val user =
+            User(
+                mail = "test@example.com",
+                password = "hashedPassword",
+                history = mutableListOf(),
+                watchlist = mutableListOf(),
+            )
         userRepository.save(user)
 
         val foundUser = userRepository.findByMail("test@example.com")
@@ -64,26 +65,29 @@ class UserTests {
 
     @Test
     fun `should update user watchlist`() {
-        val company = companyRepository.save(
-            Company(
-                ticker = "AAPL",
-                companyName = "Apple Inc.",
-                cik = "0000320193",
-                companyPrices = BigDecimal("150.25")
+        val company =
+            companyRepository.save(
+                Company(
+                    ticker = "AAPL",
+                    companyName = "Apple Inc.",
+                    cik = "0000320193",
+                    companyPrices = BigDecimal("150.25"),
+                ),
             )
-        )
 
-        val user = User(
-            mail = "watchlist@example.com",
-            password = "hashedPassword",
-            history = mutableListOf(),
-            watchlist = mutableListOf()
-        )
+        val user =
+            User(
+                mail = "watchlist@example.com",
+                password = "hashedPassword",
+                history = mutableListOf(),
+                watchlist = mutableListOf(),
+            )
 
-        val watchEntry = Watchlist(
-            user = user,
-            company = company
-        )
+        val watchEntry =
+            Watchlist(
+                user = user,
+                company = company,
+            )
         user.watchlist.add(watchEntry)
 
         val savedUser = userRepository.save(user)
@@ -95,30 +99,33 @@ class UserTests {
 
     @Test
     fun `should update user history`() {
-        val company = companyRepository.save(
-            Company(
-                ticker = "MSFT",
-                companyName = "Microsoft Corporation",
-                cik = "0000789019",
-                companyPrices = BigDecimal("420.10")
+        val company =
+            companyRepository.save(
+                Company(
+                    ticker = "MSFT",
+                    companyName = "Microsoft Corporation",
+                    cik = "0000789019",
+                    companyPrices = BigDecimal("420.10"),
+                ),
             )
-        )
 
-        val user = User(
-            mail = "history@example.com",
-            password = "hashedPassword",
-            history = mutableListOf(),
-            watchlist = mutableListOf()
-        )
+        val user =
+            User(
+                mail = "history@example.com",
+                password = "hashedPassword",
+                history = mutableListOf(),
+                watchlist = mutableListOf(),
+            )
 
-        val historyEntry = History(
-            numberOfStocks = 3,
-            transactionValue = BigDecimal("123.45"),
-            transactionTypeEnum = TransactionTypeEnum.BUY,
-            timestamp = Instant.parse("2026-05-15T10:15:30Z"),
-            user = user,
-            company = company
-        )
+        val historyEntry =
+            History(
+                numberOfStocks = 3,
+                transactionValue = BigDecimal("123.45"),
+                transactionTypeEnum = TransactionTypeEnum.BUY,
+                timestamp = Instant.parse("2026-05-15T10:15:30Z"),
+                user = user,
+                company = company,
+            )
         user.history.add(historyEntry)
 
         val savedUser = userRepository.save(user)
@@ -134,20 +141,22 @@ class UserTests {
 
     @Test
     fun `should throw exception when saving a user with duplicate mail`() {
-        val user1 = User(
-            mail = "duplicate@example.com",
-            password = "hashedPassword1",
-            history = mutableListOf(),
-            watchlist = mutableListOf()
-        )
+        val user1 =
+            User(
+                mail = "duplicate@example.com",
+                password = "hashedPassword1",
+                history = mutableListOf(),
+                watchlist = mutableListOf(),
+            )
         userRepository.save(user1)
 
-        val user2 = User(
-            mail = "duplicate@example.com",
-            password = "hashedPassword2",
-            history = mutableListOf(),
-            watchlist = mutableListOf()
-        )
+        val user2 =
+            User(
+                mail = "duplicate@example.com",
+                password = "hashedPassword2",
+                history = mutableListOf(),
+                watchlist = mutableListOf(),
+            )
 
         assertThrows<DataIntegrityViolationException> {
             userRepository.save(user2)

@@ -21,7 +21,6 @@ import java.time.Instant
 @DataJpaTest
 @ActiveProfiles("test")
 class CompanyTests {
-
     @Autowired
     private lateinit var companyRepository: CompanyRepository
 
@@ -30,12 +29,13 @@ class CompanyTests {
 
     @Test
     fun `should save a company with all required fields`() {
-        val company = Company(
-            ticker = "GOOG",
-            companyName = "Google LLC",
-            cik = "0001652044",
-            companyPrices = BigDecimal("2800.00")
-        )
+        val company =
+            Company(
+                ticker = "GOOG",
+                companyName = "Google LLC",
+                cik = "0001652044",
+                companyPrices = BigDecimal("2800.00"),
+            )
 
         val savedCompany = companyRepository.save(company)
 
@@ -50,12 +50,13 @@ class CompanyTests {
 
     @Test
     fun `should retrieve a company by ticker`() {
-        val company = Company(
-            ticker = "AMZN",
-            companyName = "Amazon.com, Inc.",
-            cik = "0001018724",
-            companyPrices = BigDecimal("3300.50")
-        )
+        val company =
+            Company(
+                ticker = "AMZN",
+                companyName = "Amazon.com, Inc.",
+                cik = "0001018724",
+                companyPrices = BigDecimal("3300.50"),
+            )
         companyRepository.save(company)
 
         val found = companyRepository.findByTicker("AMZN")
@@ -66,32 +67,35 @@ class CompanyTests {
 
     @Test
     fun `should update company history`() {
-        val user = userRepository.save(
-            User(
-                mail = "hist-user@example.com",
-                password = "pwd",
-                history = mutableListOf(),
-                watchlist = mutableListOf()
+        val user =
+            userRepository.save(
+                User(
+                    mail = "hist-user@example.com",
+                    password = "pwd",
+                    history = mutableListOf(),
+                    watchlist = mutableListOf(),
+                ),
             )
-        )
 
-        val company = Company(
-            ticker = "TSLA",
-            companyName = "Tesla, Inc.",
-            cik = "0001318605",
-            companyPrices = BigDecimal("650.00")
-        )
+        val company =
+            Company(
+                ticker = "TSLA",
+                companyName = "Tesla, Inc.",
+                cik = "0001318605",
+                companyPrices = BigDecimal("650.00"),
+            )
 
         val savedCompany = companyRepository.save(company)
 
-        val historyEntry = History(
-            numberOfStocks = 2,
-            transactionValue = BigDecimal("1300.00"),
-            transactionTypeEnum = TransactionTypeEnum.BUY,
-            timestamp = Instant.parse("2026-05-15T12:00:00Z"),
-            user = user,
-            company = savedCompany
-        )
+        val historyEntry =
+            History(
+                numberOfStocks = 2,
+                transactionValue = BigDecimal("1300.00"),
+                transactionTypeEnum = TransactionTypeEnum.BUY,
+                timestamp = Instant.parse("2026-05-15T12:00:00Z"),
+                user = user,
+                company = savedCompany,
+            )
 
         savedCompany.history.add(historyEntry)
 
@@ -108,28 +112,31 @@ class CompanyTests {
 
     @Test
     fun `should update company watchlist`() {
-        val user = userRepository.save(
-            User(
-                mail = "watch-user@example.com",
-                password = "pwd",
-                history = mutableListOf(),
-                watchlist = mutableListOf()
+        val user =
+            userRepository.save(
+                User(
+                    mail = "watch-user@example.com",
+                    password = "pwd",
+                    history = mutableListOf(),
+                    watchlist = mutableListOf(),
+                ),
             )
-        )
 
-        val company = Company(
-            ticker = "NFLX",
-            companyName = "Netflix, Inc.",
-            cik = "0001065280",
-            companyPrices = BigDecimal("500.00")
-        )
+        val company =
+            Company(
+                ticker = "NFLX",
+                companyName = "Netflix, Inc.",
+                cik = "0001065280",
+                companyPrices = BigDecimal("500.00"),
+            )
 
         val savedCompany = companyRepository.save(company)
 
-        val watchEntry = Watchlist(
-            user = user,
-            company = savedCompany
-        )
+        val watchEntry =
+            Watchlist(
+                user = user,
+                company = savedCompany,
+            )
 
         savedCompany.watchlist.add(watchEntry)
 
@@ -142,20 +149,22 @@ class CompanyTests {
 
     @Test
     fun `should throw exception when saving a company with duplicate ticker`() {
-        val company1 = Company(
-            ticker = "DUP",
-            companyName = "Dup One",
-            cik = "0000000001",
-            companyPrices = BigDecimal("10.00")
-        )
+        val company1 =
+            Company(
+                ticker = "DUP",
+                companyName = "Dup One",
+                cik = "0000000001",
+                companyPrices = BigDecimal("10.00"),
+            )
         companyRepository.save(company1)
 
-        val company2 = Company(
-            ticker = "DUP",
-            companyName = "Dup Two",
-            cik = "0000000002",
-            companyPrices = BigDecimal("20.00")
-        )
+        val company2 =
+            Company(
+                ticker = "DUP",
+                companyName = "Dup Two",
+                cik = "0000000002",
+                companyPrices = BigDecimal("20.00"),
+            )
 
         assertThrows<DataIntegrityViolationException> {
             companyRepository.save(company2)
@@ -164,24 +173,25 @@ class CompanyTests {
 
     @Test
     fun `should throw exception when saving a company with duplicate cik`() {
-        val company1 = Company(
-            ticker = "UNQ1",
-            companyName = "Unique One",
-            cik = "0000000101",
-            companyPrices = BigDecimal("15.00")
-        )
+        val company1 =
+            Company(
+                ticker = "UNQ1",
+                companyName = "Unique One",
+                cik = "0000000101",
+                companyPrices = BigDecimal("15.00"),
+            )
         companyRepository.save(company1)
 
-        val company2 = Company(
-            ticker = "UNQ2",
-            companyName = "Unique Two",
-            cik = "0000000101",
-            companyPrices = BigDecimal("25.00")
-        )
+        val company2 =
+            Company(
+                ticker = "UNQ2",
+                companyName = "Unique Two",
+                cik = "0000000101",
+                companyPrices = BigDecimal("25.00"),
+            )
 
         assertThrows<DataIntegrityViolationException> {
             companyRepository.save(company2)
         }
     }
 }
-
