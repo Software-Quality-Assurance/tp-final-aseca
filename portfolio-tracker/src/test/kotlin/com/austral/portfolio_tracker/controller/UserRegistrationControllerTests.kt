@@ -4,6 +4,7 @@ import com.austral.portfolio_tracker.dto.RegisterUserRequest
 import com.austral.portfolio_tracker.repository.UserRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -28,6 +29,11 @@ class UserRegistrationControllerTests {
 
     @Autowired
     private lateinit var userRepository: UserRepository
+
+    @BeforeEach
+    fun cleanDatabase() {
+        userRepository.deleteAll()
+    }
 
     @Test
     fun `should return 201 Created when registering with valid data`() {

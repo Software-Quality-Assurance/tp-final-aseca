@@ -1,7 +1,9 @@
 package com.austral.portfolio_tracker.dto
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class RegisterUserRequestTests {
@@ -88,7 +90,7 @@ class UserResponseTests {
 
         // Verify password field does not exist on response
         val hasPasswordProperty = response::class.members.any { it.name == "password" }
-        assert(!hasPasswordProperty) { "UserResponse should not contain password field" }
+        assertFalse(hasPasswordProperty, "UserResponse should not contain password field")
     }
 
     @Test
@@ -105,9 +107,9 @@ class UserResponseTests {
         assertNotNull(response.email)
 
         // Only id and email should be exposed
-        assert(memberNames.contains("id"))
-        assert(memberNames.contains("email"))
-        assert(!memberNames.contains("password"))
+        assertTrue(memberNames.contains("id"))
+        assertTrue(memberNames.contains("email"))
+        assertFalse(memberNames.contains("password"))
     }
 
     @Test

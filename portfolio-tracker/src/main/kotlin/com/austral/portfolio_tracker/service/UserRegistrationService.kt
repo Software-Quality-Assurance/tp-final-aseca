@@ -5,8 +5,10 @@ import com.austral.portfolio_tracker.dto.UserResponse
 import com.austral.portfolio_tracker.entity.User
 import com.austral.portfolio_tracker.exception.DuplicateUserException
 import com.austral.portfolio_tracker.repository.UserRepository
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.regex.Pattern
 
 @Service
@@ -17,13 +19,16 @@ class UserRegistrationService(
     companion object {
         private val EMAIL_REGEX =
             Pattern.compile(
-                "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$",
+                "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
             )
     }
 
+    @Transactional
     fun register(request: RegisterUserRequest): UserResponse {
+        val normalizedEmail = request.email.trim().lowercase()
+
         // Validate email and password are not empty
-        if (request.email.isBlank()) {
+        if (normalizedEmail.isBlank()) {
             throw IllegalArgumentException("Email cannot be empty")
         }
         if (request.password.isBlank()) {
@@ -31,24 +36,11 @@ class UserRegistrationService(
         }
 
         // Validate email format
-        if (!EMAIL_REGEX.matcher(request.email).matches()) {
+        if (!EMAIL_REGEX.matcher(normalizedEmail).matches()) {
             throw IllegalArgumentException("Invalid email format")
         }
 
-        // Check for duplicate (case-insensitive)
-        val existingUser = userRepository.findByMail(request.email)
-        if (existingUser != null) {
-            throw DuplicateUserException("User with email ${request.email} already exists")
-        }
-
-        // Check if user exists with different case (case-insensitive search)
-        val allUsers = userRepository.findAll()
-        val duplicateByCase =
-            allUsers.any {
-                it.mail.lowercase() == request.email.lowercase() &&
-                    it.mail != request.email
-            }
-        if (duplicateByCase) {
+        if (userRepository.existsByMailIgnoreCase(normalizedEmail)) {
             throw DuplicateUserException("User with email ${request.email} already exists")
         }
 
@@ -56,16 +48,21 @@ class UserRegistrationService(
         val hashedPassword: String = requireNotNull(passwordEncoder.encode(request.password))
         val newUser =
             User(
-                mail = request.email,
+                mail = normalizedEmail,
                 password = hashedPassword,
                 history = mutableListOf(),
                 watchlist = mutableListOf(),
             )
-        val savedUser = userRepository.save(newUser)
+        val savedUser =
+            try {
+                userRepository.save(newUser)
+            } catch (_: DataIntegrityViolationException) {
+                throw DuplicateUserException("User with email ${request.email} already exists")
+            }
 
         // Return response without exposing password
         return UserResponse(
-            id = savedUser.id,
+            id = requireNotNull(savedUser.id),
             email = savedUser.mail,
         )
     }

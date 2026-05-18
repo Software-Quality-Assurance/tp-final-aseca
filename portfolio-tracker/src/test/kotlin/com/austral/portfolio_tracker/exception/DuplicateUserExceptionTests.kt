@@ -2,6 +2,7 @@ package com.austral.portfolio_tracker.exception
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class DuplicateUserExceptionTests {
@@ -16,7 +17,7 @@ class DuplicateUserExceptionTests {
 
     @Test
     fun `should extend RuntimeException`() {
-        assert(RuntimeException::class.java.isAssignableFrom(DuplicateUserException::class.java))
+        assertTrue(RuntimeException::class.java.isAssignableFrom(DuplicateUserException::class.java))
     }
 
     @Test
