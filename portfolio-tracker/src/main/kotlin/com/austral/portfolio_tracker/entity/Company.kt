@@ -10,17 +10,21 @@ import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
 @Entity
-@Table(name = "users")
-class User(
+@Table(name = "companies")
+class Company(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     @Column(nullable = false, unique = true)
-    val mail: String,
+    val ticker: String,
     @Column(nullable = false)
-    val password: String,
-    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val companyName: String,
+    @Column(nullable = false, unique = true)
+    val cik: String,
+    @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val prices: MutableList<Price> = mutableListOf(),
+    @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], orphanRemoval = true)
     val history: MutableList<History> = mutableListOf(),
-    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], orphanRemoval = true)
     val watchlist: MutableList<Watchlist> = mutableListOf(),
 )
