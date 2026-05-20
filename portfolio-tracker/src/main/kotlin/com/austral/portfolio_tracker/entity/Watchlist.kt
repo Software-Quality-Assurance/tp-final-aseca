@@ -11,7 +11,7 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "watchlist")
-data class Watchlist(
+class Watchlist(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
