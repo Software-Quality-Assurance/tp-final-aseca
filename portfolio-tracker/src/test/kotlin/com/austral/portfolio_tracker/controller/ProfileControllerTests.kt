@@ -20,7 +20,7 @@ import tools.jackson.databind.ObjectMapper
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Transactional
-class UserRegistrationControllerTests {
+class ProfileControllerTests {
     @Autowired
     private lateinit var mockMvc: MockMvc
 

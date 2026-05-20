@@ -10,13 +10,15 @@ class SecurityConfig {
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         // Keep CSRF enabled globally, but allow unauthenticated registration
-        // without requiring a CSRF token.
+        // and login without requiring a CSRF token.
         http.csrf { csrf ->
-            csrf.ignoringRequestMatchers("/api/auth/register")
+            csrf.ignoringRequestMatchers("/api/auth/register", "/api/auth/login")
         }
 
         http.authorizeHttpRequests { authz ->
             authz.requestMatchers("/api/auth/register").permitAll()
+            authz.requestMatchers("/api/auth/login").permitAll()
+            authz.requestMatchers("/api/users/me").permitAll()
             authz.anyRequest().authenticated()
         }
 
