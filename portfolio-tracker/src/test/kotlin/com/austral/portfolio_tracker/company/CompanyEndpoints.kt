@@ -75,12 +75,19 @@ class CompanyEndpoints {
 
     @Test
     @WithMockUser
-    fun `001 should create new company with empty body`() {
+    fun `001 should create new company`() {
+        val request =
+            mapOf(
+                "ticker" to "AMZN",
+                "companyName" to "Amazon Inc",
+                "companyPrices" to "180.50",
+            )
+
         mockMvc
             .post("/api/company") {
                 with(csrf())
                 contentType = MediaType.APPLICATION_JSON
-                content = "{}"
+                content = objectMapper.writeValueAsString(request)
             }.andExpect {
                 status { isCreated() }
             }

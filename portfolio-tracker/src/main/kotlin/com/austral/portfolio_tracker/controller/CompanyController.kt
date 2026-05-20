@@ -20,15 +20,27 @@ class CompanyController(
     fun createCompany(
         @RequestBody request: CreateCompanyRequest,
     ): ResponseEntity<Unit> {
-        if (request.ticker != null && request.companyName != null && request.companyPrices != null) {
-            val company =
-                Company(
-                    ticker = request.ticker,
-                    companyName = request.companyName,
-                    companyPrices = request.companyPrices,
-                )
-            companyRepository.save(company)
+        val ticker = request.ticker
+        val companyName = request.companyName
+        val companyPrices = request.companyPrices
+
+        if (ticker.isNullOrBlank()) {
+            return ResponseEntity.badRequest().build()
         }
+        if (companyName.isNullOrBlank()) {
+            return ResponseEntity.badRequest().build()
+        }
+        if (companyPrices == null) {
+            return ResponseEntity.badRequest().build()
+        }
+
+        val company =
+            Company(
+                ticker = ticker,
+                companyName = companyName,
+                companyPrices = companyPrices,
+            )
+        companyRepository.save(company)
         return ResponseEntity.status(HttpStatus.CREATED).build()
     }
 }
