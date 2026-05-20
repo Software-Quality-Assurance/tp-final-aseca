@@ -45,7 +45,6 @@ class WatchlistTests {
                 Company(
                     ticker = "WST",
                     companyName = "Watch Corp",
-                    cik = "0009100001",
                     companyPrices = BigDecimal("10.00"),
                 ),
             )
@@ -70,7 +69,6 @@ class WatchlistTests {
                 Company(
                     ticker = "WST2",
                     companyName = "Watch Two",
-                    cik = "0009100002",
                     companyPrices = BigDecimal("20.00"),
                 ),
             )
@@ -121,7 +119,6 @@ class WatchlistTests {
                 Company(
                     ticker = "CWCD",
                     companyName = "Cascade Watch Inc",
-                    cik = "0009100010",
                     companyPrices = BigDecimal("30.00"),
                 ),
             )
@@ -160,7 +157,6 @@ class WatchlistTests {
             Company(
                 ticker = "CWCD2",
                 companyName = "Cascade Watch Two",
-                cik = "0009100020",
                 companyPrices = BigDecimal("40.00"),
             )
 
@@ -209,7 +205,6 @@ class WatchlistTests {
                 Company(
                     ticker = "REL1",
                     companyName = "Relation One",
-                    cik = "0009100100",
                     companyPrices = BigDecimal("50.00"),
                 ),
             )
@@ -219,7 +214,6 @@ class WatchlistTests {
                 Company(
                     ticker = "REL2",
                     companyName = "Relation Two",
-                    cik = "0009100200",
                     companyPrices = BigDecimal("75.00"),
                 ),
             )

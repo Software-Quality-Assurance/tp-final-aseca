@@ -47,7 +47,6 @@ class HistoryTests {
                 Company(
                     ticker = "HST",
                     companyName = "History Corp",
-                    cik = "0009000001",
                     companyPrices = BigDecimal("100.00"),
                 ),
             )
@@ -79,7 +78,6 @@ class HistoryTests {
                 Company(
                     ticker = "HST2",
                     companyName = "History Two",
-                    cik = "0009000002",
                     companyPrices = BigDecimal("50.00"),
                 ),
             )
@@ -138,7 +136,6 @@ class HistoryTests {
                 Company(
                     ticker = "CDEL",
                     companyName = "Cascade Delete Inc",
-                    cik = "0009000010",
                     companyPrices = BigDecimal("75.00"),
                 ),
             )
@@ -185,7 +182,6 @@ class HistoryTests {
                 Company(
                     ticker = "MULTI",
                     companyName = "Multi Transaction Corp",
-                    cik = "0009000030",
                     companyPrices = BigDecimal("100.00"),
                 ),
             )

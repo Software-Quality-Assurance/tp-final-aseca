@@ -33,7 +33,6 @@ class CompanyTests {
             Company(
                 ticker = "GOOG",
                 companyName = "Google LLC",
-                cik = "0001652044",
                 companyPrices = BigDecimal("2800.00"),
             )
 
@@ -42,7 +41,6 @@ class CompanyTests {
         assertNotNull(savedCompany.id)
         assertEquals("GOOG", savedCompany.ticker)
         assertEquals("Google LLC", savedCompany.companyName)
-        assertEquals("0001652044", savedCompany.cik)
         assertEquals(BigDecimal("2800.00"), savedCompany.companyPrices)
         assertEquals(0, savedCompany.history.size)
         assertEquals(0, savedCompany.watchlist.size)
@@ -54,7 +52,6 @@ class CompanyTests {
             Company(
                 ticker = "AMZN",
                 companyName = "Amazon.com, Inc.",
-                cik = "0001018724",
                 companyPrices = BigDecimal("3300.50"),
             )
         companyRepository.save(company)
@@ -81,7 +78,6 @@ class CompanyTests {
             Company(
                 ticker = "TSLA",
                 companyName = "Tesla, Inc.",
-                cik = "0001318605",
                 companyPrices = BigDecimal("650.00"),
             )
 
@@ -126,7 +122,6 @@ class CompanyTests {
             Company(
                 ticker = "NFLX",
                 companyName = "Netflix, Inc.",
-                cik = "0001065280",
                 companyPrices = BigDecimal("500.00"),
             )
 
@@ -153,7 +148,6 @@ class CompanyTests {
             Company(
                 ticker = "DUP",
                 companyName = "Dup One",
-                cik = "0000000001",
                 companyPrices = BigDecimal("10.00"),
             )
         companyRepository.save(company1)
@@ -162,32 +156,7 @@ class CompanyTests {
             Company(
                 ticker = "DUP",
                 companyName = "Dup Two",
-                cik = "0000000002",
                 companyPrices = BigDecimal("20.00"),
-            )
-
-        assertThrows<DataIntegrityViolationException> {
-            companyRepository.save(company2)
-        }
-    }
-
-    @Test
-    fun `should throw exception when saving a company with duplicate cik`() {
-        val company1 =
-            Company(
-                ticker = "UNQ1",
-                companyName = "Unique One",
-                cik = "0000000101",
-                companyPrices = BigDecimal("15.00"),
-            )
-        companyRepository.save(company1)
-
-        val company2 =
-            Company(
-                ticker = "UNQ2",
-                companyName = "Unique Two",
-                cik = "0000000101",
-                companyPrices = BigDecimal("25.00"),
             )
 
         assertThrows<DataIntegrityViolationException> {

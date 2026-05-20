@@ -70,7 +70,6 @@ class UserTests {
                 Company(
                     ticker = "AAPL",
                     companyName = "Apple Inc.",
-                    cik = "0000320193",
                     companyPrices = BigDecimal("150.25"),
                 ),
             )
@@ -104,7 +103,6 @@ class UserTests {
                 Company(
                     ticker = "MSFT",
                     companyName = "Microsoft Corporation",
-                    cik = "0000789019",
                     companyPrices = BigDecimal("420.10"),
                 ),
             )

@@ -20,8 +20,6 @@ data class Company(
     val ticker: String,
     @Column(nullable = false)
     val companyName: String,
-    @Column(nullable = false, unique = true)
-    val cik: String,
     @Column(nullable = false, precision = 19, scale = 2)
     val companyPrices: BigDecimal,
     @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], orphanRemoval = true)
