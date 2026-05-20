@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+data class ErrorResponse(
+    val error: String,
+)
+
 @RestController
 @RequestMapping("/api/company")
 class CompanyController(
@@ -19,7 +23,7 @@ class CompanyController(
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
     fun createCompany(
         @RequestBody request: CreateCompanyRequest,
-    ): ResponseEntity<Unit> {
+    ): ResponseEntity<Any> {
         val ticker = request.ticker
         val companyName = request.companyName
         val companyPrices = request.companyPrices
@@ -32,6 +36,12 @@ class CompanyController(
         }
         if (companyPrices == null) {
             return ResponseEntity.badRequest().build()
+        }
+
+        if (companyRepository.findByTicker(ticker) != null) {
+            return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(ErrorResponse("Invalid operation: company with ticker already exists"))
         }
 
         val company =
