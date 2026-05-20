@@ -1,0 +1,91 @@
+package com.austral.portfolio_tracker.config
+
+import com.austral.portfolio_tracker.entity.Company
+import com.austral.portfolio_tracker.repository.CompanyRepository
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.mockito.ArgumentCaptor
+import org.mockito.Mockito.anyList
+import org.mockito.Mockito.atLeast
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
+import org.mockito.Mockito.`when`
+import tools.jackson.databind.ObjectMapper
+import java.math.BigDecimal
+
+class DataLoaderTests {
+    private lateinit var dataLoader: DataLoader
+    private lateinit var mockCompanyRepository: CompanyRepository
+    private lateinit var objectMapper: ObjectMapper
+
+    @BeforeEach
+    fun setUp() {
+        mockCompanyRepository = mock(CompanyRepository::class.java)
+        objectMapper = ObjectMapper()
+        dataLoader = DataLoader(mockCompanyRepository, objectMapper)
+    }
+
+    @Test
+    fun `001_should load companies from JSON file`() {
+        `when`(mockCompanyRepository.saveAll(anyList())).thenReturn(emptyList())
+
+        dataLoader.run()
+
+        verify(mockCompanyRepository, atLeast(1)).saveAll(anyList())
+    }
+
+    @Test
+    fun `002_should parse company data correctly`() {
+        val captor = ArgumentCaptor.forClass(List::class.java) as ArgumentCaptor<List<Company>>
+        `when`(mockCompanyRepository.saveAll(anyList())).thenReturn(emptyList())
+
+        dataLoader.run()
+
+        verify(mockCompanyRepository, atLeast(1)).saveAll(captor.capture())
+        val allCompanies = captor.allValues.flatten()
+        assert(allCompanies.isNotEmpty())
+        allCompanies.forEach { company ->
+            assert(company.ticker.isNotBlank())
+            assert(company.companyName.isNotBlank())
+            assert(company.companyPrices == BigDecimal.ZERO)
+        }
+    }
+
+    @Test
+    fun `003_should batch companies in groups of 50`() {
+        val captor = ArgumentCaptor.forClass(List::class.java) as ArgumentCaptor<List<Company>>
+        `when`(mockCompanyRepository.saveAll(anyList())).thenReturn(emptyList())
+
+        dataLoader.run()
+
+        verify(mockCompanyRepository, atLeast(1)).saveAll(captor.capture())
+        val batchSizes = captor.allValues.map { it.size }
+        assert(batchSizes.isNotEmpty())
+        batchSizes.dropLast(1).forEach { size ->
+            assert(size == 50) { "Expected batch size 50, got $size" }
+        }
+        assert(batchSizes.last() <= 50)
+    }
+
+    @Test
+    fun `004_should handle save exceptions gracefully`() {
+        `when`(mockCompanyRepository.saveAll(anyList())).thenThrow(RuntimeException("DB Error"))
+
+        dataLoader.run()
+
+        verify(mockCompanyRepository, atLeast(1)).save(org.mockito.ArgumentMatchers.any())
+    }
+
+    @Test
+    fun `005_should load correct number of companies`() {
+        val captor = ArgumentCaptor.forClass(List::class.java) as ArgumentCaptor<List<Company>>
+        `when`(mockCompanyRepository.saveAll(anyList())).thenReturn(emptyList())
+
+        dataLoader.run()
+
+        verify(mockCompanyRepository, atLeast(1)).saveAll(captor.capture())
+        val totalCompanies = captor.allValues.flatten().size
+        assert(totalCompanies == 1000) { "Expected 1000 companies, got $totalCompanies" }
+    }
+}
