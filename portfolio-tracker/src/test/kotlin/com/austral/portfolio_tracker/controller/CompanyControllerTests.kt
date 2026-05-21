@@ -182,4 +182,216 @@ class CompanyControllerTests {
                 jsonPath("$.error") { value("Invalid operation: company with ticker already exists") }
             }
     }
+
+    @Test
+    @WithMockUser
+    fun `005_should return 400 Bad Request when ticker is null`() {
+        val request =
+            CreateCompanyRequest(
+                ticker = null,
+                companyName = "Valid Company",
+                companyPrices = BigDecimal("100.00"),
+            )
+
+        mockMvc
+            .post("/api/company") {
+                with(csrf())
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(request)
+            }.andExpect {
+                status { isBadRequest() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `006_should return 400 Bad Request when ticker is blank`() {
+        val request =
+            CreateCompanyRequest(
+                ticker = "   ",
+                companyName = "Valid Company",
+                companyPrices = BigDecimal("100.00"),
+            )
+
+        mockMvc
+            .post("/api/company") {
+                with(csrf())
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(request)
+            }.andExpect {
+                status { isBadRequest() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `007_should return 400 Bad Request when ticker is empty string`() {
+        val request =
+            CreateCompanyRequest(
+                ticker = "",
+                companyName = "Valid Company",
+                companyPrices = BigDecimal("100.00"),
+            )
+
+        mockMvc
+            .post("/api/company") {
+                with(csrf())
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(request)
+            }.andExpect {
+                status { isBadRequest() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `008_should return 400 Bad Request when companyName is null`() {
+        val request =
+            CreateCompanyRequest(
+                ticker = "VALID",
+                companyName = null,
+                companyPrices = BigDecimal("100.00"),
+            )
+
+        mockMvc
+            .post("/api/company") {
+                with(csrf())
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(request)
+            }.andExpect {
+                status { isBadRequest() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `009_should return 400 Bad Request when companyName is blank`() {
+        val request =
+            CreateCompanyRequest(
+                ticker = "VALID",
+                companyName = "   ",
+                companyPrices = BigDecimal("100.00"),
+            )
+
+        mockMvc
+            .post("/api/company") {
+                with(csrf())
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(request)
+            }.andExpect {
+                status { isBadRequest() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `010_should return 400 Bad Request when companyName is empty string`() {
+        val request =
+            CreateCompanyRequest(
+                ticker = "VALID",
+                companyName = "",
+                companyPrices = BigDecimal("100.00"),
+            )
+
+        mockMvc
+            .post("/api/company") {
+                with(csrf())
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(request)
+            }.andExpect {
+                status { isBadRequest() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `011_should return 400 Bad Request when companyPrices is null`() {
+        val request =
+            CreateCompanyRequest(
+                ticker = "VALID",
+                companyName = "Valid Company",
+                companyPrices = null,
+            )
+
+        mockMvc
+            .post("/api/company") {
+                with(csrf())
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(request)
+            }.andExpect {
+                status { isBadRequest() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `012_should create company with zero price`() {
+        val request =
+            CreateCompanyRequest(
+                ticker = "ZERO",
+                companyName = "Zero Price Company",
+                companyPrices = BigDecimal.ZERO,
+            )
+
+        mockMvc
+            .post("/api/company") {
+                with(csrf())
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(request)
+            }.andExpect {
+                status { isCreated() }
+            }
+
+        val savedCompany = companyRepository.findByTicker("ZERO")
+        assertNotNull(savedCompany)
+        assertEquals(BigDecimal.ZERO, savedCompany?.companyPrices)
+    }
+
+    @Test
+    @WithMockUser
+    fun `013_should create company with negative price`() {
+        val request =
+            CreateCompanyRequest(
+                ticker = "NEG",
+                companyName = "Negative Price Company",
+                companyPrices = BigDecimal("-50.25"),
+            )
+
+        mockMvc
+            .post("/api/company") {
+                with(csrf())
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(request)
+            }.andExpect {
+                status { isCreated() }
+            }
+
+        val savedCompany = companyRepository.findByTicker("NEG")
+        assertNotNull(savedCompany)
+        assertEquals(BigDecimal("-50.25"), savedCompany?.companyPrices)
+    }
+
+    @Test
+    @WithMockUser
+    fun `014_should create company with large price value`() {
+        val request =
+            CreateCompanyRequest(
+                ticker = "LARGE",
+                companyName = "Large Price Company",
+                companyPrices = BigDecimal("999999.99"),
+            )
+
+        mockMvc
+            .post("/api/company") {
+                with(csrf())
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(request)
+            }.andExpect {
+                status { isCreated() }
+            }
+
+        val savedCompany = companyRepository.findByTicker("LARGE")
+        assertNotNull(savedCompany)
+        assertEquals(BigDecimal("999999.99"), savedCompany?.companyPrices)
+    }
 }
