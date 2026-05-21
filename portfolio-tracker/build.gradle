@@ -55,6 +55,11 @@ tasks.withType(JavaExec).configureEach {
 
 kover {
     reports {
+        verify{
+            rule {
+                minBound(90)
+            }
+        }
         filters {
             excludes {
                 classes(
