@@ -2,7 +2,17 @@ package com.austral.portfolio_tracker.controller
 
 import com.austral.portfolio_tracker.dto.CreateCompanyRequest
 import com.austral.portfolio_tracker.entity.Company
+import com.austral.portfolio_tracker.entity.History
+import com.austral.portfolio_tracker.entity.Price
+import com.austral.portfolio_tracker.entity.TransactionTypeEnum
+import com.austral.portfolio_tracker.entity.User
+import com.austral.portfolio_tracker.entity.Watchlist
 import com.austral.portfolio_tracker.repository.CompanyRepository
+import com.austral.portfolio_tracker.repository.HistoryRepository
+import com.austral.portfolio_tracker.repository.PriceRepository
+import com.austral.portfolio_tracker.repository.UserRepository
+import com.austral.portfolio_tracker.repository.WatchlistRepository
+import jakarta.persistence.EntityManager
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeEach
@@ -34,6 +44,21 @@ class CompanyControllerTests {
 
     @Autowired
     private lateinit var companyRepository: CompanyRepository
+
+    @Autowired
+    private lateinit var priceRepository: PriceRepository
+
+    @Autowired
+    private lateinit var historyRepository: HistoryRepository
+
+    @Autowired
+    private lateinit var watchlistRepository: WatchlistRepository
+
+    @Autowired
+    private lateinit var userRepository: UserRepository
+
+    @Autowired
+    private lateinit var entityManager: EntityManager
 
     @BeforeEach
     fun setUp() {
@@ -1013,5 +1038,68 @@ class CompanyControllerTests {
         assertNotNull(recreated)
         assertEquals("RECR", recreated?.ticker)
         assertEquals("Recreate Test Company New", recreated?.companyName)
+    }
+
+    @Test
+    @WithMockUser
+    fun `054_delete_company_cascades_to_prices_history_and_watchlist`() {
+        val company = companyRepository.save(Company(ticker = "CASC", companyName = "Cascade Test Company"))
+        val user = userRepository.save(User(mail = "cascade@test.com", password = "pass"))
+
+        priceRepository.save(Price(ticker = "CASC", unityPrice = java.math.BigDecimal("100.00"), company = company))
+        priceRepository.save(Price(ticker = "CASC", unityPrice = java.math.BigDecimal("105.00"), company = company))
+
+        historyRepository.save(
+            History(
+                numberOfStocks = 10,
+                transactionValue = java.math.BigDecimal("1000.00"),
+                transactionTypeEnum = TransactionTypeEnum.BUY,
+                company = company,
+                user = user,
+            ),
+        )
+
+        watchlistRepository.save(Watchlist(company = company, user = user))
+
+        val companyId = company.id!!
+
+        // Flush inserts to DB y cargar colecciones lazy en sesión para que
+        // Hibernate las incluya en la cascada REMOVED al hacer el delete
+        entityManager.flush()
+        entityManager.refresh(company)
+        company.prices.size
+        company.history.size
+        company.watchlist.size
+
+        assertEquals(2, company.prices.size)
+        assertEquals(1, company.history.size)
+        assertEquals(1, company.watchlist.size)
+
+        // Si cascade no funcionara, el endpoint devolvería 500 por FK violation
+        mockMvc
+            .delete("/api/company/$companyId") {
+                with(csrf())
+            }.andExpect {
+                status { isNoContent() }
+            }
+
+        // Verificar en DB que se eliminaron los registros relacionados
+        assertEquals(0, priceRepository.findByCompanyIdOrderByTimestampAsc(companyId).size)
+        assertEquals(0, watchlistRepository.findAll().count { it.company?.id == companyId })
+        assertEquals(0, historyRepository.findAll().count { it.company?.id == companyId })
+
+        // Verificar que la compañía ya no aparece en el listado ni en búsquedas
+        mockMvc
+            .get("/api/company/search?ticker=CASC") {
+            }.andExpect {
+                status { isNotFound() }
+            }
+
+        mockMvc
+            .get("/api/company?page=1") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$.totalElements") { value(0) }
+            }
     }
 }
