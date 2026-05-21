@@ -4,4 +4,3 @@ class InvalidCredentialsException(
     message: String = "Invalid credentials",
     cause: Throwable? = null,
 ) : RuntimeException(message, cause)
-

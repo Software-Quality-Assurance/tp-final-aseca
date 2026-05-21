@@ -1,7 +1,9 @@
 package com.austral.portfolio_tracker.controller
 
 import com.austral.portfolio_tracker.dto.RegisterUserRequest
+import com.austral.portfolio_tracker.exception.InvalidCredentialsException
 import com.austral.portfolio_tracker.repository.UserRepository
+import com.austral.portfolio_tracker.security.JwtRevocationService
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,11 +15,11 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 import org.springframework.transaction.annotation.Transactional
-import java.util.Base64
 import tools.jackson.databind.ObjectMapper
+import java.util.Base64
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -33,9 +35,16 @@ class AuthControllerTests {
     @Autowired
     private lateinit var userRepository: UserRepository
 
+    @Autowired
+    private lateinit var authController: AuthController
+
+    @Autowired
+    private lateinit var jwtRevocationService: JwtRevocationService
+
     @BeforeEach
     fun cleanDatabase() {
         userRepository.deleteAll()
+        jwtRevocationService.clearAll()
     }
 
     @Test
@@ -210,5 +219,100 @@ class AuthControllerTests {
             }
     }
 
+    @Test
+    fun `login with null email returns unauthorized with generic message`() {
+        val invalidJson =
+            """
+            {
+                "email": null,
+                "password": "Password123!"
+            }
+            """.trimIndent()
 
+        mockMvc
+            .post("/api/auth/login") {
+                contentType = MediaType.APPLICATION_JSON
+                content = invalidJson
+            }.andExpect {
+                status { isUnauthorized() }
+                jsonPath("$.error") { value("Invalid credentials") }
+            }
+    }
+
+    @Test
+    fun `login with null password returns unauthorized with generic message`() {
+        val invalidJson =
+            """
+            {
+                "email": "user@example.com",
+                "password": null
+            }
+            """.trimIndent()
+
+        mockMvc
+            .post("/api/auth/login") {
+                contentType = MediaType.APPLICATION_JSON
+                content = invalidJson
+            }.andExpect {
+                status { isUnauthorized() }
+                jsonPath("$.error") { value("Invalid credentials") }
+            }
+    }
+
+    @Test
+    fun `logout revokes token and subsequent requests are unauthorized`() {
+        val registerRequest =
+            RegisterUserRequest(
+                email = "logout-user@example.com",
+                password = "Password123!",
+            )
+
+        mockMvc
+            .post("/api/auth/register") {
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(registerRequest)
+            }.andExpect {
+                status { isCreated() }
+            }
+
+        val loginRequest = mapOf("email" to "logout-user@example.com", "password" to "Password123!")
+
+        val loginResp =
+            mockMvc
+                .post("/api/auth/login") {
+                    contentType = MediaType.APPLICATION_JSON
+                    content = objectMapper.writeValueAsString(loginRequest)
+                }.andExpect {
+                    status { isOk() }
+                }.andReturn()
+
+        val token =
+            loginResp.response.contentAsString
+                .substringAfter("\"token\":\"")
+                .substringBefore('"')
+
+        // Call logout
+        mockMvc
+            .post("/api/auth/logout") {
+                header("Authorization", "Bearer $token")
+            }.andExpect {
+                status { isNoContent() }
+            }
+
+        // Using the same token should now be unauthorized
+        mockMvc
+            .get("/api/users/me") {
+                header("Authorization", "Bearer $token")
+            }.andExpect {
+                status { isUnauthorized() }
+            }
+    }
+
+    @Test
+    fun `invalid credentials handler falls back to generic when message is null`() {
+        val ex = InvalidCredentialsException()
+        val response = authController.handleInvalidCredentials(ex)
+        assertEquals(401, response.statusCode.value())
+        assertEquals("Invalid credentials", response.body?.get("error"))
+    }
 }
