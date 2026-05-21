@@ -2,6 +2,7 @@ package com.austral.portfolio_tracker.user
 
 import com.austral.portfolio_tracker.entity.Company
 import com.austral.portfolio_tracker.entity.History
+import com.austral.portfolio_tracker.entity.Price
 import com.austral.portfolio_tracker.entity.TransactionTypeEnum
 import com.austral.portfolio_tracker.entity.User
 import com.austral.portfolio_tracker.entity.Watchlist
@@ -70,8 +71,16 @@ class UserTests {
                 Company(
                     ticker = "AAPL",
                     companyName = "Apple Inc.",
-                    companyPrices = BigDecimal("150.25"),
-                ),
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "AAPL",
+                            unityPrice = BigDecimal("150.25"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
             )
 
         val user =
@@ -103,8 +112,16 @@ class UserTests {
                 Company(
                     ticker = "MSFT",
                     companyName = "Microsoft Corporation",
-                    companyPrices = BigDecimal("420.10"),
-                ),
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "MSFT",
+                            unityPrice = BigDecimal("420.10"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
             )
 
         val user =

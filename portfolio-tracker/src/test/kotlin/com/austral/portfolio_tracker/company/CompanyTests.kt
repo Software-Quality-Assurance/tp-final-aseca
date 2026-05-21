@@ -2,6 +2,7 @@ package com.austral.portfolio_tracker.company
 
 import com.austral.portfolio_tracker.entity.Company
 import com.austral.portfolio_tracker.entity.History
+import com.austral.portfolio_tracker.entity.Price
 import com.austral.portfolio_tracker.entity.TransactionTypeEnum
 import com.austral.portfolio_tracker.entity.User
 import com.austral.portfolio_tracker.entity.Watchlist
@@ -33,15 +34,25 @@ class CompanyTests {
             Company(
                 ticker = "GOOG",
                 companyName = "Google LLC",
-                companyPrices = BigDecimal("2800.00"),
             )
+
+        // add initial price
+        company.prices.add(
+            Price(
+                ticker = "GOOG",
+                unityPrice = BigDecimal("2800.00"),
+                timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                company = company,
+            ),
+        )
 
         val savedCompany = companyRepository.save(company)
 
         assertNotNull(savedCompany.id)
         assertEquals("GOOG", savedCompany.ticker)
         assertEquals("Google LLC", savedCompany.companyName)
-        assertEquals(BigDecimal("2800.00"), savedCompany.companyPrices)
+        assertEquals(1, savedCompany.prices.size)
+        assertEquals(BigDecimal("2800.00"), savedCompany.prices[0].unityPrice)
         assertEquals(0, savedCompany.history.size)
         assertEquals(0, savedCompany.watchlist.size)
     }
@@ -52,8 +63,15 @@ class CompanyTests {
             Company(
                 ticker = "AMZN",
                 companyName = "Amazon.com, Inc.",
-                companyPrices = BigDecimal("3300.50"),
             )
+        company.prices.add(
+            Price(
+                ticker = "AMZN",
+                unityPrice = BigDecimal("3300.50"),
+                timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                company = company,
+            ),
+        )
         companyRepository.save(company)
 
         val found = companyRepository.findByTicker("AMZN")
@@ -78,8 +96,11 @@ class CompanyTests {
             Company(
                 ticker = "TSLA",
                 companyName = "Tesla, Inc.",
-                companyPrices = BigDecimal("650.00"),
             )
+
+        company.prices.add(
+            Price(ticker = "TSLA", unityPrice = BigDecimal("650.00"), timestamp = Instant.parse("2026-05-01T00:00:00Z"), company = company),
+        )
 
         val savedCompany = companyRepository.save(company)
 
@@ -122,8 +143,11 @@ class CompanyTests {
             Company(
                 ticker = "NFLX",
                 companyName = "Netflix, Inc.",
-                companyPrices = BigDecimal("500.00"),
             )
+
+        company.prices.add(
+            Price(ticker = "NFLX", unityPrice = BigDecimal("500.00"), timestamp = Instant.parse("2026-05-01T00:00:00Z"), company = company),
+        )
 
         val savedCompany = companyRepository.save(company)
 
@@ -143,20 +167,134 @@ class CompanyTests {
     }
 
     @Test
+    fun `should update user watchlist`() {
+        val company =
+            companyRepository.save(
+                Company(
+                    ticker = "AAPL",
+                    companyName = "Apple Inc.",
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "AAPL",
+                            unityPrice = BigDecimal("150.25"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
+            )
+
+        val user =
+            User(
+                mail = "watchlist-from-user@example.com",
+                password = "pwd",
+                history = mutableListOf(),
+                watchlist = mutableListOf(),
+            )
+
+        val watchEntry =
+            Watchlist(
+                user = user,
+                company = company,
+            )
+        user.watchlist.add(watchEntry)
+
+        val savedUser = userRepository.save(user)
+
+        assertEquals(1, savedUser.watchlist.size)
+        assertNotNull(savedUser.watchlist[0].id)
+        assertEquals(company.id, savedUser.watchlist[0].company?.id)
+    }
+
+    @Test
+    fun `should update user history`() {
+        val company =
+            companyRepository.save(
+                Company(
+                    ticker = "MSFT",
+                    companyName = "Microsoft Corporation",
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "MSFT",
+                            unityPrice = BigDecimal("420.10"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
+            )
+
+        val user =
+            User(
+                mail = "history-from-user@example.com",
+                password = "pwd",
+                history = mutableListOf(),
+                watchlist = mutableListOf(),
+            )
+
+        val historyEntry =
+            History(
+                numberOfStocks = 3,
+                transactionValue = BigDecimal("123.45"),
+                transactionTypeEnum = TransactionTypeEnum.BUY,
+                timestamp = Instant.parse("2026-05-15T10:15:30Z"),
+                user = user,
+                company = company,
+            )
+        user.history.add(historyEntry)
+
+        val savedUser = userRepository.save(user)
+
+        assertEquals(1, savedUser.history.size)
+        val savedHist = savedUser.history[0]
+        assertNotNull(savedHist.id)
+        assertEquals(3, savedHist.numberOfStocks)
+        assertEquals(BigDecimal("123.45"), savedHist.transactionValue)
+        assertEquals(TransactionTypeEnum.BUY, savedHist.transactionTypeEnum)
+        assertEquals(company.id, savedHist.company?.id)
+    }
+
+    @Test
     fun `should throw exception when saving a company with duplicate ticker`() {
         val company1 =
             Company(
                 ticker = "DUP",
                 companyName = "Dup One",
-                companyPrices = BigDecimal("10.00"),
             )
+        company1.prices.add(
+            Price(ticker = "DUP", unityPrice = BigDecimal("10.00"), timestamp = Instant.parse("2026-05-01T00:00:00Z"), company = company1),
+        )
         companyRepository.save(company1)
 
         val company2 =
             Company(
                 ticker = "DUP",
                 companyName = "Dup Two",
-                companyPrices = BigDecimal("20.00"),
+            )
+
+        assertThrows<DataIntegrityViolationException> {
+            companyRepository.save(company2)
+        }
+    }
+
+    @Test
+    fun `should throw exception when saving a company with duplicate cik`() {
+        val company1 =
+            Company(
+                ticker = "UNQ1",
+                companyName = "Unique One",
+            )
+        company1.prices.add(
+            Price(ticker = "UNQ1", unityPrice = BigDecimal("15.00"), timestamp = Instant.parse("2026-05-01T00:00:00Z"), company = company1),
+        )
+        companyRepository.save(company1)
+
+        val company2 =
+            Company(
+                ticker = "UNQ2",
+                companyName = "Unique Two",
             )
 
         assertThrows<DataIntegrityViolationException> {

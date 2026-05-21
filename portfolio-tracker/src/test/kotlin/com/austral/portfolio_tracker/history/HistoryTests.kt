@@ -2,6 +2,7 @@ package com.austral.portfolio_tracker.history
 
 import com.austral.portfolio_tracker.entity.Company
 import com.austral.portfolio_tracker.entity.History
+import com.austral.portfolio_tracker.entity.Price
 import com.austral.portfolio_tracker.entity.TransactionTypeEnum
 import com.austral.portfolio_tracker.entity.User
 import com.austral.portfolio_tracker.repository.CompanyRepository
@@ -47,8 +48,16 @@ class HistoryTests {
                 Company(
                     ticker = "HST",
                     companyName = "History Corp",
-                    companyPrices = BigDecimal("100.00"),
-                ),
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "HST",
+                            unityPrice = BigDecimal("100.00"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
             )
 
         val history =
@@ -78,8 +87,16 @@ class HistoryTests {
                 Company(
                     ticker = "HST2",
                     companyName = "History Two",
-                    companyPrices = BigDecimal("50.00"),
-                ),
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "HST2",
+                            unityPrice = BigDecimal("50.00"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
             )
 
         val histNoUser =
@@ -136,8 +153,16 @@ class HistoryTests {
                 Company(
                     ticker = "CDEL",
                     companyName = "Cascade Delete Inc",
-                    companyPrices = BigDecimal("75.00"),
-                ),
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "CDEL",
+                            unityPrice = BigDecimal("75.00"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
             )
 
         val historyEntry =
@@ -182,8 +207,16 @@ class HistoryTests {
                 Company(
                     ticker = "MULTI",
                     companyName = "Multi Transaction Corp",
-                    companyPrices = BigDecimal("100.00"),
-                ),
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "MULTI",
+                            unityPrice = BigDecimal("100.00"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
             )
 
         // Save a BUY transaction

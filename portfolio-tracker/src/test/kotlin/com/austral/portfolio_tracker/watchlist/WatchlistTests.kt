@@ -1,6 +1,7 @@
 package com.austral.portfolio_tracker.watchlist
 
 import com.austral.portfolio_tracker.entity.Company
+import com.austral.portfolio_tracker.entity.Price
 import com.austral.portfolio_tracker.entity.User
 import com.austral.portfolio_tracker.entity.Watchlist
 import com.austral.portfolio_tracker.repository.CompanyRepository
@@ -15,6 +16,7 @@ import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.ActiveProfiles
 import java.math.BigDecimal
+import java.time.Instant
 
 @DataJpaTest
 @ActiveProfiles("test")
@@ -45,8 +47,16 @@ class WatchlistTests {
                 Company(
                     ticker = "WST",
                     companyName = "Watch Corp",
-                    companyPrices = BigDecimal("10.00"),
-                ),
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "WST",
+                            unityPrice = BigDecimal("10.00"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
             )
 
         val watch =
@@ -69,8 +79,16 @@ class WatchlistTests {
                 Company(
                     ticker = "WST2",
                     companyName = "Watch Two",
-                    companyPrices = BigDecimal("20.00"),
-                ),
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "WST2",
+                            unityPrice = BigDecimal("20.00"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
             )
 
         val noUser =
@@ -119,8 +137,16 @@ class WatchlistTests {
                 Company(
                     ticker = "CWCD",
                     companyName = "Cascade Watch Inc",
-                    companyPrices = BigDecimal("30.00"),
-                ),
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "CWCD",
+                            unityPrice = BigDecimal("30.00"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
             )
 
         val watchEntry =
@@ -157,8 +183,16 @@ class WatchlistTests {
             Company(
                 ticker = "CWCD2",
                 companyName = "Cascade Watch Two",
-                companyPrices = BigDecimal("40.00"),
-            )
+            ).apply {
+                prices.add(
+                    Price(
+                        ticker = "CWCD2",
+                        unityPrice = BigDecimal("40.00"),
+                        timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                        company = this,
+                    ),
+                )
+            }
 
         val watchEntry =
             Watchlist(
@@ -205,8 +239,16 @@ class WatchlistTests {
                 Company(
                     ticker = "REL1",
                     companyName = "Relation One",
-                    companyPrices = BigDecimal("50.00"),
-                ),
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "REL1",
+                            unityPrice = BigDecimal("50.00"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
             )
 
         val company2 =
@@ -214,8 +256,16 @@ class WatchlistTests {
                 Company(
                     ticker = "REL2",
                     companyName = "Relation Two",
-                    companyPrices = BigDecimal("75.00"),
-                ),
+                ).apply {
+                    prices.add(
+                        Price(
+                            ticker = "REL2",
+                            unityPrice = BigDecimal("75.00"),
+                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
+                            company = this,
+                        ),
+                    )
+                },
             )
 
         // Create multiple watchlist entries
