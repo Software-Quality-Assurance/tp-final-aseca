@@ -2,7 +2,6 @@ package com.austral.portfolio_tracker.controller
 
 import com.austral.portfolio_tracker.dto.RegisterUserRequest
 import com.austral.portfolio_tracker.dto.UserResponse
-import com.austral.portfolio_tracker.exception.DuplicateUserException
 import com.austral.portfolio_tracker.exception.InvalidCredentialsException
 import com.austral.portfolio_tracker.repository.UserRepository
 import com.austral.portfolio_tracker.security.JwtTokenService
@@ -14,7 +13,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -71,21 +69,5 @@ class AuthController(
         } catch (_: JwtValidationException) {
             ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
         }
-    }
-
-    @ExceptionHandler(DuplicateUserException::class)
-    @Suppress("UNUSED_PARAMETER")
-    fun handleDuplicate(e: DuplicateUserException): ResponseEntity<Any> = ResponseEntity.status(HttpStatus.CONFLICT).build()
-
-    @ExceptionHandler(InvalidCredentialsException::class)
-    fun handleInvalidCredentials(e: InvalidCredentialsException): ResponseEntity<Map<String, String>> {
-        val body = mapOf("error" to (e.message ?: "Invalid credentials"))
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body)
-    }
-
-    @ExceptionHandler(IllegalArgumentException::class)
-    fun handleBadRequest(e: IllegalArgumentException): ResponseEntity<Map<String, String>> {
-        val body = mapOf("error" to (e.message ?: "Bad request"))
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body)
     }
 }

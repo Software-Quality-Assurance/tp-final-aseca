@@ -614,4 +614,82 @@ class ProfileControllerTests {
         assertEquals(emailA, afterUserA.mail)
         assertEquals(emailB, afterUserB.mail)
     }
+
+    @Test
+    fun `should return 400 when updating with blank email`() {
+        val email = "update-blank-email-${System.currentTimeMillis()}@example.com"
+        registerUser(email)
+        val token = loginAndGetToken(email)
+
+        val updateJson = "{\"email\":\"   \"}"
+
+        mockMvc
+            .patch("/api/users/me") {
+                header("Authorization", "Bearer $token")
+                contentType = MediaType.APPLICATION_JSON
+                content = updateJson
+            }.andExpect {
+                status { isBadRequest() }
+                jsonPath("$.error") { exists() }
+                jsonPath("$.error") { isNotEmpty() }
+            }
+    }
+
+    @Test
+    fun `should return 400 when updating with blank password`() {
+        val email = "update-blank-password-${System.currentTimeMillis()}@example.com"
+        registerUser(email)
+        val token = loginAndGetToken(email)
+
+        val updateJson = "{\"password\":\"   \"}"
+
+        mockMvc
+            .patch("/api/users/me") {
+                header("Authorization", "Bearer $token")
+                contentType = MediaType.APPLICATION_JSON
+                content = updateJson
+            }.andExpect {
+                status { isBadRequest() }
+                jsonPath("$.error") { exists() }
+                jsonPath("$.error") { isNotEmpty() }
+            }
+    }
+
+    @Test
+    fun `should return 400 when updating with empty email`() {
+        val email = "update-empty-email-${System.currentTimeMillis()}@example.com"
+        registerUser(email)
+        val token = loginAndGetToken(email)
+
+        val updateJson = "{\"email\":\"\"}"
+
+        mockMvc
+            .patch("/api/users/me") {
+                header("Authorization", "Bearer $token")
+                contentType = MediaType.APPLICATION_JSON
+                content = updateJson
+            }.andExpect {
+                status { isBadRequest() }
+                jsonPath("$.error") { exists() }
+            }
+    }
+
+    @Test
+    fun `should return 400 when updating with empty password`() {
+        val email = "update-empty-password-${System.currentTimeMillis()}@example.com"
+        registerUser(email)
+        val token = loginAndGetToken(email)
+
+        val updateJson = "{\"password\":\"\"}"
+
+        mockMvc
+            .patch("/api/users/me") {
+                header("Authorization", "Bearer $token")
+                contentType = MediaType.APPLICATION_JSON
+                content = updateJson
+            }.andExpect {
+                status { isBadRequest() }
+                jsonPath("$.error") { exists() }
+            }
+    }
 }

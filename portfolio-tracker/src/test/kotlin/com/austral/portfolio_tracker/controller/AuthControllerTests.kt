@@ -1,7 +1,6 @@
 package com.austral.portfolio_tracker.controller
 
 import com.austral.portfolio_tracker.dto.RegisterUserRequest
-import com.austral.portfolio_tracker.exception.InvalidCredentialsException
 import com.austral.portfolio_tracker.repository.UserRepository
 import com.austral.portfolio_tracker.security.JwtRevocationService
 import org.junit.jupiter.api.BeforeEach
@@ -34,9 +33,6 @@ class AuthControllerTests {
 
     @Autowired
     private lateinit var userRepository: UserRepository
-
-    @Autowired
-    private lateinit var authController: AuthController
 
     @Autowired
     private lateinit var jwtRevocationService: JwtRevocationService
@@ -306,13 +302,5 @@ class AuthControllerTests {
             }.andExpect {
                 status { isUnauthorized() }
             }
-    }
-
-    @Test
-    fun `invalid credentials handler falls back to generic when message is null`() {
-        val ex = InvalidCredentialsException()
-        val response = authController.handleInvalidCredentials(ex)
-        assertEquals(401, response.statusCode.value())
-        assertEquals("Invalid credentials", response.body?.get("error"))
     }
 }

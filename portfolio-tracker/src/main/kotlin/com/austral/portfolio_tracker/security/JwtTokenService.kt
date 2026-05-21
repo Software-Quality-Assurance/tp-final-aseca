@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import tools.jackson.databind.JsonNode
 import tools.jackson.databind.ObjectMapper
+import java.security.MessageDigest
 import java.time.Instant
 import java.util.Base64
 import java.util.UUID
@@ -58,17 +59,25 @@ class JwtTokenService(
         }
 
         val signingInput = "${parts[0]}.${parts[1]}"
-        val expectedSignature = sign(signingInput)
-        if (parts[2] != expectedSignature) {
+        // Compare signatures in constant time to avoid timing attacks
+        val expectedSignatureBytes = signBytes(signingInput)
+        val providedSignatureBytes =
+            try {
+                Base64.getUrlDecoder().decode(parts[2])
+            } catch (_: IllegalArgumentException) {
+                throw JwtValidationException("JWT signature is invalid")
+            }
+
+        if (!MessageDigest.isEqual(providedSignatureBytes, expectedSignatureBytes)) {
             throw JwtValidationException("JWT signature is invalid")
         }
 
-        val header = readJson(parts[0])
+        val header = readJson(parts[0], "header")
         if (header.stringField("alg") != "HS256" || header.stringField("typ") != "JWT") {
             throw JwtValidationException("JWT header is invalid")
         }
 
-        val payload = readJson(parts[1])
+        val payload = readJson(parts[1], "payload")
         if (payload.stringField("iss") != issuer) {
             throw JwtValidationException("JWT issuer is invalid")
         }
@@ -99,7 +108,7 @@ class JwtTokenService(
         // Validate signature and basic claims by reusing authenticate
         authenticate(token)
 
-        val payload = readJson(parts[1])
+        val payload = readJson(parts[1], "payload")
         val jti = payload.stringField("jti") ?: throw JwtValidationException("JWT jti is missing")
         val expiresAt = payload.longField("exp") ?: throw JwtValidationException("JWT expiration is missing")
         jwtRevocationService.revoke(jti, expiresAt)
@@ -114,7 +123,33 @@ class JwtTokenService(
         return Base64.getUrlEncoder().withoutPadding().encodeToString(mac.doFinal(signingInput.toByteArray(Charsets.UTF_8)))
     }
 
-    private fun readJson(encodedPart: String): JsonNode = objectMapper.readTree(Base64.getUrlDecoder().decode(encodedPart))
+    private fun signBytes(signingInput: String): ByteArray {
+        val mac = Mac.getInstance("HmacSHA256")
+        mac.init(SecretKeySpec(secret.toByteArray(Charsets.UTF_8), "HmacSHA256"))
+        return mac.doFinal(signingInput.toByteArray(Charsets.UTF_8))
+    }
+
+    private fun readJson(
+        encodedPart: String,
+        partName: String = "payload",
+    ): JsonNode {
+        try {
+            val decoded =
+                try {
+                    Base64.getUrlDecoder().decode(encodedPart)
+                } catch (_: IllegalArgumentException) {
+                    throw JwtValidationException("JWT $partName is invalid")
+                }
+
+            return try {
+                objectMapper.readTree(decoded)
+            } catch (_: Exception) {
+                throw JwtValidationException("JWT $partName is invalid")
+            }
+        } catch (e: JwtValidationException) {
+            throw e
+        }
+    }
 
     private fun JsonNode.stringField(field: String): String? = get(field)?.takeIf { !it.isNull }?.toString()?.removeSurrounding("\"")
 

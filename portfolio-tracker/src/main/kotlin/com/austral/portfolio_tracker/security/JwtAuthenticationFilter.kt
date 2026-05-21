@@ -16,8 +16,6 @@ class JwtAuthenticationFilter(
 ) : OncePerRequestFilter() {
     override fun shouldNotFilter(request: HttpServletRequest): Boolean {
         val path = request.servletPath
-        // Only skip OPTIONS and the public auth endpoints (register, login).
-        // We previously skipped all /api/auth/* which prevented adding an authenticated logout endpoint.
         return request.method == "OPTIONS" || path == "/api/auth/register" || path == "/api/auth/login"
     }
 
@@ -39,11 +37,17 @@ class JwtAuthenticationFilter(
             SecurityContextHolder.getContext().authentication = authentication
             filterChain.doFilter(request, response)
         } catch (_: JwtValidationException) {
-            SecurityContextHolder.clearContext()
-            response.status = HttpServletResponse.SC_UNAUTHORIZED
-            response.contentType = MediaType.APPLICATION_JSON_VALUE
-            response.characterEncoding = Charsets.UTF_8.name()
-            response.writer.write("""{"error":"Unauthorized"}""")
+            writeUnauthorized(response)
+        } catch (_: Exception) {
+            writeUnauthorized(response)
         }
+    }
+
+    private fun writeUnauthorized(response: HttpServletResponse) {
+        SecurityContextHolder.clearContext()
+        response.status = HttpServletResponse.SC_UNAUTHORIZED
+        response.contentType = MediaType.APPLICATION_JSON_VALUE
+        response.characterEncoding = Charsets.UTF_8.name()
+        response.writer.write("""{"error":"Unauthorized"}""")
     }
 }
