@@ -31,7 +31,6 @@ class PriceTests {
                 Company(
                     ticker = "AAPL",
                     companyName = "Apple Inc.",
-                    cik = "0000320193",
                 ),
             )
 
@@ -58,7 +57,6 @@ class PriceTests {
                 Company(
                     ticker = "MSFT",
                     companyName = "Microsoft Corporation",
-                    cik = "0000789019",
                 ),
             )
 
@@ -90,7 +88,6 @@ class PriceTests {
             Company(
                 ticker = "AMZN",
                 companyName = "Amazon.com, Inc.",
-                cik = "0001018724",
             ).apply {
                 prices.add(
                     Price(
@@ -142,7 +139,6 @@ class PriceTests {
                 Company(
                     ticker = "TSLA",
                     companyName = "Tesla, Inc.",
-                    cik = "0001318605",
                 ),
             )
 

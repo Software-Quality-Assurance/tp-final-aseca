@@ -7,7 +7,6 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Component
 import tools.jackson.databind.ObjectMapper
-import java.math.BigDecimal
 
 data class CompanyData(
     val ticker: String,
@@ -37,7 +36,6 @@ class DataLoader(
                             Company(
                                 ticker = data.ticker,
                                 companyName = data.companyName,
-                                companyPrices = BigDecimal.ZERO,
                             )
                         } else {
                             null

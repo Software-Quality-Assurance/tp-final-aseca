@@ -26,15 +26,11 @@ class CompanyController(
     ): ResponseEntity<Any> {
         val ticker = request.ticker
         val companyName = request.companyName
-        val companyPrices = request.companyPrices
 
         if (ticker.isNullOrBlank()) {
             return ResponseEntity.badRequest().build()
         }
         if (companyName.isNullOrBlank()) {
-            return ResponseEntity.badRequest().build()
-        }
-        if (companyPrices == null) {
             return ResponseEntity.badRequest().build()
         }
 
@@ -48,7 +44,6 @@ class CompanyController(
             Company(
                 ticker = ticker,
                 companyName = companyName,
-                companyPrices = companyPrices,
             )
         companyRepository.save(company)
         return ResponseEntity.status(HttpStatus.CREATED).build()

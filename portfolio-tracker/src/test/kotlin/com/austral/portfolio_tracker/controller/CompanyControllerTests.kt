@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.post
 import org.springframework.transaction.annotation.Transactional
 import tools.jackson.databind.ObjectMapper
-import java.math.BigDecimal
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -44,21 +43,18 @@ class CompanyControllerTests {
                 Company(
                     ticker = "AAPL",
                     companyName = "Apple Inc",
-                    companyPrices = BigDecimal("150.25"),
                 ),
             )
         companyRepository.save(
             Company(
                 ticker = "MSFT",
                 companyName = "Microsoft Corporation",
-                companyPrices = BigDecimal("380.50"),
             ),
         )
         companyRepository.save(
             Company(
                 ticker = "GOOGL",
                 companyName = "Alphabet Inc",
-                companyPrices = BigDecimal("140.75"),
             ),
         )
     }
@@ -70,7 +66,6 @@ class CompanyControllerTests {
             CreateCompanyRequest(
                 ticker = "AMZN",
                 companyName = "Amazon Inc",
-                companyPrices = BigDecimal("180.50"),
             )
 
         mockMvc
@@ -90,7 +85,6 @@ class CompanyControllerTests {
             CreateCompanyRequest(
                 ticker = "TSLA",
                 companyName = "Tesla Inc",
-                companyPrices = BigDecimal("250.75"),
             )
 
         mockMvc
@@ -106,7 +100,6 @@ class CompanyControllerTests {
         assertNotNull(savedCompany)
         assertEquals("TSLA", savedCompany?.ticker)
         assertEquals("Tesla Inc", savedCompany?.companyName)
-        assertEquals(BigDecimal("250.75"), savedCompany?.companyPrices)
     }
 
     @Test
@@ -117,17 +110,14 @@ class CompanyControllerTests {
                 CreateCompanyRequest(
                     ticker = "NVDA",
                     companyName = "NVIDIA Corporation",
-                    companyPrices = BigDecimal("875.50"),
                 ),
                 CreateCompanyRequest(
                     ticker = "AMD",
                     companyName = "Advanced Micro Devices",
-                    companyPrices = BigDecimal("180.25"),
                 ),
                 CreateCompanyRequest(
                     ticker = "INTC",
                     companyName = "Intel Corporation",
-                    companyPrices = BigDecimal("45.75"),
                 ),
             )
 
@@ -149,17 +139,14 @@ class CompanyControllerTests {
         assertNotNull(savedNVDA)
         assertEquals("NVDA", savedNVDA?.ticker)
         assertEquals("NVIDIA Corporation", savedNVDA?.companyName)
-        assertEquals(BigDecimal("875.50"), savedNVDA?.companyPrices)
 
         assertNotNull(savedAMD)
         assertEquals("AMD", savedAMD?.ticker)
         assertEquals("Advanced Micro Devices", savedAMD?.companyName)
-        assertEquals(BigDecimal("180.25"), savedAMD?.companyPrices)
 
         assertNotNull(savedINTC)
         assertEquals("INTC", savedINTC?.ticker)
         assertEquals("Intel Corporation", savedINTC?.companyName)
-        assertEquals(BigDecimal("45.75"), savedINTC?.companyPrices)
     }
 
     @Test
@@ -169,7 +156,6 @@ class CompanyControllerTests {
             CreateCompanyRequest(
                 ticker = existingCompany.ticker,
                 companyName = "Another Company",
-                companyPrices = BigDecimal("200.00"),
             )
 
         mockMvc
@@ -190,7 +176,6 @@ class CompanyControllerTests {
             CreateCompanyRequest(
                 ticker = null,
                 companyName = "Valid Company",
-                companyPrices = BigDecimal("100.00"),
             )
 
         mockMvc
@@ -210,7 +195,6 @@ class CompanyControllerTests {
             CreateCompanyRequest(
                 ticker = "   ",
                 companyName = "Valid Company",
-                companyPrices = BigDecimal("100.00"),
             )
 
         mockMvc
@@ -230,7 +214,6 @@ class CompanyControllerTests {
             CreateCompanyRequest(
                 ticker = "",
                 companyName = "Valid Company",
-                companyPrices = BigDecimal("100.00"),
             )
 
         mockMvc
@@ -250,7 +233,6 @@ class CompanyControllerTests {
             CreateCompanyRequest(
                 ticker = "VALID",
                 companyName = null,
-                companyPrices = BigDecimal("100.00"),
             )
 
         mockMvc
@@ -270,7 +252,6 @@ class CompanyControllerTests {
             CreateCompanyRequest(
                 ticker = "VALID",
                 companyName = "   ",
-                companyPrices = BigDecimal("100.00"),
             )
 
         mockMvc
@@ -290,7 +271,6 @@ class CompanyControllerTests {
             CreateCompanyRequest(
                 ticker = "VALID",
                 companyName = "",
-                companyPrices = BigDecimal("100.00"),
             )
 
         mockMvc
@@ -301,97 +281,5 @@ class CompanyControllerTests {
             }.andExpect {
                 status { isBadRequest() }
             }
-    }
-
-    @Test
-    @WithMockUser
-    fun `011_should return 400 Bad Request when companyPrices is null`() {
-        val request =
-            CreateCompanyRequest(
-                ticker = "VALID",
-                companyName = "Valid Company",
-                companyPrices = null,
-            )
-
-        mockMvc
-            .post("/api/company") {
-                with(csrf())
-                contentType = MediaType.APPLICATION_JSON
-                content = objectMapper.writeValueAsString(request)
-            }.andExpect {
-                status { isBadRequest() }
-            }
-    }
-
-    @Test
-    @WithMockUser
-    fun `012_should create company with zero price`() {
-        val request =
-            CreateCompanyRequest(
-                ticker = "ZERO",
-                companyName = "Zero Price Company",
-                companyPrices = BigDecimal.ZERO,
-            )
-
-        mockMvc
-            .post("/api/company") {
-                with(csrf())
-                contentType = MediaType.APPLICATION_JSON
-                content = objectMapper.writeValueAsString(request)
-            }.andExpect {
-                status { isCreated() }
-            }
-
-        val savedCompany = companyRepository.findByTicker("ZERO")
-        assertNotNull(savedCompany)
-        assertEquals(BigDecimal.ZERO, savedCompany?.companyPrices)
-    }
-
-    @Test
-    @WithMockUser
-    fun `013_should create company with negative price`() {
-        val request =
-            CreateCompanyRequest(
-                ticker = "NEG",
-                companyName = "Negative Price Company",
-                companyPrices = BigDecimal("-50.25"),
-            )
-
-        mockMvc
-            .post("/api/company") {
-                with(csrf())
-                contentType = MediaType.APPLICATION_JSON
-                content = objectMapper.writeValueAsString(request)
-            }.andExpect {
-                status { isCreated() }
-            }
-
-        val savedCompany = companyRepository.findByTicker("NEG")
-        assertNotNull(savedCompany)
-        assertEquals(BigDecimal("-50.25"), savedCompany?.companyPrices)
-    }
-
-    @Test
-    @WithMockUser
-    fun `014_should create company with large price value`() {
-        val request =
-            CreateCompanyRequest(
-                ticker = "LARGE",
-                companyName = "Large Price Company",
-                companyPrices = BigDecimal("999999.99"),
-            )
-
-        mockMvc
-            .post("/api/company") {
-                with(csrf())
-                contentType = MediaType.APPLICATION_JSON
-                content = objectMapper.writeValueAsString(request)
-            }.andExpect {
-                status { isCreated() }
-            }
-
-        val savedCompany = companyRepository.findByTicker("LARGE")
-        assertNotNull(savedCompany)
-        assertEquals(BigDecimal("999999.99"), savedCompany?.companyPrices)
     }
 }

@@ -11,8 +11,11 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
+import org.springframework.transaction.annotation.Transactional
 import tools.jackson.databind.ObjectMapper
-import java.math.BigDecimal
 
 class DataLoaderTests {
     private lateinit var dataLoader: DataLoader
@@ -48,7 +51,7 @@ class DataLoaderTests {
         allCompanies.forEach { company ->
             assert(company.ticker.isNotBlank())
             assert(company.companyName.isNotBlank())
-            assert(company.companyPrices == BigDecimal.ZERO)
+            assert(company.prices.isEmpty())
         }
     }
 
@@ -87,5 +90,29 @@ class DataLoaderTests {
         verify(mockCompanyRepository, atLeast(1)).saveAll(captor.capture())
         val totalCompanies = captor.allValues.flatten().size
         assert(totalCompanies == 1000) { "Expected 1000 companies, got $totalCompanies" }
+    }
+}
+
+@SpringBootTest
+@ActiveProfiles("test")
+@Transactional
+class DataLoaderIntegrationTests {
+    @Autowired
+    private lateinit var companyRepository: CompanyRepository
+
+    @Test
+    fun `should auto-generate company id when saving without explicit id`() {
+        val company =
+            Company(
+                ticker = "TEST",
+                companyName = "Test Company",
+            )
+
+        val saved = companyRepository.save(company)
+
+        assert(saved.id != null) { "Company ID should be auto-generated but got null" }
+        assert(saved.id!! > 0) { "Company ID should be positive but got ${saved.id}" }
+        assert(saved.ticker == "TEST")
+        assert(saved.companyName == "Test Company")
     }
 }

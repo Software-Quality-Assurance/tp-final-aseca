@@ -278,27 +278,4 @@ class CompanyTests {
             companyRepository.save(company2)
         }
     }
-
-    @Test
-    fun `should throw exception when saving a company with duplicate cik`() {
-        val company1 =
-            Company(
-                ticker = "UNQ1",
-                companyName = "Unique One",
-            )
-        company1.prices.add(
-            Price(ticker = "UNQ1", unityPrice = BigDecimal("15.00"), timestamp = Instant.parse("2026-05-01T00:00:00Z"), company = company1),
-        )
-        companyRepository.save(company1)
-
-        val company2 =
-            Company(
-                ticker = "UNQ2",
-                companyName = "Unique Two",
-            )
-
-        assertThrows<DataIntegrityViolationException> {
-            companyRepository.save(company2)
-        }
-    }
 }
