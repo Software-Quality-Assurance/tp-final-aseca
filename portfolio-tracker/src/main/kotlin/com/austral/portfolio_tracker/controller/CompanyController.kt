@@ -6,9 +6,11 @@ import com.austral.portfolio_tracker.repository.CompanyRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 data class ErrorResponse(
@@ -48,4 +50,29 @@ class CompanyController(
         companyRepository.save(company)
         return ResponseEntity.status(HttpStatus.CREATED).build()
     }
+
+    @GetMapping("/search")
+    fun searchCompanies(
+        @RequestParam(required = false) name: String?,
+        @RequestParam(required = false) ticker: String?,
+    ): ResponseEntity<List<Company>> =
+        when {
+            !name.isNullOrBlank() -> {
+                val results = companyRepository.searchByName(name.trim())
+                if (results.isEmpty()) {
+                    ResponseEntity.notFound().build()
+                } else {
+                    ResponseEntity.ok(results)
+                }
+            }
+            !ticker.isNullOrBlank() -> {
+                val results = companyRepository.searchByTicker(ticker.trim())
+                if (results.isEmpty()) {
+                    ResponseEntity.notFound().build()
+                } else {
+                    ResponseEntity.ok(results)
+                }
+            }
+            else -> ResponseEntity.badRequest().build()
+        }
 }

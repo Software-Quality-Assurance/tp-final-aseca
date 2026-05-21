@@ -15,6 +15,7 @@ import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 import org.springframework.transaction.annotation.Transactional
 import tools.jackson.databind.ObjectMapper
@@ -280,6 +281,293 @@ class CompanyControllerTests {
                 content = objectMapper.writeValueAsString(request)
             }.andExpect {
                 status { isBadRequest() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `011_should verify id is not null or blank when creating company`() {
+        val request =
+            CreateCompanyRequest(
+                ticker = "GOOG",
+                companyName = "Google LLC",
+            )
+
+        mockMvc
+            .post("/api/company") {
+                with(csrf())
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(request)
+            }.andExpect {
+                status { isCreated() }
+            }
+
+        val savedCompany = companyRepository.findByTicker("GOOG")
+        assertNotNull(savedCompany)
+        assertNotNull(savedCompany?.id)
+        assertEquals(true, savedCompany?.id != null && savedCompany?.id!! > 0)
+    }
+
+    // Search Company Tests
+
+    @Test
+    @WithMockUser
+    fun `012_search_company_by_name_exact`() {
+        mockMvc
+            .get("/api/company/search?name=Apple Inc") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("AAPL") }
+                jsonPath("$[0].companyName") { value("Apple Inc") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `013_search_company_by_name_partial_lowercase`() {
+        mockMvc
+            .get("/api/company/search?name=apple") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("AAPL") }
+                jsonPath("$[0].companyName") { value("Apple Inc") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `014_search_company_by_name_partial_uppercase`() {
+        mockMvc
+            .get("/api/company/search?name=APPLE") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("AAPL") }
+                jsonPath("$[0].companyName") { value("Apple Inc") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `015_search_company_by_name_partial_mixed_case`() {
+        mockMvc
+            .get("/api/company/search?name=AppLe") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("AAPL") }
+                jsonPath("$[0].companyName") { value("Apple Inc") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `016_search_company_by_name_partial_substring`() {
+        mockMvc
+            .get("/api/company/search?name=Micro") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("MSFT") }
+                jsonPath("$[0].companyName") { value("Microsoft Corporation") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `017_search_company_by_name_partial_substring_lowercase`() {
+        mockMvc
+            .get("/api/company/search?name=soft") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("MSFT") }
+                jsonPath("$[0].companyName") { value("Microsoft Corporation") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `018_search_company_by_ticker_exact`() {
+        mockMvc
+            .get("/api/company/search?ticker=AAPL") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("AAPL") }
+                jsonPath("$[0].companyName") { value("Apple Inc") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `019_search_company_by_ticker_lowercase`() {
+        mockMvc
+            .get("/api/company/search?ticker=aapl") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("AAPL") }
+                jsonPath("$[0].companyName") { value("Apple Inc") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `020_search_company_by_ticker_mixed_case`() {
+        mockMvc
+            .get("/api/company/search?ticker=MsFt") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("MSFT") }
+                jsonPath("$[0].companyName") { value("Microsoft Corporation") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `021_search_company_by_partial_ticker_lowercase`() {
+        mockMvc
+            .get("/api/company/search?ticker=goo") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("GOOGL") }
+                jsonPath("$[0].companyName") { value("Alphabet Inc") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `022_search_company_by_partial_ticker_uppercase`() {
+        mockMvc
+            .get("/api/company/search?ticker=GOO") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("GOOGL") }
+                jsonPath("$[0].companyName") { value("Alphabet Inc") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `023_search_company_by_partial_ticker_mixed_case`() {
+        mockMvc
+            .get("/api/company/search?ticker=GoOgL") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("GOOGL") }
+                jsonPath("$[0].companyName") { value("Alphabet Inc") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `024_search_company_no_results_by_name_returns_404`() {
+        mockMvc
+            .get("/api/company/search?name=NonExistentCompany") {
+            }.andExpect {
+                status { isNotFound() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `025_search_company_no_results_by_ticker_returns_404`() {
+        mockMvc
+            .get("/api/company/search?ticker=XYZ") {
+            }.andExpect {
+                status { isNotFound() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `026_search_company_multiple_results_by_partial_name`() {
+        mockMvc
+            .get("/api/company/search?name=Inc") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$.length()") { value(2) }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `027_search_company_multiple_results_by_partial_name_lowercase`() {
+        mockMvc
+            .get("/api/company/search?name=inc") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$.length()") { value(2) }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `028_search_company_empty_query`() {
+        mockMvc
+            .get("/api/company/search?name=") {
+            }.andExpect {
+                status { isBadRequest() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `029_search_company_blank_query`() {
+        mockMvc
+            .get("/api/company/search") {
+                param("name", "   ")
+            }.andExpect {
+                status { isBadRequest() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `030_search_company_missing_query_parameter`() {
+        mockMvc
+            .get("/api/company/search") {
+            }.andExpect {
+                status { isBadRequest() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `031_search_given_no_results_when_no_matches_then_returns_404_not_found`() {
+        mockMvc
+            .get("/api/company/search?name=ZZZNonExistentCompanyZZZ") {
+            }.andExpect {
+                status { isNotFound() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `032_search_given_no_results_by_ticker_when_no_matches_then_returns_404_not_found`() {
+        mockMvc
+            .get("/api/company/search?ticker=ZZZZ") {
+            }.andExpect {
+                status { isNotFound() }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `033_search_given_valid_query_when_results_exist_then_returns_200_ok_with_results`() {
+        mockMvc
+            .get("/api/company/search?name=Apple") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("AAPL") }
+                jsonPath("$[0].companyName") { value("Apple Inc") }
+            }
+    }
+
+    @Test
+    @WithMockUser
+    fun `034_search_given_valid_ticker_query_when_results_exist_then_returns_200_ok_with_results`() {
+        mockMvc
+            .get("/api/company/search?ticker=MS") {
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$[0].ticker") { value("MSFT") }
+                jsonPath("$[0].companyName") { value("Microsoft Corporation") }
             }
     }
 }
