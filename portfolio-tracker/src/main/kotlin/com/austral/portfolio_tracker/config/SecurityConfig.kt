@@ -28,8 +28,6 @@ class SecurityConfig {
         http.authorizeHttpRequests { authz ->
             authz.requestMatchers("/api/auth/register").permitAll()
             authz.requestMatchers("/api/auth/login").permitAll()
-            authz.requestMatchers("/api/auth/logout").permitAll()
-            authz.requestMatchers("/api/users/**").authenticated()
             authz.anyRequest().authenticated()
         }
 

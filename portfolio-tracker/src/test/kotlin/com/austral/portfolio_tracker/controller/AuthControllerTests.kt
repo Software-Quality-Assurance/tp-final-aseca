@@ -2,7 +2,6 @@ package com.austral.portfolio_tracker.controller
 
 import com.austral.portfolio_tracker.dto.RegisterUserRequest
 import com.austral.portfolio_tracker.repository.UserRepository
-import com.austral.portfolio_tracker.security.JwtRevocationService
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -34,13 +33,9 @@ class AuthControllerTests {
     @Autowired
     private lateinit var userRepository: UserRepository
 
-    @Autowired
-    private lateinit var jwtRevocationService: JwtRevocationService
-
     @BeforeEach
     fun cleanDatabase() {
         userRepository.deleteAll()
-        jwtRevocationService.clearAll()
     }
 
     @Test
@@ -252,55 +247,6 @@ class AuthControllerTests {
             }.andExpect {
                 status { isUnauthorized() }
                 jsonPath("$.error") { value("Invalid credentials") }
-            }
-    }
-
-    @Test
-    fun `logout revokes token and subsequent requests are unauthorized`() {
-        val registerRequest =
-            RegisterUserRequest(
-                email = "logout-user@example.com",
-                password = "Password123!",
-            )
-
-        mockMvc
-            .post("/api/auth/register") {
-                contentType = MediaType.APPLICATION_JSON
-                content = objectMapper.writeValueAsString(registerRequest)
-            }.andExpect {
-                status { isCreated() }
-            }
-
-        val loginRequest = mapOf("email" to "logout-user@example.com", "password" to "Password123!")
-
-        val loginResp =
-            mockMvc
-                .post("/api/auth/login") {
-                    contentType = MediaType.APPLICATION_JSON
-                    content = objectMapper.writeValueAsString(loginRequest)
-                }.andExpect {
-                    status { isOk() }
-                }.andReturn()
-
-        val token =
-            loginResp.response.contentAsString
-                .substringAfter("\"token\":\"")
-                .substringBefore('"')
-
-        // Call logout
-        mockMvc
-            .post("/api/auth/logout") {
-                header("Authorization", "Bearer $token")
-            }.andExpect {
-                status { isNoContent() }
-            }
-
-        // Using the same token should now be unauthorized
-        mockMvc
-            .get("/api/users/me") {
-                header("Authorization", "Bearer $token")
-            }.andExpect {
-                status { isUnauthorized() }
             }
     }
 }

@@ -5,10 +5,7 @@ import com.austral.portfolio_tracker.dto.UserResponse
 import com.austral.portfolio_tracker.exception.InvalidCredentialsException
 import com.austral.portfolio_tracker.repository.UserRepository
 import com.austral.portfolio_tracker.security.JwtTokenService
-import com.austral.portfolio_tracker.security.JwtValidationException
 import com.austral.portfolio_tracker.service.UserRegistrationService
-import jakarta.servlet.http.HttpServletRequest
-import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -52,22 +49,5 @@ class AuthController(
         }
 
         return ResponseEntity.ok(mapOf("token" to jwtTokenService.generateToken(requireNotNull(user.id), user.mail)))
-    }
-
-    @PostMapping("/logout")
-    fun logout(request: HttpServletRequest): ResponseEntity<Any> {
-        val authorization = request.getHeader(HttpHeaders.AUTHORIZATION)
-        if (authorization.isNullOrBlank() || !authorization.startsWith("Bearer ")) {
-            // Nothing to revoke
-            return ResponseEntity.noContent().build()
-        }
-
-        val token = authorization.removePrefix("Bearer ").trim()
-        return try {
-            jwtTokenService.revokeToken(token)
-            ResponseEntity.noContent().build()
-        } catch (_: JwtValidationException) {
-            ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
-        }
     }
 }

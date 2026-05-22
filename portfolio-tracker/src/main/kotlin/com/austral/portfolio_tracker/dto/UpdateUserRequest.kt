@@ -8,7 +8,7 @@ private const val PASSWORD_MIN_LENGTH_MESSAGE = "Password must be at least 8 cha
 
 data class UpdateUserRequest(
     @field:Email(message = "Invalid email")
-    val email: String? = null,
+    val email: String?,
     @field:Size(min = PASSWORD_MIN_LENGTH, message = PASSWORD_MIN_LENGTH_MESSAGE)
-    val password: String? = null,
+    val password: String?,
 )

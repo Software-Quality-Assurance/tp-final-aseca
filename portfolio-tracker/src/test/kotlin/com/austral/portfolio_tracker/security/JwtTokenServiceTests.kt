@@ -1,6 +1,5 @@
 package com.austral.portfolio_tracker.security
 
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -23,16 +22,8 @@ class JwtTokenServiceTests {
     @Autowired
     private lateinit var objectMapper: ObjectMapper
 
-    @Autowired
-    private lateinit var jwtRevocationService: JwtRevocationService
-
     private val testUserId = 123L
     private val testEmail = "test@example.com"
-
-    @BeforeEach
-    fun setup() {
-        jwtRevocationService.clearAll()
-    }
 
     @Test
     fun `should validate a correctly generated token`() {

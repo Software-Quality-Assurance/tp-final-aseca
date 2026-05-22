@@ -26,7 +26,6 @@ class JwtTokenService(
     @Value("\${app.jwt.issuer:portfolio-tracker}") private val issuer: String,
     @Value("\${app.jwt.expiration-seconds:3600}") private val expirationSeconds: Long,
     private val objectMapper: ObjectMapper,
-    private val jwtRevocationService: JwtRevocationService,
 ) {
     fun generateToken(
         userId: Long,
@@ -87,31 +86,10 @@ class JwtTokenService(
             throw JwtValidationException("JWT is expired")
         }
 
-        // Check revocation (jti)
-        val jti = payload.stringField("jti") ?: throw JwtValidationException("JWT jti is missing")
-        if (jwtRevocationService.isRevoked(jti)) {
-            throw JwtValidationException("JWT has been revoked")
-        }
-
         val userId = payload.stringField("sub")?.toLongOrNull() ?: throw JwtValidationException("JWT subject is invalid")
         val email = payload.stringField("email") ?: throw JwtValidationException("JWT email is missing")
 
         return JwtPrincipal(userId = userId, email = email)
-    }
-
-    fun revokeToken(token: String) {
-        val parts = token.split('.')
-        if (parts.size != 3) {
-            throw JwtValidationException("JWT must contain exactly three segments")
-        }
-
-        // Validate signature and basic claims by reusing authenticate
-        authenticate(token)
-
-        val payload = readJson(parts[1], "payload")
-        val jti = payload.stringField("jti") ?: throw JwtValidationException("JWT jti is missing")
-        val expiresAt = payload.longField("exp") ?: throw JwtValidationException("JWT expiration is missing")
-        jwtRevocationService.revoke(jti, expiresAt)
     }
 
     private fun encodeJson(value: Any): String =
