@@ -23,7 +23,6 @@ import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc
 import org.springframework.http.MediaType
 import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
-import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.delete
 import org.springframework.test.web.servlet.get
@@ -33,7 +32,6 @@ import tools.jackson.databind.ObjectMapper
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("test")
 @Transactional
 class CompanyControllerTests {
     @Autowired
@@ -514,25 +512,29 @@ class CompanyControllerTests {
 
     @Test
     @WithMockUser
-    fun `025_search_company_no_results_by_name_returns_404`() {
+    fun `025_search_company_no_results_by_name_returns_empty_list`() {
         setupSearchCompanies()
 
         mockMvc
             .get("/api/company/search?name=NonExistentCompany") {
             }.andExpect {
-                status { isNotFound() }
+                status { isOk() }
+                jsonPath("$") { isArray() }
+                jsonPath("$.length()") { value(0) }
             }
     }
 
     @Test
     @WithMockUser
-    fun `026_search_company_no_results_by_ticker_returns_404`() {
+    fun `026_search_company_no_results_by_ticker_returns_empty_list`() {
         setupSearchCompanies()
 
         mockMvc
             .get("/api/company/search?ticker=XYZ") {
             }.andExpect {
-                status { isNotFound() }
+                status { isOk() }
+                jsonPath("$") { isArray() }
+                jsonPath("$.length()") { value(0) }
             }
     }
 
@@ -601,25 +603,29 @@ class CompanyControllerTests {
 
     @Test
     @WithMockUser
-    fun `032_search_given_no_results_when_no_matches_then_returns_404_not_found`() {
+    fun `032_search_given_no_results_when_no_matches_then_returns_200_empty_list`() {
         setupSearchCompanies()
 
         mockMvc
             .get("/api/company/search?name=ZZZNonExistentCompanyZZZ") {
             }.andExpect {
-                status { isNotFound() }
+                status { isOk() }
+                jsonPath("$") { isArray() }
+                jsonPath("$.length()") { value(0) }
             }
     }
 
     @Test
     @WithMockUser
-    fun `033_search_given_no_results_by_ticker_when_no_matches_then_returns_404_not_found`() {
+    fun `033_search_given_no_results_by_ticker_when_no_matches_then_returns_200_empty_list`() {
         setupSearchCompanies()
 
         mockMvc
             .get("/api/company/search?ticker=ZZZZ") {
             }.andExpect {
-                status { isNotFound() }
+                status { isOk() }
+                jsonPath("$") { isArray() }
+                jsonPath("$.length()") { value(0) }
             }
     }
 
@@ -876,7 +882,9 @@ class CompanyControllerTests {
         mockMvc
             .get("/api/company/search?ticker=SRCH") {
             }.andExpect {
-                status { isNotFound() }
+                status { isOk() }
+                jsonPath("$") { isArray() }
+                jsonPath("$.length()") { value(0) }
             }
     }
 
@@ -901,7 +909,9 @@ class CompanyControllerTests {
         mockMvc
             .get("/api/company/search?name=Unique Search Name Test") {
             }.andExpect {
-                status { isNotFound() }
+                status { isOk() }
+                jsonPath("$") { isArray() }
+                jsonPath("$.length()") { value(0) }
             }
     }
 
@@ -1092,7 +1102,9 @@ class CompanyControllerTests {
         mockMvc
             .get("/api/company/search?ticker=CASC") {
             }.andExpect {
-                status { isNotFound() }
+                status { isOk() }
+                jsonPath("$") { isArray() }
+                jsonPath("$.length()") { value(0) }
             }
 
         mockMvc

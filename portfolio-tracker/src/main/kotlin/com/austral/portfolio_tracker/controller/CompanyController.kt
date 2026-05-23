@@ -1,10 +1,8 @@
 package com.austral.portfolio_tracker.controller
 
 import com.austral.portfolio_tracker.dto.CreateCompanyRequest
-import com.austral.portfolio_tracker.entity.Company
-import com.austral.portfolio_tracker.repository.CompanyRepository
-import org.springframework.data.domain.PageRequest
-import org.springframework.data.domain.Sort
+import com.austral.portfolio_tracker.service.CompanyResult
+import com.austral.portfolio_tracker.service.CompanyService
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -17,12 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
+data class CompanyDTO(
+    val id: Long,
+    val ticker: String,
+    val companyName: String,
+)
+
 data class ErrorResponse(
     val error: String,
 )
 
-data class PagedResponse<T>(
-    val content: List<T>,
+data class PagedResponse(
+    val content: List<CompanyDTO>,
     val currentPage: Int,
     val pageSize: Int,
     val totalElements: Long,
@@ -32,93 +36,50 @@ data class PagedResponse<T>(
 @RestController
 @RequestMapping("/api/company")
 class CompanyController(
-    private val companyRepository: CompanyRepository,
+    private val companyService: CompanyService,
 ) {
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
     fun createCompany(
         @RequestBody request: CreateCompanyRequest,
-    ): ResponseEntity<Any> {
-        val ticker = request.ticker
-        val companyName = request.companyName
-
-        if (ticker.isNullOrBlank()) {
-            return ResponseEntity.badRequest().build()
+    ): ResponseEntity<Any> =
+        when (companyService.createCompany(request)) {
+            is CompanyResult.Created -> ResponseEntity.status(HttpStatus.CREATED).build()
+            is CompanyResult.Conflict ->
+                ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body(ErrorResponse("Invalid operation: company with ticker already exists"))
+            else -> ResponseEntity.badRequest().build()
         }
-        if (companyName.isNullOrBlank()) {
-            return ResponseEntity.badRequest().build()
-        }
-
-        if (companyRepository.findByTicker(ticker) != null) {
-            return ResponseEntity
-                .status(HttpStatus.CONFLICT)
-                .body(ErrorResponse("Invalid operation: company with ticker already exists"))
-        }
-
-        val company =
-            Company(
-                ticker = ticker,
-                companyName = companyName,
-            )
-        companyRepository.save(company)
-        return ResponseEntity.status(HttpStatus.CREATED).build()
-    }
-
-    @GetMapping
-    fun getCompanies(
-        @RequestParam(required = false, defaultValue = "1") page: Int,
-    ): ResponseEntity<PagedResponse<Company>> {
-        if (page < 1) return ResponseEntity.badRequest().build()
-
-        val pageable = PageRequest.of(page - 1, 10, Sort.by("ticker"))
-        val result = companyRepository.findAll(pageable)
-
-        if (page > result.totalPages && result.totalPages > 0) return ResponseEntity.notFound().build()
-
-        return ResponseEntity.ok(
-            PagedResponse(
-                content = result.content,
-                currentPage = page,
-                pageSize = 10,
-                totalElements = result.totalElements,
-                totalPages = result.totalPages,
-            ),
-        )
-    }
 
     @GetMapping("/search")
     fun searchCompanies(
         @RequestParam(required = false) name: String?,
         @RequestParam(required = false) ticker: String?,
-    ): ResponseEntity<List<Company>> =
-        when {
-            !name.isNullOrBlank() -> {
-                val results = companyRepository.searchByName(name.trim())
-                if (results.isEmpty()) {
-                    ResponseEntity.notFound().build()
-                } else {
-                    ResponseEntity.ok(results)
-                }
+    ): ResponseEntity<List<CompanyDTO>> {
+        val trimmedName = name?.trim()
+        val trimmedTicker = ticker?.trim()
+
+        val result =
+            when {
+                trimmedName.isNullOrBlank().not() -> companyService.searchByName(trimmedName!!)
+                trimmedTicker.isNullOrBlank().not() -> companyService.searchByTicker(trimmedTicker!!)
+                else -> return ResponseEntity.badRequest().build()
             }
-            !ticker.isNullOrBlank() -> {
-                val results = companyRepository.searchByTicker(ticker.trim())
-                if (results.isEmpty()) {
-                    ResponseEntity.notFound().build()
-                } else {
-                    ResponseEntity.ok(results)
-                }
-            }
+
+        return when (result) {
+            is CompanyResult.Found -> ResponseEntity.ok(result.companies.map { CompanyDTO(it.id, it.ticker, it.companyName) })
+            is CompanyResult.NotFound -> ResponseEntity.ok(emptyList())
             else -> ResponseEntity.badRequest().build()
         }
+    }
 
     @DeleteMapping("/{id}")
     fun deleteCompany(
         @PathVariable id: Long,
-    ): ResponseEntity<Any> {
-        val company =
-            companyRepository.findById(id).orElse(null)
-                ?: return ResponseEntity.notFound().build()
-
-        companyRepository.delete(company)
-        return ResponseEntity.noContent().build()
-    }
+    ): ResponseEntity<Any> =
+        when (companyService.deleteCompany(id)) {
+            is CompanyResult.Deleted -> ResponseEntity.noContent().build()
+            is CompanyResult.NotFound -> ResponseEntity.notFound().build()
+            else -> ResponseEntity.badRequest().build()
+        }
 }

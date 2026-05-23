@@ -3,7 +3,9 @@ package com.austral.portfolio_tracker.config
 import com.austral.portfolio_tracker.entity.Company
 import com.austral.portfolio_tracker.repository.CompanyRepository
 import com.fasterxml.jackson.annotation.JsonProperty
+import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Component
 import tools.jackson.databind.ObjectMapper
@@ -15,10 +17,13 @@ data class CompanyData(
 )
 
 @Component
+@ConditionalOnProperty(name = ["app.seed.enabled"], havingValue = "true")
 class DataLoader(
     private val companyRepository: CompanyRepository,
     private val objectMapper: ObjectMapper,
 ) : CommandLineRunner {
+    private val log = LoggerFactory.getLogger(DataLoader::class.java)
+
     override fun run(vararg args: String) {
         try {
             val jsonResource = ClassPathResource("companies.json")
@@ -49,7 +54,7 @@ class DataLoader(
                         companyRepository.saveAll(batch)
                         totalSaved += batch.size
                     } catch (e: Exception) {
-                        println("Batch insert failed, trying individually: ${e.message}")
+                        log.warn("Batch insert failed, trying individually: ${e.message}")
                         batch.forEach { company ->
                             try {
                                 companyRepository.save(company)
@@ -60,10 +65,10 @@ class DataLoader(
                         }
                     }
                 }
-                println("$totalSaved companies loaded from JSON, $totalFailed failed (duplicates or errors)")
+                log.info("$totalSaved companies loaded from JSON, $totalFailed failed (duplicates or errors)")
             }
         } catch (e: Exception) {
-            println("Error loading companies from JSON: ${e.message}")
+            log.error("Error loading companies from JSON: ${e.message}")
         }
     }
 }
