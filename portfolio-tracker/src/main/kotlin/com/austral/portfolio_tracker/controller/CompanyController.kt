@@ -3,6 +3,7 @@ package com.austral.portfolio_tracker.controller
 import com.austral.portfolio_tracker.dto.CreateCompanyRequest
 import com.austral.portfolio_tracker.service.CompanyResult
 import com.austral.portfolio_tracker.service.CompanyService
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -40,7 +41,7 @@ class CompanyController(
 ) {
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
     fun createCompany(
-        @RequestBody request: CreateCompanyRequest,
+        @Valid @RequestBody request: CreateCompanyRequest,
     ): ResponseEntity<Any> =
         when (companyService.createCompany(request)) {
             is CompanyResult.Created -> ResponseEntity.status(HttpStatus.CREATED).build()
@@ -48,6 +49,25 @@ class CompanyController(
                 ResponseEntity
                     .status(HttpStatus.CONFLICT)
                     .body(ErrorResponse("Invalid operation: company with ticker already exists"))
+            else -> ResponseEntity.badRequest().build()
+        }
+
+    @GetMapping
+    fun getCompanies(
+        @RequestParam(required = false, defaultValue = "1") page: Int,
+    ): ResponseEntity<PagedResponse> =
+        when (val result = companyService.getCompanies(page)) {
+            is CompanyResult.Paged ->
+                ResponseEntity.ok(
+                    PagedResponse(
+                        content = result.result.content.map { CompanyDTO(it.id, it.ticker, it.companyName) },
+                        currentPage = result.result.currentPage,
+                        pageSize = result.result.pageSize,
+                        totalElements = result.result.totalElements,
+                        totalPages = result.result.totalPages,
+                    ),
+                )
+            is CompanyResult.PageOutOfRange -> ResponseEntity.notFound().build()
             else -> ResponseEntity.badRequest().build()
         }
 

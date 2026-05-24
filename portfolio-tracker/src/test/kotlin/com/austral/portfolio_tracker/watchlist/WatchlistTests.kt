@@ -204,10 +204,11 @@ class WatchlistTests {
         val all = watchlistRepository.findAll()
         assertEquals(1, all.size)
 
-        companyRepository.delete(savedCompany)
+        savedCompany.active = false
+        companyRepository.save(savedCompany)
 
         val remaining = watchlistRepository.findAll()
-        assertEquals(0, remaining.size)
+        assertEquals(1, remaining.size)
     }
 
     @Test

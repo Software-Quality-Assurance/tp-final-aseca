@@ -15,14 +15,16 @@ class Company(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     val ticker: String,
     @Column(nullable = false)
     val companyName: String,
-    @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @Column(nullable = false)
+    var active: Boolean = true,
+    @OneToMany(mappedBy = "company", cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     val prices: MutableList<Price> = mutableListOf(),
-    @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToMany(mappedBy = "company", cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     val history: MutableList<History> = mutableListOf(),
-    @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToMany(mappedBy = "company", cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     val watchlist: MutableList<Watchlist> = mutableListOf(),
 )

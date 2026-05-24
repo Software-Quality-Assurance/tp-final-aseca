@@ -52,16 +52,11 @@ class CompanyService(
     private val companyRepository: CompanyRepository,
 ) {
     fun createCompany(request: CreateCompanyRequest): CompanyResult {
-        val ticker = request.ticker
-        val companyName = request.companyName
+        val normalizedTicker = request.ticker.trim().uppercase()
 
-        if (ticker.isNullOrBlank() || companyName.isNullOrBlank()) return CompanyResult.InvalidInput
+        if (companyRepository.findByTickerAndActiveTrue(normalizedTicker) != null) return CompanyResult.Conflict
 
-        val normalizedTicker = ticker.trim().uppercase()
-
-        if (companyRepository.findByTicker(normalizedTicker) != null) return CompanyResult.Conflict
-
-        val company = companyRepository.save(Company(ticker = normalizedTicker, companyName = companyName.trim()))
+        val company = companyRepository.save(Company(ticker = normalizedTicker, companyName = request.companyName.trim()))
         return CompanyResult.Created(company.toData())
     }
 
@@ -69,7 +64,7 @@ class CompanyService(
         if (page < 1) return CompanyResult.InvalidInput
 
         val pageable = PageRequest.of(page - 1, 10, Sort.by("ticker"))
-        val result = companyRepository.findAll(pageable)
+        val result = companyRepository.findAllByActiveTrue(pageable)
 
         if (result.totalPages in 1..<page) return CompanyResult.PageOutOfRange
 
@@ -86,19 +81,23 @@ class CompanyService(
 
     fun searchByName(name: String): CompanyResult {
         if (name.isBlank()) return CompanyResult.InvalidInput
-        val results = companyRepository.findByCompanyNameContainingIgnoreCase(name.trim())
+        val results = companyRepository.findByCompanyNameContainingIgnoreCaseAndActiveTrue(name.trim())
         return if (results.isEmpty()) CompanyResult.NotFound else CompanyResult.Found(results.map { it.toData() })
     }
 
     fun searchByTicker(ticker: String): CompanyResult {
         if (ticker.isBlank()) return CompanyResult.InvalidInput
-        val results = companyRepository.findByTickerContainingIgnoreCase(ticker.trim())
+        val results = companyRepository.findByTickerContainingIgnoreCaseAndActiveTrue(ticker.trim())
         return if (results.isEmpty()) CompanyResult.NotFound else CompanyResult.Found(results.map { it.toData() })
     }
 
     fun deleteCompany(id: Long): CompanyResult {
-        val company = companyRepository.findById(id).orElse(null) ?: return CompanyResult.NotFound
-        companyRepository.delete(company)
+        val company =
+            companyRepository.findById(id).orElse(null)
+                ?: return CompanyResult.NotFound
+        if (company.active.not()) return CompanyResult.NotFound
+        company.active = false
+        companyRepository.save(company)
         return CompanyResult.Deleted
     }
 }

@@ -110,9 +110,10 @@ class PriceTests {
 
         assertEquals(2, priceRepository.findByCompanyIdOrderByTimestampAsc(companyId).size)
 
-        companyRepository.delete(savedCompany)
+        savedCompany.active = false
+        companyRepository.save(savedCompany)
 
-        assertEquals(0, priceRepository.findByCompanyIdOrderByTimestampAsc(companyId).size)
+        assertEquals(2, priceRepository.findByCompanyIdOrderByTimestampAsc(companyId).size)
     }
 
     @Test

@@ -6,11 +6,11 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface CompanyRepository : JpaRepository<Company, Long> {
-    fun findByTicker(ticker: String): Company?
+    fun findByTickerAndActiveTrue(ticker: String): Company?
 
-    override fun findAll(pageable: Pageable): Page<Company>
+    fun findAllByActiveTrue(pageable: Pageable): Page<Company>
 
-    fun findByCompanyNameContainingIgnoreCase(name: String): List<Company>
+    fun findByCompanyNameContainingIgnoreCaseAndActiveTrue(name: String): List<Company>
 
-    fun findByTickerContainingIgnoreCase(ticker: String): List<Company>
+    fun findByTickerContainingIgnoreCaseAndActiveTrue(ticker: String): List<Company>
 }

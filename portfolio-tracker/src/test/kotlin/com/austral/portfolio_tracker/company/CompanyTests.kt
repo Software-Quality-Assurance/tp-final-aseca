@@ -11,10 +11,8 @@ import com.austral.portfolio_tracker.repository.UserRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest
-import org.springframework.dao.DataIntegrityViolationException
 import java.math.BigDecimal
 import java.time.Instant
 
@@ -72,7 +70,7 @@ class CompanyTests {
         )
         companyRepository.save(company)
 
-        val found = companyRepository.findByTicker("AMZN")
+        val found = companyRepository.findByTickerAndActiveTrue("AMZN")
 
         assertNotNull(found)
         assertEquals("AMZN", found?.ticker)
@@ -255,25 +253,16 @@ class CompanyTests {
     }
 
     @Test
-    fun `should throw exception when saving a company with duplicate ticker`() {
-        val company1 =
-            Company(
-                ticker = "DUP",
-                companyName = "Dup One",
-            )
-        company1.prices.add(
-            Price(ticker = "DUP", unityPrice = BigDecimal("10.00"), timestamp = Instant.parse("2026-05-01T00:00:00Z"), company = company1),
-        )
+    fun `should allow same ticker when first company is inactive (soft deleted)`() {
+        val company1 = companyRepository.save(Company(ticker = "DUP", companyName = "Dup One"))
+        company1.active = false
         companyRepository.save(company1)
 
-        val company2 =
-            Company(
-                ticker = "DUP",
-                companyName = "Dup Two",
-            )
+        val company2 = companyRepository.save(Company(ticker = "DUP", companyName = "Dup Two"))
 
-        assertThrows<DataIntegrityViolationException> {
-            companyRepository.save(company2)
-        }
+        assertNotNull(company2.id)
+        assertEquals("DUP", company2.ticker)
+        assertEquals(true, company2.active)
+        assertNotNull(companyRepository.findByTickerAndActiveTrue("DUP"))
     }
 }

@@ -100,7 +100,7 @@ class CompanyControllerTests {
                 status { isCreated() }
             }
 
-        val savedCompany = companyRepository.findByTicker("TSLA")
+        val savedCompany = companyRepository.findByTickerAndActiveTrue("TSLA")
         assertNotNull(savedCompany)
         assertEquals("TSLA", savedCompany?.ticker)
         assertEquals("Tesla Inc", savedCompany?.companyName)
@@ -136,9 +136,9 @@ class CompanyControllerTests {
                 }
         }
 
-        val savedNVDA = companyRepository.findByTicker("NVDA")
-        val savedAMD = companyRepository.findByTicker("AMD")
-        val savedINTC = companyRepository.findByTicker("INTC")
+        val savedNVDA = companyRepository.findByTickerAndActiveTrue("NVDA")
+        val savedAMD = companyRepository.findByTickerAndActiveTrue("AMD")
+        val savedINTC = companyRepository.findByTickerAndActiveTrue("INTC")
 
         assertNotNull(savedNVDA)
         assertEquals("NVDA", savedNVDA?.ticker)
@@ -184,17 +184,11 @@ class CompanyControllerTests {
     @Test
     @WithMockUser
     fun `005_should return 400 Bad Request when ticker is null`() {
-        val request =
-            CreateCompanyRequest(
-                ticker = null,
-                companyName = "Valid Company",
-            )
-
         mockMvc
             .post("/api/company") {
                 with(csrf())
                 contentType = MediaType.APPLICATION_JSON
-                content = objectMapper.writeValueAsString(request)
+                content = """{"ticker": null, "companyName": "Valid Company"}"""
             }.andExpect {
                 status { isBadRequest() }
             }
@@ -241,17 +235,11 @@ class CompanyControllerTests {
     @Test
     @WithMockUser
     fun `008_should return 400 Bad Request when companyName is null`() {
-        val request =
-            CreateCompanyRequest(
-                ticker = "VALID",
-                companyName = null,
-            )
-
         mockMvc
             .post("/api/company") {
                 with(csrf())
                 contentType = MediaType.APPLICATION_JSON
-                content = objectMapper.writeValueAsString(request)
+                content = """{"ticker": "VALID", "companyName": null}"""
             }.andExpect {
                 status { isBadRequest() }
             }
@@ -313,7 +301,7 @@ class CompanyControllerTests {
                 status { isCreated() }
             }
 
-        val savedCompany = companyRepository.findByTicker("GOOG")
+        val savedCompany = companyRepository.findByTickerAndActiveTrue("GOOG")
         assertNotNull(savedCompany)
         assertNotNull(savedCompany?.id)
         assertEquals(true, savedCompany?.id != null && savedCompany?.id!! > 0)
@@ -838,7 +826,7 @@ class CompanyControllerTests {
 
     @Test
     @WithMockUser
-    fun `048_delete_company_verifies_deletion_from_database`() {
+    fun `048_delete_company_marks_as_inactive`() {
         val company =
             companyRepository.save(
                 Company(
@@ -858,7 +846,8 @@ class CompanyControllerTests {
             }
 
         val deleted = companyRepository.findById(id!!).orElse(null)
-        assertEquals(null, deleted)
+        assertNotNull(deleted)
+        assertEquals(false, deleted?.active)
     }
 
     @Test
@@ -1044,7 +1033,7 @@ class CompanyControllerTests {
                 status { isCreated() }
             }
 
-        val recreated = companyRepository.findByTicker("RECR")
+        val recreated = companyRepository.findByTickerAndActiveTrue("RECR")
         assertNotNull(recreated)
         assertEquals("RECR", recreated?.ticker)
         assertEquals("Recreate Test Company New", recreated?.companyName)
@@ -1052,7 +1041,7 @@ class CompanyControllerTests {
 
     @Test
     @WithMockUser
-    fun `054_delete_company_cascades_to_prices_history_and_watchlist`() {
+    fun `054_delete_company_soft_delete_preserves_history_and_relationships`() {
         val company = companyRepository.save(Company(ticker = "CASC", companyName = "Cascade Test Company"))
         val user = userRepository.save(User(mail = "cascade@test.com", password = "pass"))
 
@@ -1073,19 +1062,14 @@ class CompanyControllerTests {
 
         val companyId = company.id!!
 
-        // Flush inserts to DB y cargar colecciones lazy en sesión para que
-        // Hibernate las incluya en la cascada REMOVED al hacer el delete
+        // Flush inserts to DB y cargar colecciones lazy en sesión
         entityManager.flush()
         entityManager.refresh(company)
-        company.prices.size
-        company.history.size
-        company.watchlist.size
 
         assertEquals(2, company.prices.size)
         assertEquals(1, company.history.size)
         assertEquals(1, company.watchlist.size)
 
-        // Si cascade no funcionara, el endpoint devolvería 500 por FK violation
         mockMvc
             .delete("/api/company/$companyId") {
                 with(csrf())
@@ -1093,12 +1077,17 @@ class CompanyControllerTests {
                 status { isNoContent() }
             }
 
-        // Verificar en DB que se eliminaron los registros relacionados
-        assertEquals(0, priceRepository.findByCompanyIdOrderByTimestampAsc(companyId).size)
-        assertEquals(0, watchlistRepository.findAll().count { it.company?.id == companyId })
-        assertEquals(0, historyRepository.findAll().count { it.company?.id == companyId })
+        // Verificar soft delete: compañía marcada como inactiva
+        val deletedCompany = companyRepository.findById(companyId).orElse(null)
+        assertNotNull(deletedCompany)
+        assertEquals(false, deletedCompany?.active)
 
-        // Verificar que la compañía ya no aparece en el listado ni en búsquedas
+        // Verificar que relaciones se mantienen (no se eliminan)
+        assertEquals(2, priceRepository.findByCompanyIdOrderByTimestampAsc(companyId).size)
+        assertEquals(1, watchlistRepository.findAll().count { it.company?.id == companyId })
+        assertEquals(1, historyRepository.findAll().count { it.company?.id == companyId })
+
+        // Verificar que la compañía NO aparece en búsquedas (filtrada por active=true)
         mockMvc
             .get("/api/company/search?ticker=CASC") {
             }.andExpect {

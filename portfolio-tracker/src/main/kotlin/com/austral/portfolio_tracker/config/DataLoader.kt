@@ -5,7 +5,7 @@ import com.austral.portfolio_tracker.repository.CompanyRepository
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+import org.springframework.context.annotation.Profile
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Component
 import tools.jackson.databind.ObjectMapper
@@ -17,7 +17,7 @@ data class CompanyData(
 )
 
 @Component
-@ConditionalOnProperty(name = ["app.seed.enabled"], havingValue = "true")
+@Profile("seed")
 class DataLoader(
     private val companyRepository: CompanyRepository,
     private val objectMapper: ObjectMapper,
