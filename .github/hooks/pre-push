@@ -3,7 +3,7 @@ echo "Executing pre-push hook..."
 
 echo "running build"
 
-SPRING_PROFILES_ACTIVE=test ./gradlew build
+./gradlew build
 if [ $? -ne 0 ]; then
   echo "build failed, fix issues before committing this"
   exit 1
