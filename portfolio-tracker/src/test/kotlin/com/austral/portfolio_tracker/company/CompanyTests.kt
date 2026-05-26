@@ -11,16 +11,12 @@ import com.austral.portfolio_tracker.repository.UserRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest
-import org.springframework.dao.DataIntegrityViolationException
-import org.springframework.test.context.ActiveProfiles
 import java.math.BigDecimal
 import java.time.Instant
 
 @DataJpaTest
-@ActiveProfiles("test")
 class CompanyTests {
     @Autowired
     private lateinit var companyRepository: CompanyRepository
@@ -34,7 +30,6 @@ class CompanyTests {
             Company(
                 ticker = "GOOG",
                 companyName = "Google LLC",
-                cik = "0001652044",
             )
 
         // add initial price
@@ -52,7 +47,6 @@ class CompanyTests {
         assertNotNull(savedCompany.id)
         assertEquals("GOOG", savedCompany.ticker)
         assertEquals("Google LLC", savedCompany.companyName)
-        assertEquals("0001652044", savedCompany.cik)
         assertEquals(1, savedCompany.prices.size)
         assertEquals(BigDecimal("2800.00"), savedCompany.prices[0].unityPrice)
         assertEquals(0, savedCompany.history.size)
@@ -65,7 +59,6 @@ class CompanyTests {
             Company(
                 ticker = "AMZN",
                 companyName = "Amazon.com, Inc.",
-                cik = "0001018724",
             )
         company.prices.add(
             Price(
@@ -77,7 +70,7 @@ class CompanyTests {
         )
         companyRepository.save(company)
 
-        val found = companyRepository.findByTicker("AMZN")
+        val found = companyRepository.findByTickerAndActiveTrue("AMZN")
 
         assertNotNull(found)
         assertEquals("AMZN", found?.ticker)
@@ -99,7 +92,6 @@ class CompanyTests {
             Company(
                 ticker = "TSLA",
                 companyName = "Tesla, Inc.",
-                cik = "0001318605",
             )
 
         company.prices.add(
@@ -147,7 +139,6 @@ class CompanyTests {
             Company(
                 ticker = "NFLX",
                 companyName = "Netflix, Inc.",
-                cik = "0001065280",
             )
 
         company.prices.add(
@@ -178,7 +169,6 @@ class CompanyTests {
                 Company(
                     ticker = "AAPL",
                     companyName = "Apple Inc.",
-                    cik = "0000320193",
                 ).apply {
                     prices.add(
                         Price(
@@ -220,7 +210,6 @@ class CompanyTests {
                 Company(
                     ticker = "MSFT",
                     companyName = "Microsoft Corporation",
-                    cik = "0000789019",
                 ).apply {
                     prices.add(
                         Price(
@@ -264,52 +253,16 @@ class CompanyTests {
     }
 
     @Test
-    fun `should throw exception when saving a company with duplicate ticker`() {
-        val company1 =
-            Company(
-                ticker = "DUP",
-                companyName = "Dup One",
-                cik = "0000000001",
-            )
-        company1.prices.add(
-            Price(ticker = "DUP", unityPrice = BigDecimal("10.00"), timestamp = Instant.parse("2026-05-01T00:00:00Z"), company = company1),
-        )
+    fun `should allow same ticker when first company is inactive (soft deleted)`() {
+        val company1 = companyRepository.save(Company(ticker = "DUP", companyName = "Dup One"))
+        company1.active = false
         companyRepository.save(company1)
 
-        val company2 =
-            Company(
-                ticker = "DUP",
-                companyName = "Dup Two",
-                cik = "0000000002",
-            )
+        val company2 = companyRepository.save(Company(ticker = "DUP", companyName = "Dup Two"))
 
-        assertThrows<DataIntegrityViolationException> {
-            companyRepository.save(company2)
-        }
-    }
-
-    @Test
-    fun `should throw exception when saving a company with duplicate cik`() {
-        val company1 =
-            Company(
-                ticker = "UNQ1",
-                companyName = "Unique One",
-                cik = "0000000101",
-            )
-        company1.prices.add(
-            Price(ticker = "UNQ1", unityPrice = BigDecimal("15.00"), timestamp = Instant.parse("2026-05-01T00:00:00Z"), company = company1),
-        )
-        companyRepository.save(company1)
-
-        val company2 =
-            Company(
-                ticker = "UNQ2",
-                companyName = "Unique Two",
-                cik = "0000000101",
-            )
-
-        assertThrows<DataIntegrityViolationException> {
-            companyRepository.save(company2)
-        }
+        assertNotNull(company2.id)
+        assertEquals("DUP", company2.ticker)
+        assertEquals(true, company2.active)
+        assertNotNull(companyRepository.findByTickerAndActiveTrue("DUP"))
     }
 }

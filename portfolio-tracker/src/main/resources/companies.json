@@ -1,0 +1,6002 @@
+[
+  {
+    "Id": 1,
+    "ticker": "TRWD",
+    "company_name": "Tradewinds Universal",
+    "price": null
+  },
+  {
+    "Id": 2,
+    "ticker": "NTCS",
+    "company_name": "Natics Corp.",
+    "price": null
+  },
+  {
+    "Id": 3,
+    "ticker": "LMMY",
+    "company_name": "Exousia Bio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 4,
+    "ticker": "NEWH",
+    "company_name": "NewHydrogen, Inc.",
+    "price": null
+  },
+  {
+    "Id": 5,
+    "ticker": "SMNR",
+    "company_name": "Semnur Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 6,
+    "ticker": "SMNRW",
+    "company_name": "Semnur Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 7,
+    "ticker": "RNGC",
+    "company_name": "Ranger Gold Corp.",
+    "price": null
+  },
+  {
+    "Id": 8,
+    "ticker": "VS",
+    "company_name": "Versus Systems Inc.",
+    "price": null
+  },
+  {
+    "Id": 9,
+    "ticker": "QXO",
+    "company_name": "QXO, Inc.",
+    "price": null
+  },
+  {
+    "Id": 10,
+    "ticker": "QXO-PB",
+    "company_name": "QXO, Inc.",
+    "price": null
+  },
+  {
+    "Id": 11,
+    "ticker": "LTBR",
+    "company_name": "LIGHTBRIDGE Corp",
+    "price": null
+  },
+  {
+    "Id": 12,
+    "ticker": "WNW",
+    "company_name": "Meiwu Technology Co Ltd",
+    "price": null
+  },
+  {
+    "Id": 13,
+    "ticker": "MLAC",
+    "company_name": "Mountain Lake Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 14,
+    "ticker": "MLACU",
+    "company_name": "Mountain Lake Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 15,
+    "ticker": "MLACR",
+    "company_name": "Mountain Lake Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 16,
+    "ticker": "CRCE",
+    "company_name": "Circle Energy, Inc./NV",
+    "price": null
+  },
+  {
+    "Id": 17,
+    "ticker": "MNTR",
+    "company_name": "Mentor Capital, Inc.",
+    "price": null
+  },
+  {
+    "Id": 18,
+    "ticker": "NNUP",
+    "company_name": "NOCOPI TECHNOLOGIES INC/MD/",
+    "price": null
+  },
+  {
+    "Id": 19,
+    "ticker": "JANX",
+    "company_name": "Janux Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 20,
+    "ticker": "NTIP",
+    "company_name": "NETWORK-1 TECHNOLOGIES, INC.",
+    "price": null
+  },
+  {
+    "Id": 21,
+    "ticker": "HOLO",
+    "company_name": "MicroCloud Hologram Inc.",
+    "price": null
+  },
+  {
+    "Id": 22,
+    "ticker": "HOLOW",
+    "company_name": "MicroCloud Hologram Inc.",
+    "price": null
+  },
+  {
+    "Id": 23,
+    "ticker": "NNE",
+    "company_name": "Nano Nuclear Energy Inc.",
+    "price": null
+  },
+  {
+    "Id": 24,
+    "ticker": "NRDE",
+    "company_name": "NU RIDE INC.",
+    "price": null
+  },
+  {
+    "Id": 25,
+    "ticker": "AASP",
+    "company_name": "Agassi Sports Entertainment Corp.",
+    "price": null
+  },
+  {
+    "Id": 26,
+    "ticker": "LGL",
+    "company_name": "LGL GROUP INC",
+    "price": null
+  },
+  {
+    "Id": 27,
+    "ticker": "DJT",
+    "company_name": "Trump Media & Technology Group Corp.",
+    "price": null
+  },
+  {
+    "Id": 28,
+    "ticker": "DJTWW",
+    "company_name": "Trump Media & Technology Group Corp.",
+    "price": null
+  },
+  {
+    "Id": 29,
+    "ticker": "EHSI",
+    "company_name": "Elite Health Systems Inc.",
+    "price": null
+  },
+  {
+    "Id": 30,
+    "ticker": "UPB",
+    "company_name": "Upstream Bio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 31,
+    "ticker": "GGROU",
+    "company_name": "Golden Growers Cooperative",
+    "price": null
+  },
+  {
+    "Id": 32,
+    "ticker": "OKLO",
+    "company_name": "Oklo Inc.",
+    "price": null
+  },
+  {
+    "Id": 33,
+    "ticker": "GXAI",
+    "company_name": "GAXOS.AI INC.",
+    "price": null
+  },
+  {
+    "Id": 34,
+    "ticker": "NVEC",
+    "company_name": "NVE CORP /NEW/",
+    "price": null
+  },
+  {
+    "Id": 35,
+    "ticker": "RR",
+    "company_name": "RICHTECH ROBOTICS INC.",
+    "price": null
+  },
+  {
+    "Id": 36,
+    "ticker": "WETH",
+    "company_name": "Wetouch Technology Inc.",
+    "price": null
+  },
+  {
+    "Id": 37,
+    "ticker": "CCIX",
+    "company_name": "Churchill Capital Corp IX/Cayman",
+    "price": null
+  },
+  {
+    "Id": 38,
+    "ticker": "CCIXW",
+    "company_name": "Churchill Capital Corp IX/Cayman",
+    "price": null
+  },
+  {
+    "Id": 39,
+    "ticker": "CCIXU",
+    "company_name": "Churchill Capital Corp IX/Cayman",
+    "price": null
+  },
+  {
+    "Id": 40,
+    "ticker": "ROIV",
+    "company_name": "Roivant Sciences Ltd.",
+    "price": null
+  },
+  {
+    "Id": 41,
+    "ticker": "MEGL",
+    "company_name": "Magic Empire Global Ltd",
+    "price": null
+  },
+  {
+    "Id": 42,
+    "ticker": "CKX",
+    "company_name": "CKX LANDS, INC.",
+    "price": null
+  },
+  {
+    "Id": 43,
+    "ticker": "CNTX",
+    "company_name": "Context Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 44,
+    "ticker": "CURX",
+    "company_name": "Curanex Pharmaceuticals Inc",
+    "price": null
+  },
+  {
+    "Id": 45,
+    "ticker": "RAPP",
+    "company_name": "Rapport Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 46,
+    "ticker": "CGON",
+    "company_name": "CG Oncology, Inc.",
+    "price": null
+  },
+  {
+    "Id": 47,
+    "ticker": "SGMT",
+    "company_name": "Sagimet Biosciences Inc.",
+    "price": null
+  },
+  {
+    "Id": 48,
+    "ticker": "VKTX",
+    "company_name": "Viking Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 49,
+    "ticker": "TMQ",
+    "company_name": "Trilogy Metals Inc.",
+    "price": null
+  },
+  {
+    "Id": 50,
+    "ticker": "CLYM",
+    "company_name": "Climb Bio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 51,
+    "ticker": "LOGC",
+    "company_name": "ContextLogic Holdings Inc.",
+    "price": null
+  },
+  {
+    "Id": 52,
+    "ticker": "NXTT",
+    "company_name": "Next Technology Holding Inc.",
+    "price": null
+  },
+  {
+    "Id": 53,
+    "ticker": "GEG",
+    "company_name": "Great Elm Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 54,
+    "ticker": "GEGGL",
+    "company_name": "Great Elm Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 55,
+    "ticker": "LEXX",
+    "company_name": "Lexaria Bioscience Corp.",
+    "price": null
+  },
+  {
+    "Id": 56,
+    "ticker": "DSGN",
+    "company_name": "Design Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 57,
+    "ticker": "IPWR",
+    "company_name": "Ideal Power Inc.",
+    "price": null
+  },
+  {
+    "Id": 58,
+    "ticker": "ORKA",
+    "company_name": "Oruka Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 59,
+    "ticker": "NPWR",
+    "company_name": "NET Power Inc.",
+    "price": null
+  },
+  {
+    "Id": 60,
+    "ticker": "NPWR-WT",
+    "company_name": "NET Power Inc.",
+    "price": null
+  },
+  {
+    "Id": 61,
+    "ticker": "SUIG",
+    "company_name": "SUI Group Holdings Ltd.",
+    "price": null
+  },
+  {
+    "Id": 62,
+    "ticker": "ENZN",
+    "company_name": "Viskase Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 63,
+    "ticker": "BCAX",
+    "company_name": "Bicara Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 64,
+    "ticker": "SEPN",
+    "company_name": "Septerna, Inc.",
+    "price": null
+  },
+  {
+    "Id": 65,
+    "ticker": "BTCT",
+    "company_name": "BTC Digital Ltd.",
+    "price": null
+  },
+  {
+    "Id": 66,
+    "ticker": "RBNE",
+    "company_name": "Robin Energy Ltd.",
+    "price": null
+  },
+  {
+    "Id": 67,
+    "ticker": "IKT",
+    "company_name": "Inhibikase Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 68,
+    "ticker": "NNDM",
+    "company_name": "Nano Dimension Ltd.",
+    "price": null
+  },
+  {
+    "Id": 69,
+    "ticker": "RDGL",
+    "company_name": "VIVOS INC",
+    "price": null
+  },
+  {
+    "Id": 70,
+    "ticker": "VERA",
+    "company_name": "Vera Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 71,
+    "ticker": "UTMD",
+    "company_name": "UTAH MEDICAL PRODUCTS INC",
+    "price": null
+  },
+  {
+    "Id": 72,
+    "ticker": "BNTC",
+    "company_name": "Benitec Biopharma Inc.",
+    "price": null
+  },
+  {
+    "Id": 73,
+    "ticker": "MACI",
+    "company_name": "Melar Acquisition Corp. I/Cayman",
+    "price": null
+  },
+  {
+    "Id": 74,
+    "ticker": "MACIW",
+    "company_name": "Melar Acquisition Corp. I/Cayman",
+    "price": null
+  },
+  {
+    "Id": 75,
+    "ticker": "MACIU",
+    "company_name": "Melar Acquisition Corp. I/Cayman",
+    "price": null
+  },
+  {
+    "Id": 76,
+    "ticker": "SIMA",
+    "company_name": "SIM Acquisition Corp. I",
+    "price": null
+  },
+  {
+    "Id": 77,
+    "ticker": "SIMAU",
+    "company_name": "SIM Acquisition Corp. I",
+    "price": null
+  },
+  {
+    "Id": 78,
+    "ticker": "SIMAW",
+    "company_name": "SIM Acquisition Corp. I",
+    "price": null
+  },
+  {
+    "Id": 79,
+    "ticker": "ORMP",
+    "company_name": "ORAMED PHARMACEUTICALS INC.",
+    "price": null
+  },
+  {
+    "Id": 80,
+    "ticker": "AVIR",
+    "company_name": "Atea Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 81,
+    "ticker": "ORIS",
+    "company_name": "ORIENTAL RISE HOLDINGS Ltd",
+    "price": null
+  },
+  {
+    "Id": 82,
+    "ticker": "GPCR",
+    "company_name": "Structure Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 83,
+    "ticker": "ELSE",
+    "company_name": "ELECTRO SENSORS INC",
+    "price": null
+  },
+  {
+    "Id": 84,
+    "ticker": "BLTE",
+    "company_name": "BELITE BIO, INC",
+    "price": null
+  },
+  {
+    "Id": 85,
+    "ticker": "MBX",
+    "company_name": "MBX Biosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 86,
+    "ticker": "TYRA",
+    "company_name": "Tyra Biosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 87,
+    "ticker": "CRNX",
+    "company_name": "Crinetics Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 88,
+    "ticker": "NG",
+    "company_name": "NOVAGOLD RESOURCES INC",
+    "price": null
+  },
+  {
+    "Id": 89,
+    "ticker": "FULC",
+    "company_name": "Fulcrum Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 90,
+    "ticker": "CRSP",
+    "company_name": "CRISPR Therapeutics AG",
+    "price": null
+  },
+  {
+    "Id": 91,
+    "ticker": "PALX",
+    "company_name": "Palomino Laboratories Inc.",
+    "price": null
+  },
+  {
+    "Id": 92,
+    "ticker": "KROS",
+    "company_name": "Keros Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 93,
+    "ticker": "IWSH",
+    "company_name": "Wright Investors Service Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 94,
+    "ticker": "IRON",
+    "company_name": "Disc Medicine, Inc.",
+    "price": null
+  },
+  {
+    "Id": 95,
+    "ticker": "MLTX",
+    "company_name": "MoonLake Immunotherapeutics",
+    "price": null
+  },
+  {
+    "Id": 96,
+    "ticker": "NUVL",
+    "company_name": "Nuvalent, Inc.",
+    "price": null
+  },
+  {
+    "Id": 97,
+    "ticker": "USLM",
+    "company_name": "UNITED STATES LIME & MINERALS INC",
+    "price": null
+  },
+  {
+    "Id": 98,
+    "ticker": "NBP",
+    "company_name": "NovaBridge Biosciences",
+    "price": null
+  },
+  {
+    "Id": 99,
+    "ticker": "NVNO",
+    "company_name": "enVVeno Medical Corp",
+    "price": null
+  },
+  {
+    "Id": 100,
+    "ticker": "NGNE",
+    "company_name": "Neurogene Inc.",
+    "price": null
+  },
+  {
+    "Id": 101,
+    "ticker": "CTNM",
+    "company_name": "Contineum Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 102,
+    "ticker": "TENX",
+    "company_name": "TENAX THERAPEUTICS, INC.",
+    "price": null
+  },
+  {
+    "Id": 103,
+    "ticker": "LENZ",
+    "company_name": "LENZ Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 104,
+    "ticker": "RDAC",
+    "company_name": "Rising Dragon Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 105,
+    "ticker": "RDACU",
+    "company_name": "Rising Dragon Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 106,
+    "ticker": "RDACR",
+    "company_name": "Rising Dragon Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 107,
+    "ticker": "JOBY",
+    "company_name": "Joby Aviation, Inc.",
+    "price": null
+  },
+  {
+    "Id": 108,
+    "ticker": "JOBY-WT",
+    "company_name": "Joby Aviation, Inc.",
+    "price": null
+  },
+  {
+    "Id": 109,
+    "ticker": "ELVN",
+    "company_name": "Enliven Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 110,
+    "ticker": "GROW",
+    "company_name": "U S GLOBAL INVESTORS INC",
+    "price": null
+  },
+  {
+    "Id": 111,
+    "ticker": "AVTX",
+    "company_name": "Avalo Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 112,
+    "ticker": "EWTX",
+    "company_name": "Edgewise Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 113,
+    "ticker": "PCSV",
+    "company_name": "PCS Edventures!, Inc.",
+    "price": null
+  },
+  {
+    "Id": 114,
+    "ticker": "PCSVD",
+    "company_name": "PCS Edventures!, Inc.",
+    "price": null
+  },
+  {
+    "Id": 115,
+    "ticker": "WLAC",
+    "company_name": "Willow Lane Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 116,
+    "ticker": "WLACU",
+    "company_name": "Willow Lane Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 117,
+    "ticker": "WLACW",
+    "company_name": "Willow Lane Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 118,
+    "ticker": "EBON",
+    "company_name": "Ebang International Holdings Inc.",
+    "price": null
+  },
+  {
+    "Id": 119,
+    "ticker": "INVE",
+    "company_name": "Identiv, Inc.",
+    "price": null
+  },
+  {
+    "Id": 120,
+    "ticker": "BOLD",
+    "company_name": "Boundless Bio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 121,
+    "ticker": "CLDX",
+    "company_name": "Celldex Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 122,
+    "ticker": "CRON",
+    "company_name": "Cronos Group Inc.",
+    "price": null
+  },
+  {
+    "Id": 123,
+    "ticker": "CELZ",
+    "company_name": "CREATIVE MEDICAL TECHNOLOGY HOLDINGS, INC.",
+    "price": null
+  },
+  {
+    "Id": 124,
+    "ticker": "APGE",
+    "company_name": "Apogee Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 125,
+    "ticker": "AMPG",
+    "company_name": "AmpliTech Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 126,
+    "ticker": "AMPGZ",
+    "company_name": "AmpliTech Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 127,
+    "ticker": "AMPGR",
+    "company_name": "AmpliTech Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 128,
+    "ticker": "SERV",
+    "company_name": "Serve Robotics Inc. /DE/",
+    "price": null
+  },
+  {
+    "Id": 129,
+    "ticker": "GIGM",
+    "company_name": "GIGAMEDIA Ltd",
+    "price": null
+  },
+  {
+    "Id": 130,
+    "ticker": "HNNA",
+    "company_name": "HENNESSY ADVISORS INC",
+    "price": null
+  },
+  {
+    "Id": 131,
+    "ticker": "HNNAZ",
+    "company_name": "HENNESSY ADVISORS INC",
+    "price": null
+  },
+  {
+    "Id": 132,
+    "ticker": "VACH",
+    "company_name": "Voyager Acquisition Corp./Cayman Islands",
+    "price": null
+  },
+  {
+    "Id": 133,
+    "ticker": "VACHU",
+    "company_name": "Voyager Acquisition Corp./Cayman Islands",
+    "price": null
+  },
+  {
+    "Id": 134,
+    "ticker": "VACHW",
+    "company_name": "Voyager Acquisition Corp./Cayman Islands",
+    "price": null
+  },
+  {
+    "Id": 135,
+    "ticker": "EJH",
+    "company_name": "E-Home Household Service Holdings Ltd",
+    "price": null
+  },
+  {
+    "Id": 136,
+    "ticker": "XENE",
+    "company_name": "Xenon Pharmaceuticals Inc.",
+    "price": null
+  },
+  {
+    "Id": 137,
+    "ticker": "BMR",
+    "company_name": "Beamr Imaging Ltd.",
+    "price": null
+  },
+  {
+    "Id": 138,
+    "ticker": "PHUN",
+    "company_name": "Phunware, Inc.",
+    "price": null
+  },
+  {
+    "Id": 139,
+    "ticker": "TAOX",
+    "company_name": "TAO Synergies Inc.",
+    "price": null
+  },
+  {
+    "Id": 140,
+    "ticker": "RGTI",
+    "company_name": "Rigetti Computing, Inc.",
+    "price": null
+  },
+  {
+    "Id": 141,
+    "ticker": "RGTIW",
+    "company_name": "Rigetti Computing, Inc.",
+    "price": null
+  },
+  {
+    "Id": 142,
+    "ticker": "NAUT",
+    "company_name": "Nautilus Biotechnology, Inc.",
+    "price": null
+  },
+  {
+    "Id": 143,
+    "ticker": "QUBT",
+    "company_name": "Quantum Computing Inc.",
+    "price": null
+  },
+  {
+    "Id": 144,
+    "ticker": "PLYX",
+    "company_name": "Polaryx Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 145,
+    "ticker": "ENGN",
+    "company_name": "enGene Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 146,
+    "ticker": "ENGNW",
+    "company_name": "enGene Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 147,
+    "ticker": "BIVI",
+    "company_name": "BIOVIE INC.",
+    "price": null
+  },
+  {
+    "Id": 148,
+    "ticker": "BIVIW",
+    "company_name": "BIOVIE INC.",
+    "price": null
+  },
+  {
+    "Id": 149,
+    "ticker": "ANRO",
+    "company_name": "Alto Neuroscience, Inc.",
+    "price": null
+  },
+  {
+    "Id": 150,
+    "ticker": "VGZ",
+    "company_name": "VISTA GOLD CORP",
+    "price": null
+  },
+  {
+    "Id": 151,
+    "ticker": "CBLL",
+    "company_name": "Ceribell, Inc.",
+    "price": null
+  },
+  {
+    "Id": 152,
+    "ticker": "NXDR",
+    "company_name": "Nextdoor Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 153,
+    "ticker": "PFHO",
+    "company_name": "PACIFIC HEALTH CARE ORGANIZATION INC",
+    "price": null
+  },
+  {
+    "Id": 154,
+    "ticker": "SEER",
+    "company_name": "Seer, Inc.",
+    "price": null
+  },
+  {
+    "Id": 155,
+    "ticker": "SKYE",
+    "company_name": "Skye Bioscience, Inc.",
+    "price": null
+  },
+  {
+    "Id": 156,
+    "ticker": "XPL",
+    "company_name": "SOLITARIO RESOURCES CORP.",
+    "price": null
+  },
+  {
+    "Id": 157,
+    "ticker": "APT",
+    "company_name": "ALPHA PRO TECH LTD",
+    "price": null
+  },
+  {
+    "Id": 158,
+    "ticker": "DMLP",
+    "company_name": "DORCHESTER MINERALS, L.P.",
+    "price": null
+  },
+  {
+    "Id": 159,
+    "ticker": "RLAY",
+    "company_name": "Relay Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 160,
+    "ticker": "TIL",
+    "company_name": "Instil Bio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 161,
+    "ticker": "LWLG",
+    "company_name": "Lightwave Logic, Inc.",
+    "price": null
+  },
+  {
+    "Id": 162,
+    "ticker": "TARA",
+    "company_name": "Protara Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 163,
+    "ticker": "SLNO",
+    "company_name": "SOLENO THERAPEUTICS INC",
+    "price": null
+  },
+  {
+    "Id": 164,
+    "ticker": "DYN",
+    "company_name": "Dyne Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 165,
+    "ticker": "ENHA",
+    "company_name": "Enhanced Group Inc.",
+    "price": null
+  },
+  {
+    "Id": 166,
+    "ticker": "APAD",
+    "company_name": "Enhanced Group Inc.",
+    "price": null
+  },
+  {
+    "Id": 167,
+    "ticker": "VRDN",
+    "company_name": "Viridian Therapeutics, Inc.\\DE",
+    "price": null
+  },
+  {
+    "Id": 168,
+    "ticker": "ARTV",
+    "company_name": "Artiva Biotherapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 169,
+    "ticker": "DNTH",
+    "company_name": "Dianthus Therapeutics, Inc. /DE/",
+    "price": null
+  },
+  {
+    "Id": 170,
+    "ticker": "MI",
+    "company_name": "NFT Ltd",
+    "price": null
+  },
+  {
+    "Id": 171,
+    "ticker": "AARD",
+    "company_name": "Aardvark Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 172,
+    "ticker": "ACOG",
+    "company_name": "Alpha Cognition Inc.",
+    "price": null
+  },
+  {
+    "Id": 173,
+    "ticker": "ATOS",
+    "company_name": "ATOSSA THERAPEUTICS, INC.",
+    "price": null
+  },
+  {
+    "Id": 174,
+    "ticker": "IDYA",
+    "company_name": "IDEAYA Biosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 175,
+    "ticker": "CMPX",
+    "company_name": "Compass Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 176,
+    "ticker": "FDMT",
+    "company_name": "4D Molecular Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 177,
+    "ticker": "LPCN",
+    "company_name": "Lipocine Inc.",
+    "price": null
+  },
+  {
+    "Id": 178,
+    "ticker": "SION",
+    "company_name": "Sionna Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 179,
+    "ticker": "NKTX",
+    "company_name": "Nkarta, Inc.",
+    "price": null
+  },
+  {
+    "Id": 180,
+    "ticker": "DTCX",
+    "company_name": "Datacentrex, Inc.",
+    "price": null
+  },
+  {
+    "Id": 181,
+    "ticker": "EUBG",
+    "company_name": "ENTREPRENEUR UNIVERSE BRIGHT GROUP",
+    "price": null
+  },
+  {
+    "Id": 182,
+    "ticker": "SPRY",
+    "company_name": "ARS Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 183,
+    "ticker": "QS",
+    "company_name": "QuantumScape Corp",
+    "price": null
+  },
+  {
+    "Id": 184,
+    "ticker": "PMCB",
+    "company_name": "PharmaCyte Biotech, Inc.",
+    "price": null
+  },
+  {
+    "Id": 185,
+    "ticker": "RVMD",
+    "company_name": "Revolution Medicines, Inc.",
+    "price": null
+  },
+  {
+    "Id": 186,
+    "ticker": "RVMDW",
+    "company_name": "Revolution Medicines, Inc.",
+    "price": null
+  },
+  {
+    "Id": 187,
+    "ticker": "DMRA",
+    "company_name": "Damora Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 188,
+    "ticker": "MLYS",
+    "company_name": "Mineralys Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 189,
+    "ticker": "CDIO",
+    "company_name": "Cardio Diagnostics Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 190,
+    "ticker": "CDIOW",
+    "company_name": "Cardio Diagnostics Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 191,
+    "ticker": "KRNT",
+    "company_name": "Kornit Digital Ltd.",
+    "price": null
+  },
+  {
+    "Id": 192,
+    "ticker": "MNOV",
+    "company_name": "MEDICINOVA INC",
+    "price": null
+  },
+  {
+    "Id": 193,
+    "ticker": "BCYC",
+    "company_name": "BICYCLE THERAPEUTICS PLC",
+    "price": null
+  },
+  {
+    "Id": 194,
+    "ticker": "SVRA",
+    "company_name": "Savara Inc",
+    "price": null
+  },
+  {
+    "Id": 195,
+    "ticker": "INTJ",
+    "company_name": "Intelligent Group Ltd",
+    "price": null
+  },
+  {
+    "Id": 196,
+    "ticker": "COBA",
+    "company_name": "Chilean Cobalt Corp.",
+    "price": null
+  },
+  {
+    "Id": 197,
+    "ticker": "CGEM",
+    "company_name": "Cullinan Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 198,
+    "ticker": "OCG",
+    "company_name": "Oriental Culture Holding LTD",
+    "price": null
+  },
+  {
+    "Id": 199,
+    "ticker": "RSRV",
+    "company_name": "RESERVE PETROLEUM CO",
+    "price": null
+  },
+  {
+    "Id": 200,
+    "ticker": "ANNA",
+    "company_name": "AleAnna, Inc.",
+    "price": null
+  },
+  {
+    "Id": 201,
+    "ticker": "ANNAW",
+    "company_name": "AleAnna, Inc.",
+    "price": null
+  },
+  {
+    "Id": 202,
+    "ticker": "YDES",
+    "company_name": "YD Bio Ltd",
+    "price": null
+  },
+  {
+    "Id": 203,
+    "ticker": "YDESW",
+    "company_name": "YD Bio Ltd",
+    "price": null
+  },
+  {
+    "Id": 204,
+    "ticker": "LMAT",
+    "company_name": "LEMAITRE VASCULAR INC",
+    "price": null
+  },
+  {
+    "Id": 205,
+    "ticker": "AVBP",
+    "company_name": "ArriVent BioPharma, Inc.",
+    "price": null
+  },
+  {
+    "Id": 206,
+    "ticker": "ALT",
+    "company_name": "Altimmune, Inc.",
+    "price": null
+  },
+  {
+    "Id": 207,
+    "ticker": "HKIT",
+    "company_name": "HiTek Global Inc.",
+    "price": null
+  },
+  {
+    "Id": 208,
+    "ticker": "MGAM",
+    "company_name": "Mobile Global Esports, Inc.",
+    "price": null
+  },
+  {
+    "Id": 209,
+    "ticker": "CRBP",
+    "company_name": "Corbus Pharmaceuticals Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 210,
+    "ticker": "RSKIA",
+    "company_name": "GEORGE RISK INDUSTRIES, INC.",
+    "price": null
+  },
+  {
+    "Id": 211,
+    "ticker": "BIOA",
+    "company_name": "BioAge Labs, Inc.",
+    "price": null
+  },
+  {
+    "Id": 212,
+    "ticker": "CODA",
+    "company_name": "Coda Octopus Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 213,
+    "ticker": "LQMT",
+    "company_name": "LIQUIDMETAL TECHNOLOGIES INC",
+    "price": null
+  },
+  {
+    "Id": 214,
+    "ticker": "PCVX",
+    "company_name": "Vaxcyte, Inc.",
+    "price": null
+  },
+  {
+    "Id": 215,
+    "ticker": "CATX",
+    "company_name": "Perspective Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 216,
+    "ticker": "REEMF",
+    "company_name": "RARE ELEMENT RESOURCES LTD",
+    "price": null
+  },
+  {
+    "Id": 217,
+    "ticker": "CLSK",
+    "company_name": "CLEANSPARK, INC.",
+    "price": null
+  },
+  {
+    "Id": 218,
+    "ticker": "CLSKW",
+    "company_name": "CLEANSPARK, INC.",
+    "price": null
+  },
+  {
+    "Id": 219,
+    "ticker": "VUZI",
+    "company_name": "Vuzix Corp",
+    "price": null
+  },
+  {
+    "Id": 220,
+    "ticker": "TECX",
+    "company_name": "Tectonic Therapeutic, Inc.",
+    "price": null
+  },
+  {
+    "Id": 221,
+    "ticker": "RDDT",
+    "company_name": "Reddit, Inc.",
+    "price": null
+  },
+  {
+    "Id": 222,
+    "ticker": "WNDW",
+    "company_name": "SolarWindow Technologies, Inc.",
+    "price": null
+  },
+  {
+    "Id": 223,
+    "ticker": "LUCY",
+    "company_name": "Innovative Eyewear Inc",
+    "price": null
+  },
+  {
+    "Id": 224,
+    "ticker": "LUCYW",
+    "company_name": "Innovative Eyewear Inc",
+    "price": null
+  },
+  {
+    "Id": 225,
+    "ticker": "USAU",
+    "company_name": "U.S. GOLD CORP.",
+    "price": null
+  },
+  {
+    "Id": 226,
+    "ticker": "CTNT",
+    "company_name": "CHEETAH NET SUPPLY CHAIN SERVICE INC.",
+    "price": null
+  },
+  {
+    "Id": 227,
+    "ticker": "PTGX",
+    "company_name": "Protagonist Therapeutics, Inc",
+    "price": null
+  },
+  {
+    "Id": 228,
+    "ticker": "LPBB",
+    "company_name": "Launch Two Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 229,
+    "ticker": "LPBBW",
+    "company_name": "Launch Two Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 230,
+    "ticker": "LPBBU",
+    "company_name": "Launch Two Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 231,
+    "ticker": "ELDN",
+    "company_name": "Eledon Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 232,
+    "ticker": "FACT",
+    "company_name": "FACT II Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 233,
+    "ticker": "FACTW",
+    "company_name": "FACT II Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 234,
+    "ticker": "FACTU",
+    "company_name": "FACT II Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 235,
+    "ticker": "ITOC",
+    "company_name": "iTonic Holdings Ltd",
+    "price": null
+  },
+  {
+    "Id": 236,
+    "ticker": "POLE",
+    "company_name": "Andretti Acquisition Corp. II",
+    "price": null
+  },
+  {
+    "Id": 237,
+    "ticker": "POLEU",
+    "company_name": "Andretti Acquisition Corp. II",
+    "price": null
+  },
+  {
+    "Id": 238,
+    "ticker": "POLEW",
+    "company_name": "Andretti Acquisition Corp. II",
+    "price": null
+  },
+  {
+    "Id": 239,
+    "ticker": "DJCO",
+    "company_name": "DAILY JOURNAL CORP",
+    "price": null
+  },
+  {
+    "Id": 240,
+    "ticker": "CUB",
+    "company_name": "Lionheart Holdings",
+    "price": null
+  },
+  {
+    "Id": 241,
+    "ticker": "CUBWU",
+    "company_name": "Lionheart Holdings",
+    "price": null
+  },
+  {
+    "Id": 242,
+    "ticker": "CUBWW",
+    "company_name": "Lionheart Holdings",
+    "price": null
+  },
+  {
+    "Id": 243,
+    "ticker": "PMVP",
+    "company_name": "PMV Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 244,
+    "ticker": "ZCMD",
+    "company_name": "Zhongchao Inc.",
+    "price": null
+  },
+  {
+    "Id": 245,
+    "ticker": "GENC",
+    "company_name": "GENCOR INDUSTRIES INC",
+    "price": null
+  },
+  {
+    "Id": 246,
+    "ticker": "TAIT",
+    "company_name": "TAITRON COMPONENTS INC",
+    "price": null
+  },
+  {
+    "Id": 247,
+    "ticker": "SES",
+    "company_name": "SES AI Corp",
+    "price": null
+  },
+  {
+    "Id": 248,
+    "ticker": "SES-WT",
+    "company_name": "SES AI Corp",
+    "price": null
+  },
+  {
+    "Id": 249,
+    "ticker": "ACHR",
+    "company_name": "Archer Aviation Inc.",
+    "price": null
+  },
+  {
+    "Id": 250,
+    "ticker": "ACHR-WT",
+    "company_name": "Archer Aviation Inc.",
+    "price": null
+  },
+  {
+    "Id": 251,
+    "ticker": "CVRX",
+    "company_name": "CVRx, Inc.",
+    "price": null
+  },
+  {
+    "Id": 252,
+    "ticker": "NEOV",
+    "company_name": "NeoVolta Inc.",
+    "price": null
+  },
+  {
+    "Id": 253,
+    "ticker": "NEOVW",
+    "company_name": "NeoVolta Inc.",
+    "price": null
+  },
+  {
+    "Id": 254,
+    "ticker": "FVN",
+    "company_name": "Future Vision II Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 255,
+    "ticker": "FVNNU",
+    "company_name": "Future Vision II Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 256,
+    "ticker": "FVNNR",
+    "company_name": "Future Vision II Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 257,
+    "ticker": "ISRLF",
+    "company_name": "Israel Acquisitions Corp",
+    "price": null
+  },
+  {
+    "Id": 258,
+    "ticker": "ISLUF",
+    "company_name": "Israel Acquisitions Corp",
+    "price": null
+  },
+  {
+    "Id": 259,
+    "ticker": "ISLWF",
+    "company_name": "Israel Acquisitions Corp",
+    "price": null
+  },
+  {
+    "Id": 260,
+    "ticker": "DCTH",
+    "company_name": "DELCATH SYSTEMS, INC.",
+    "price": null
+  },
+  {
+    "Id": 261,
+    "ticker": "QSI",
+    "company_name": "Quantum-Si Inc",
+    "price": null
+  },
+  {
+    "Id": 262,
+    "ticker": "QSIAW",
+    "company_name": "Quantum-Si Inc",
+    "price": null
+  },
+  {
+    "Id": 263,
+    "ticker": "MSN",
+    "company_name": "EMERSON RADIO CORP",
+    "price": null
+  },
+  {
+    "Id": 264,
+    "ticker": "AUR",
+    "company_name": "Aurora Innovation, Inc.",
+    "price": null
+  },
+  {
+    "Id": 265,
+    "ticker": "AUROW",
+    "company_name": "Aurora Innovation, Inc.",
+    "price": null
+  },
+  {
+    "Id": 266,
+    "ticker": "AGIO",
+    "company_name": "AGIOS PHARMACEUTICALS, INC.",
+    "price": null
+  },
+  {
+    "Id": 267,
+    "ticker": "PLSE",
+    "company_name": "PULSE BIOSCIENCES, INC.",
+    "price": null
+  },
+  {
+    "Id": 268,
+    "ticker": "PONY",
+    "company_name": "Pony AI Inc.",
+    "price": null
+  },
+  {
+    "Id": 269,
+    "ticker": "PYAIF",
+    "company_name": "Pony AI Inc.",
+    "price": null
+  },
+  {
+    "Id": 270,
+    "ticker": "TORO",
+    "company_name": "TORO CORP.",
+    "price": null
+  },
+  {
+    "Id": 271,
+    "ticker": "MANE",
+    "company_name": "Veradermics, Inc",
+    "price": null
+  },
+  {
+    "Id": 272,
+    "ticker": "ALAB",
+    "company_name": "Astera Labs, Inc.",
+    "price": null
+  },
+  {
+    "Id": 273,
+    "ticker": "FLNA",
+    "company_name": "FILANA THERAPEUTICS, INC.",
+    "price": null
+  },
+  {
+    "Id": 274,
+    "ticker": "COYA",
+    "company_name": "Coya Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 275,
+    "ticker": "XBIT",
+    "company_name": "XBiotech Inc.",
+    "price": null
+  },
+  {
+    "Id": 276,
+    "ticker": "MNPR",
+    "company_name": "Monopar Therapeutics",
+    "price": null
+  },
+  {
+    "Id": 277,
+    "ticker": "CNTB",
+    "company_name": "Connect Biopharma Holdings Ltd",
+    "price": null
+  },
+  {
+    "Id": 278,
+    "ticker": "REPL",
+    "company_name": "Replimune Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 279,
+    "ticker": "RXST",
+    "company_name": "RxSight, Inc.",
+    "price": null
+  },
+  {
+    "Id": 280,
+    "ticker": "SYRE",
+    "company_name": "Spyre Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 281,
+    "ticker": "FONR",
+    "company_name": "FONAR CORP",
+    "price": null
+  },
+  {
+    "Id": 282,
+    "ticker": "AUC",
+    "company_name": "ATIF Holdings Ltd",
+    "price": null
+  },
+  {
+    "Id": 283,
+    "ticker": "ZBAI",
+    "company_name": "ATIF Holdings Ltd",
+    "price": null
+  },
+  {
+    "Id": 284,
+    "ticker": "TRDA",
+    "company_name": "Entrada Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 285,
+    "ticker": "SLN",
+    "company_name": "Silence Therapeutics plc",
+    "price": null
+  },
+  {
+    "Id": 286,
+    "ticker": "SLNCF",
+    "company_name": "Silence Therapeutics plc",
+    "price": null
+  },
+  {
+    "Id": 287,
+    "ticker": "CRVO",
+    "company_name": "CervoMed Inc.",
+    "price": null
+  },
+  {
+    "Id": 288,
+    "ticker": "EPRX",
+    "company_name": "EUPRAXIA PHARMACEUTICALS INC.",
+    "price": null
+  },
+  {
+    "Id": 289,
+    "ticker": "ORGN",
+    "company_name": "Origin Materials, Inc.",
+    "price": null
+  },
+  {
+    "Id": 290,
+    "ticker": "ORGNW",
+    "company_name": "Origin Materials, Inc.",
+    "price": null
+  },
+  {
+    "Id": 291,
+    "ticker": "KALV",
+    "company_name": "KalVista Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 292,
+    "ticker": "PROK",
+    "company_name": "PROKIDNEY CORP.",
+    "price": null
+  },
+  {
+    "Id": 293,
+    "ticker": "NEON",
+    "company_name": "Neonode Inc.",
+    "price": null
+  },
+  {
+    "Id": 294,
+    "ticker": "AEI",
+    "company_name": "Alset Inc.",
+    "price": null
+  },
+  {
+    "Id": 295,
+    "ticker": "PLRX",
+    "company_name": "PLIANT THERAPEUTICS, INC.",
+    "price": null
+  },
+  {
+    "Id": 296,
+    "ticker": "MXCT",
+    "company_name": "MAXCYTE, INC.",
+    "price": null
+  },
+  {
+    "Id": 297,
+    "ticker": "AUTL",
+    "company_name": "Autolus Therapeutics plc",
+    "price": null
+  },
+  {
+    "Id": 298,
+    "ticker": "RLYB",
+    "company_name": "Rallybio Corp",
+    "price": null
+  },
+  {
+    "Id": 299,
+    "ticker": "RLX",
+    "company_name": "RLX Technology Inc.",
+    "price": null
+  },
+  {
+    "Id": 300,
+    "ticker": "TPL",
+    "company_name": "Texas Pacific Land Corp",
+    "price": null
+  },
+  {
+    "Id": 301,
+    "ticker": "AURA",
+    "company_name": "Aura Biosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 302,
+    "ticker": "PRAX",
+    "company_name": "Praxis Precision Medicines, Inc.",
+    "price": null
+  },
+  {
+    "Id": 303,
+    "ticker": "ASTC",
+    "company_name": "ASTROTECH Corp",
+    "price": null
+  },
+  {
+    "Id": 304,
+    "ticker": "OKUR",
+    "company_name": "OnKure Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 305,
+    "ticker": "NNNN",
+    "company_name": "Anbio Biotechnology",
+    "price": null
+  },
+  {
+    "Id": 306,
+    "ticker": "PULM",
+    "company_name": "Pulmatrix, Inc.",
+    "price": null
+  },
+  {
+    "Id": 307,
+    "ticker": "OLPX",
+    "company_name": "OLAPLEX HOLDINGS, INC.",
+    "price": null
+  },
+  {
+    "Id": 308,
+    "ticker": "OCUL",
+    "company_name": "OCULAR THERAPEUTIX, INC",
+    "price": null
+  },
+  {
+    "Id": 309,
+    "ticker": "LITS",
+    "company_name": "Lite Strategy, Inc.",
+    "price": null
+  },
+  {
+    "Id": 310,
+    "ticker": "GRAL",
+    "company_name": "GRAIL, Inc.",
+    "price": null
+  },
+  {
+    "Id": 311,
+    "ticker": "AMTD",
+    "company_name": "AMTD IDEA GROUP",
+    "price": null
+  },
+  {
+    "Id": 312,
+    "ticker": "CLFD",
+    "company_name": "Clearfield, Inc.",
+    "price": null
+  },
+  {
+    "Id": 313,
+    "ticker": "ORIC",
+    "company_name": "Oric Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 314,
+    "ticker": "ACRV",
+    "company_name": "Acrivon Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 315,
+    "ticker": "PROF",
+    "company_name": "Profound Medical Corp.",
+    "price": null
+  },
+  {
+    "Id": 316,
+    "ticker": "NMRA",
+    "company_name": "Neumora Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 317,
+    "ticker": "OLMA",
+    "company_name": "Olema Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 318,
+    "ticker": "IONQ",
+    "company_name": "IonQ, Inc.",
+    "price": null
+  },
+  {
+    "Id": 319,
+    "ticker": "IONQ-WT",
+    "company_name": "IonQ, Inc.",
+    "price": null
+  },
+  {
+    "Id": 320,
+    "ticker": "NTWO",
+    "company_name": "Newbury Street II Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 321,
+    "ticker": "NTWOW",
+    "company_name": "Newbury Street II Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 322,
+    "ticker": "NTWOU",
+    "company_name": "Newbury Street II Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 323,
+    "ticker": "TRVI",
+    "company_name": "Trevi Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 324,
+    "ticker": "ANNX",
+    "company_name": "Annexon, Inc.",
+    "price": null
+  },
+  {
+    "Id": 325,
+    "ticker": "LAC",
+    "company_name": "LITHIUM AMERICAS CORP.",
+    "price": null
+  },
+  {
+    "Id": 326,
+    "ticker": "GIPL",
+    "company_name": "Global Innovative Platforms Inc.",
+    "price": null
+  },
+  {
+    "Id": 327,
+    "ticker": "EURK",
+    "company_name": "Eureka Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 328,
+    "ticker": "EURKR",
+    "company_name": "Eureka Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 329,
+    "ticker": "EURKU",
+    "company_name": "Eureka Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 330,
+    "ticker": "INMD",
+    "company_name": "InMode Ltd.",
+    "price": null
+  },
+  {
+    "Id": 331,
+    "ticker": "BBLG",
+    "company_name": "Bone Biologics Corp",
+    "price": null
+  },
+  {
+    "Id": 332,
+    "ticker": "BBLGW",
+    "company_name": "Bone Biologics Corp",
+    "price": null
+  },
+  {
+    "Id": 333,
+    "ticker": "REFR",
+    "company_name": "RESEARCH FRONTIERS INC",
+    "price": null
+  },
+  {
+    "Id": 334,
+    "ticker": "PLRZ",
+    "company_name": "Polyrizon Ltd.",
+    "price": null
+  },
+  {
+    "Id": 335,
+    "ticker": "SMMT",
+    "company_name": "Summit Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 336,
+    "ticker": "FTCO",
+    "company_name": "Fortitude Gold Corp",
+    "price": null
+  },
+  {
+    "Id": 337,
+    "ticker": "TBTC",
+    "company_name": "TABLE TRAC INC",
+    "price": null
+  },
+  {
+    "Id": 338,
+    "ticker": "TANH",
+    "company_name": "TANTECH HOLDINGS LTD",
+    "price": null
+  },
+  {
+    "Id": 339,
+    "ticker": "PRTA",
+    "company_name": "PROTHENA CORP PUBLIC LTD CO",
+    "price": null
+  },
+  {
+    "Id": 340,
+    "ticker": "GLE",
+    "company_name": "Global Engine Group Holding Ltd",
+    "price": null
+  },
+  {
+    "Id": 341,
+    "ticker": "KOSS",
+    "company_name": "KOSS CORP",
+    "price": null
+  },
+  {
+    "Id": 342,
+    "ticker": "SOS",
+    "company_name": "SOS Ltd",
+    "price": null
+  },
+  {
+    "Id": 343,
+    "ticker": "OSUR",
+    "company_name": "ORASURE TECHNOLOGIES INC",
+    "price": null
+  },
+  {
+    "Id": 344,
+    "ticker": "EXOD",
+    "company_name": "Exodus Movement, Inc.",
+    "price": null
+  },
+  {
+    "Id": 345,
+    "ticker": "OMCC",
+    "company_name": "OLD MARKET CAPITAL Corp",
+    "price": null
+  },
+  {
+    "Id": 346,
+    "ticker": "ERAS",
+    "company_name": "Erasca, Inc.",
+    "price": null
+  },
+  {
+    "Id": 347,
+    "ticker": "ABCL",
+    "company_name": "AbCellera Biologics Inc.",
+    "price": null
+  },
+  {
+    "Id": 348,
+    "ticker": "BNC",
+    "company_name": "CEA Industries Inc.",
+    "price": null
+  },
+  {
+    "Id": 349,
+    "ticker": "BNCWZ",
+    "company_name": "CEA Industries Inc.",
+    "price": null
+  },
+  {
+    "Id": 350,
+    "ticker": "BNCWW",
+    "company_name": "CEA Industries Inc.",
+    "price": null
+  },
+  {
+    "Id": 351,
+    "ticker": "USGO",
+    "company_name": "U.S. GoldMining Inc.",
+    "price": null
+  },
+  {
+    "Id": 352,
+    "ticker": "USGOW",
+    "company_name": "U.S. GoldMining Inc.",
+    "price": null
+  },
+  {
+    "Id": 353,
+    "ticker": "MAZE",
+    "company_name": "Maze Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 354,
+    "ticker": "QURE",
+    "company_name": "uniQure N.V.",
+    "price": null
+  },
+  {
+    "Id": 355,
+    "ticker": "VBIO",
+    "company_name": "Valion Bio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 356,
+    "ticker": "LPAA",
+    "company_name": "Launch One Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 357,
+    "ticker": "LPAAW",
+    "company_name": "Launch One Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 358,
+    "ticker": "LPAAU",
+    "company_name": "Launch One Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 359,
+    "ticker": "SRTS",
+    "company_name": "Sensus Healthcare, Inc.",
+    "price": null
+  },
+  {
+    "Id": 360,
+    "ticker": "PDYN",
+    "company_name": "Palladyne AI Corp.",
+    "price": null
+  },
+  {
+    "Id": 361,
+    "ticker": "PDYNW",
+    "company_name": "Palladyne AI Corp.",
+    "price": null
+  },
+  {
+    "Id": 362,
+    "ticker": "SRRK",
+    "company_name": "Scholar Rock Holding Corp",
+    "price": null
+  },
+  {
+    "Id": 363,
+    "ticker": "NBIS",
+    "company_name": "Nebius Group N.V.",
+    "price": null
+  },
+  {
+    "Id": 364,
+    "ticker": "RVRC",
+    "company_name": "Revium Rx.",
+    "price": null
+  },
+  {
+    "Id": 365,
+    "ticker": "TUYA",
+    "company_name": "Tuya Inc.",
+    "price": null
+  },
+  {
+    "Id": 366,
+    "ticker": "ANAB",
+    "company_name": "ANAPTYSBIO, INC",
+    "price": null
+  },
+  {
+    "Id": 367,
+    "ticker": "KURA",
+    "company_name": "Kura Oncology, Inc.",
+    "price": null
+  },
+  {
+    "Id": 368,
+    "ticker": "UEC",
+    "company_name": "URANIUM ENERGY CORP",
+    "price": null
+  },
+  {
+    "Id": 369,
+    "ticker": "BFRG",
+    "company_name": "BullFrog AI Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 370,
+    "ticker": "BFRGW",
+    "company_name": "BullFrog AI Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 371,
+    "ticker": "ICG",
+    "company_name": "Intchains Group Ltd",
+    "price": null
+  },
+  {
+    "Id": 372,
+    "ticker": "RNAC",
+    "company_name": "Cartesian Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 373,
+    "ticker": "HYMC",
+    "company_name": "HYCROFT MINING HOLDING CORP",
+    "price": null
+  },
+  {
+    "Id": 374,
+    "ticker": "HYMCW",
+    "company_name": "HYCROFT MINING HOLDING CORP",
+    "price": null
+  },
+  {
+    "Id": 375,
+    "ticker": "VTGN",
+    "company_name": "Vistagen Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 376,
+    "ticker": "ANIX",
+    "company_name": "Anixa Biosciences Inc",
+    "price": null
+  },
+  {
+    "Id": 377,
+    "ticker": "ASPI",
+    "company_name": "ASP Isotopes Inc.",
+    "price": null
+  },
+  {
+    "Id": 378,
+    "ticker": "RZLT",
+    "company_name": "Rezolute, Inc.",
+    "price": null
+  },
+  {
+    "Id": 379,
+    "ticker": "RCKT",
+    "company_name": "ROCKET PHARMACEUTICALS, INC.",
+    "price": null
+  },
+  {
+    "Id": 380,
+    "ticker": "RCKTW",
+    "company_name": "ROCKET PHARMACEUTICALS, INC.",
+    "price": null
+  },
+  {
+    "Id": 381,
+    "ticker": "POWI",
+    "company_name": "POWER INTEGRATIONS INC",
+    "price": null
+  },
+  {
+    "Id": 382,
+    "ticker": "ACET",
+    "company_name": "Adicet Bio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 383,
+    "ticker": "ALMU",
+    "company_name": "Aeluma, Inc.",
+    "price": null
+  },
+  {
+    "Id": 384,
+    "ticker": "RFL",
+    "company_name": "Rafael Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 385,
+    "ticker": "CNTA",
+    "company_name": "Centessa Pharmaceuticals plc",
+    "price": null
+  },
+  {
+    "Id": 386,
+    "ticker": "CREG",
+    "company_name": "Smart Powerr Corp.",
+    "price": null
+  },
+  {
+    "Id": 387,
+    "ticker": "CHAR",
+    "company_name": "Charlton Aria Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 388,
+    "ticker": "CHARR",
+    "company_name": "Charlton Aria Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 389,
+    "ticker": "CHARU",
+    "company_name": "Charlton Aria Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 390,
+    "ticker": "HOTH",
+    "company_name": "Hoth Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 391,
+    "ticker": "RCON",
+    "company_name": "Recon Technology, Ltd",
+    "price": null
+  },
+  {
+    "Id": 392,
+    "ticker": "HYLN",
+    "company_name": "Hyliion Holdings Corp.",
+    "price": null
+  },
+  {
+    "Id": 393,
+    "ticker": "ZURA",
+    "company_name": "Zura Bio Ltd",
+    "price": null
+  },
+  {
+    "Id": 394,
+    "ticker": "ATNM",
+    "company_name": "Actinium Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 395,
+    "ticker": "SIGA",
+    "company_name": "SIGA TECHNOLOGIES INC",
+    "price": null
+  },
+  {
+    "Id": 396,
+    "ticker": "MIST",
+    "company_name": "Milestone Pharmaceuticals Inc.",
+    "price": null
+  },
+  {
+    "Id": 397,
+    "ticker": "PRCT",
+    "company_name": "PROCEPT BioRobotics Corp",
+    "price": null
+  },
+  {
+    "Id": 398,
+    "ticker": "SGHT",
+    "company_name": "Sight Sciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 399,
+    "ticker": "NUVB",
+    "company_name": "Nuvation Bio Inc.",
+    "price": null
+  },
+  {
+    "Id": 400,
+    "ticker": "YMM",
+    "company_name": "Full Truck Alliance Co. Ltd.",
+    "price": null
+  },
+  {
+    "Id": 401,
+    "ticker": "HTT",
+    "company_name": "High Templar Tech Ltd",
+    "price": null
+  },
+  {
+    "Id": 402,
+    "ticker": "BTCS",
+    "company_name": "BTCS Inc.",
+    "price": null
+  },
+  {
+    "Id": 403,
+    "ticker": "CSGP",
+    "company_name": "COSTAR GROUP, INC.",
+    "price": null
+  },
+  {
+    "Id": 404,
+    "ticker": "GIG",
+    "company_name": "GigCapital7 Corp.",
+    "price": null
+  },
+  {
+    "Id": 405,
+    "ticker": "GIGGU",
+    "company_name": "GigCapital7 Corp.",
+    "price": null
+  },
+  {
+    "Id": 406,
+    "ticker": "GIGGW",
+    "company_name": "GigCapital7 Corp.",
+    "price": null
+  },
+  {
+    "Id": 407,
+    "ticker": "PZG",
+    "company_name": "Paramount Gold Nevada Corp.",
+    "price": null
+  },
+  {
+    "Id": 408,
+    "ticker": "LGND",
+    "company_name": "LIGAND PHARMACEUTICALS INC",
+    "price": null
+  },
+  {
+    "Id": 409,
+    "ticker": "LGNZZ",
+    "company_name": "LIGAND PHARMACEUTICALS INC",
+    "price": null
+  },
+  {
+    "Id": 410,
+    "ticker": "LGNDZ",
+    "company_name": "LIGAND PHARMACEUTICALS INC",
+    "price": null
+  },
+  {
+    "Id": 411,
+    "ticker": "LGNXZ",
+    "company_name": "LIGAND PHARMACEUTICALS INC",
+    "price": null
+  },
+  {
+    "Id": 412,
+    "ticker": "LGNYZ",
+    "company_name": "LIGAND PHARMACEUTICALS INC",
+    "price": null
+  },
+  {
+    "Id": 413,
+    "ticker": "SKAS",
+    "company_name": "Saker Aviation Services, Inc.",
+    "price": null
+  },
+  {
+    "Id": 414,
+    "ticker": "STTK",
+    "company_name": "Shattuck Labs, Inc.",
+    "price": null
+  },
+  {
+    "Id": 415,
+    "ticker": "IRMD",
+    "company_name": "IRADIMED CORP",
+    "price": null
+  },
+  {
+    "Id": 416,
+    "ticker": "KRRO",
+    "company_name": "Korro Bio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 417,
+    "ticker": "ZOMDF",
+    "company_name": "Zomedica Corp.",
+    "price": null
+  },
+  {
+    "Id": 418,
+    "ticker": "PINS",
+    "company_name": "PINTEREST, INC.",
+    "price": null
+  },
+  {
+    "Id": 419,
+    "ticker": "DOCS",
+    "company_name": "Doximity, Inc.",
+    "price": null
+  },
+  {
+    "Id": 420,
+    "ticker": "VIR",
+    "company_name": "Vir Biotechnology, Inc.",
+    "price": null
+  },
+  {
+    "Id": 421,
+    "ticker": "ONTO",
+    "company_name": "ONTO INNOVATION INC.",
+    "price": null
+  },
+  {
+    "Id": 422,
+    "ticker": "QTRX",
+    "company_name": "Quanterix Corp",
+    "price": null
+  },
+  {
+    "Id": 423,
+    "ticker": "LMFA",
+    "company_name": "LM FUNDING AMERICA, INC.",
+    "price": null
+  },
+  {
+    "Id": 424,
+    "ticker": "ATXG",
+    "company_name": "ADDENTAX GROUP CORP.",
+    "price": null
+  },
+  {
+    "Id": 425,
+    "ticker": "REX",
+    "company_name": "REX AMERICAN RESOURCES Corp",
+    "price": null
+  },
+  {
+    "Id": 426,
+    "ticker": "KYTX",
+    "company_name": "Kyverna Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 427,
+    "ticker": "SILC",
+    "company_name": "SILICOM LTD.",
+    "price": null
+  },
+  {
+    "Id": 428,
+    "ticker": "IEHC",
+    "company_name": "IEH Corp",
+    "price": null
+  },
+  {
+    "Id": 429,
+    "ticker": "ALLO",
+    "company_name": "Allogene Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 430,
+    "ticker": "PMN",
+    "company_name": "ProMIS Neurosciences Inc.",
+    "price": null
+  },
+  {
+    "Id": 431,
+    "ticker": "IONS",
+    "company_name": "IONIS PHARMACEUTICALS INC",
+    "price": null
+  },
+  {
+    "Id": 432,
+    "ticker": "ACTG",
+    "company_name": "ACACIA RESEARCH CORP",
+    "price": null
+  },
+  {
+    "Id": 433,
+    "ticker": "DNLI",
+    "company_name": "Denali Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 434,
+    "ticker": "RMBS",
+    "company_name": "RAMBUS INC",
+    "price": null
+  },
+  {
+    "Id": 435,
+    "ticker": "ANTX",
+    "company_name": "AN2 Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 436,
+    "ticker": "RGEN",
+    "company_name": "REPLIGEN CORP",
+    "price": null
+  },
+  {
+    "Id": 437,
+    "ticker": "GEVO",
+    "company_name": "Gevo, Inc.",
+    "price": null
+  },
+  {
+    "Id": 438,
+    "ticker": "RVP",
+    "company_name": "RETRACTABLE TECHNOLOGIES INC",
+    "price": null
+  },
+  {
+    "Id": 439,
+    "ticker": "TMDX",
+    "company_name": "TransMedics Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 440,
+    "ticker": "DMAC",
+    "company_name": "DiaMedica Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 441,
+    "ticker": "WDSP",
+    "company_name": "World Scan Project, Inc.",
+    "price": null
+  },
+  {
+    "Id": 442,
+    "ticker": "CV",
+    "company_name": "CapsoVision, Inc",
+    "price": null
+  },
+  {
+    "Id": 443,
+    "ticker": "ABUS",
+    "company_name": "Arbutus Biopharma Corp",
+    "price": null
+  },
+  {
+    "Id": 444,
+    "ticker": "UBXG",
+    "company_name": "U-BX Technology Ltd.",
+    "price": null
+  },
+  {
+    "Id": 445,
+    "ticker": "TCRX",
+    "company_name": "TScan Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 446,
+    "ticker": "EXOZ",
+    "company_name": "EXOZYMES INC.",
+    "price": null
+  },
+  {
+    "Id": 447,
+    "ticker": "BBOT",
+    "company_name": "BridgeBio Oncology Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 448,
+    "ticker": "NAMS",
+    "company_name": "NewAmsterdam Pharma Co N.V.",
+    "price": null
+  },
+  {
+    "Id": 449,
+    "ticker": "NAMSW",
+    "company_name": "NewAmsterdam Pharma Co N.V.",
+    "price": null
+  },
+  {
+    "Id": 450,
+    "ticker": "DAVE",
+    "company_name": "Dave Inc./DE",
+    "price": null
+  },
+  {
+    "Id": 451,
+    "ticker": "DAVEW",
+    "company_name": "Dave Inc./DE",
+    "price": null
+  },
+  {
+    "Id": 452,
+    "ticker": "GME",
+    "company_name": "GameStop Corp.",
+    "price": null
+  },
+  {
+    "Id": 453,
+    "ticker": "GME-WT",
+    "company_name": "GameStop Corp.",
+    "price": null
+  },
+  {
+    "Id": 454,
+    "ticker": "BRNS",
+    "company_name": "Barinthus Biotherapeutics plc.",
+    "price": null
+  },
+  {
+    "Id": 455,
+    "ticker": "BLLN",
+    "company_name": "BillionToOne, Inc.",
+    "price": null
+  },
+  {
+    "Id": 456,
+    "ticker": "INTI",
+    "company_name": "Inhibitor Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 457,
+    "ticker": "LRMR",
+    "company_name": "Larimar Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 458,
+    "ticker": "WSTRF",
+    "company_name": "Western Uranium & Vanadium Corp.",
+    "price": null
+  },
+  {
+    "Id": 459,
+    "ticker": "LICN",
+    "company_name": "Lichen International Ltd",
+    "price": null
+  },
+  {
+    "Id": 460,
+    "ticker": "IMPP",
+    "company_name": "Imperial Petroleum Inc./Marshall Islands",
+    "price": null
+  },
+  {
+    "Id": 461,
+    "ticker": "IMPPP",
+    "company_name": "Imperial Petroleum Inc./Marshall Islands",
+    "price": null
+  },
+  {
+    "Id": 462,
+    "ticker": "ASTS",
+    "company_name": "AST SpaceMobile, Inc.",
+    "price": null
+  },
+  {
+    "Id": 463,
+    "ticker": "CPRT",
+    "company_name": "COPART INC",
+    "price": null
+  },
+  {
+    "Id": 464,
+    "ticker": "NERV",
+    "company_name": "Minerva Neurosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 465,
+    "ticker": "ALRM",
+    "company_name": "Alarm.com Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 466,
+    "ticker": "AIRJ",
+    "company_name": "AirJoule Technologies Corp.",
+    "price": null
+  },
+  {
+    "Id": 467,
+    "ticker": "AIRJW",
+    "company_name": "AirJoule Technologies Corp.",
+    "price": null
+  },
+  {
+    "Id": 468,
+    "ticker": "EYPT",
+    "company_name": "EyePoint, Inc.",
+    "price": null
+  },
+  {
+    "Id": 469,
+    "ticker": "HALO",
+    "company_name": "HALOZYME THERAPEUTICS, INC.",
+    "price": null
+  },
+  {
+    "Id": 470,
+    "ticker": "CAPR",
+    "company_name": "CAPRICOR THERAPEUTICS, INC.",
+    "price": null
+  },
+  {
+    "Id": 471,
+    "ticker": "EBRCZ",
+    "company_name": "EBR Systems, Inc.",
+    "price": null
+  },
+  {
+    "Id": 472,
+    "ticker": "KVHI",
+    "company_name": "KVH INDUSTRIES INC DE",
+    "price": null
+  },
+  {
+    "Id": 473,
+    "ticker": "CELC",
+    "company_name": "Celcuity Inc.",
+    "price": null
+  },
+  {
+    "Id": 474,
+    "ticker": "SNSE",
+    "company_name": "Sensei Biotherapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 475,
+    "ticker": "CRDO",
+    "company_name": "Credo Technology Group Holding Ltd",
+    "price": null
+  },
+  {
+    "Id": 476,
+    "ticker": "CHR",
+    "company_name": "Cheer Holding, Inc.",
+    "price": null
+  },
+  {
+    "Id": 477,
+    "ticker": "SIBN",
+    "company_name": "SI-BONE, Inc.",
+    "price": null
+  },
+  {
+    "Id": 478,
+    "ticker": "ENTX",
+    "company_name": "Entera Bio Ltd.",
+    "price": null
+  },
+  {
+    "Id": 479,
+    "ticker": "GDYN",
+    "company_name": "GRID DYNAMICS HOLDINGS, INC.",
+    "price": null
+  },
+  {
+    "Id": 480,
+    "ticker": "LGVN",
+    "company_name": "Longeveron Inc.",
+    "price": null
+  },
+  {
+    "Id": 481,
+    "ticker": "KEEL",
+    "company_name": "Keel Infrastructure Corp.",
+    "price": null
+  },
+  {
+    "Id": 482,
+    "ticker": "FATE",
+    "company_name": "FATE THERAPEUTICS INC",
+    "price": null
+  },
+  {
+    "Id": 483,
+    "ticker": "ATOM",
+    "company_name": "Atomera Inc",
+    "price": null
+  },
+  {
+    "Id": 484,
+    "ticker": "VLN",
+    "company_name": "Valens Semiconductor Ltd.",
+    "price": null
+  },
+  {
+    "Id": 485,
+    "ticker": "VLN-WT",
+    "company_name": "Valens Semiconductor Ltd.",
+    "price": null
+  },
+  {
+    "Id": 486,
+    "ticker": "AMBQ",
+    "company_name": "Ambiq Micro, Inc.",
+    "price": null
+  },
+  {
+    "Id": 487,
+    "ticker": "AEHR",
+    "company_name": "AEHR TEST SYSTEMS",
+    "price": null
+  },
+  {
+    "Id": 488,
+    "ticker": "PKE",
+    "company_name": "PARK AEROSPACE CORP",
+    "price": null
+  },
+  {
+    "Id": 489,
+    "ticker": "NSSC",
+    "company_name": "NAPCO SECURITY TECHNOLOGIES, INC",
+    "price": null
+  },
+  {
+    "Id": 490,
+    "ticker": "MRVI",
+    "company_name": "MARAVAI LIFESCIENCES HOLDINGS, INC.",
+    "price": null
+  },
+  {
+    "Id": 491,
+    "ticker": "KYMR",
+    "company_name": "Kymera Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 492,
+    "ticker": "NXTC",
+    "company_name": "NextCure, Inc.",
+    "price": null
+  },
+  {
+    "Id": 493,
+    "ticker": "PYXS",
+    "company_name": "Pyxis Oncology, Inc.",
+    "price": null
+  },
+  {
+    "Id": 494,
+    "ticker": "VICR",
+    "company_name": "VICOR CORP",
+    "price": null
+  },
+  {
+    "Id": 495,
+    "ticker": "PACB",
+    "company_name": "PACIFIC BIOSCIENCES OF CALIFORNIA, INC.",
+    "price": null
+  },
+  {
+    "Id": 496,
+    "ticker": "SBXD",
+    "company_name": "SilverBox Corp IV",
+    "price": null
+  },
+  {
+    "Id": 497,
+    "ticker": "SBXD-WT",
+    "company_name": "SilverBox Corp IV",
+    "price": null
+  },
+  {
+    "Id": 498,
+    "ticker": "SBXD-UN",
+    "company_name": "SilverBox Corp IV",
+    "price": null
+  },
+  {
+    "Id": 499,
+    "ticker": "CWGL",
+    "company_name": "Crimson Wine Group, Ltd",
+    "price": null
+  },
+  {
+    "Id": 500,
+    "ticker": "HOWL",
+    "company_name": "Werewolf Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 501,
+    "ticker": "SNTG",
+    "company_name": "Sentage Holdings Inc.",
+    "price": null
+  },
+  {
+    "Id": 502,
+    "ticker": "DOMH",
+    "company_name": "Dominari Holdings Inc.",
+    "price": null
+  },
+  {
+    "Id": 503,
+    "ticker": "CYN",
+    "company_name": "Cyngn Inc.",
+    "price": null
+  },
+  {
+    "Id": 504,
+    "ticker": "GLMD",
+    "company_name": "Galmed Pharmaceuticals Ltd.",
+    "price": null
+  },
+  {
+    "Id": 505,
+    "ticker": "PEPG",
+    "company_name": "PepGen Inc.",
+    "price": null
+  },
+  {
+    "Id": 506,
+    "ticker": "ERII",
+    "company_name": "Energy Recovery, Inc.",
+    "price": null
+  },
+  {
+    "Id": 507,
+    "ticker": "DRTS",
+    "company_name": "Alpha Tau Medical Ltd.",
+    "price": null
+  },
+  {
+    "Id": 508,
+    "ticker": "DRTSW",
+    "company_name": "Alpha Tau Medical Ltd.",
+    "price": null
+  },
+  {
+    "Id": 509,
+    "ticker": "XBIO",
+    "company_name": "Xenetic Biosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 510,
+    "ticker": "RVSN",
+    "company_name": "Rail Vision Ltd.",
+    "price": null
+  },
+  {
+    "Id": 511,
+    "ticker": "RVSNW",
+    "company_name": "Rail Vision Ltd.",
+    "price": null
+  },
+  {
+    "Id": 512,
+    "ticker": "VTVT",
+    "company_name": "vTv Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 513,
+    "ticker": "SVA",
+    "company_name": "SINOVAC BIOTECH LTD",
+    "price": null
+  },
+  {
+    "Id": 514,
+    "ticker": "PVLA",
+    "company_name": "PALVELLA THERAPEUTICS, INC.",
+    "price": null
+  },
+  {
+    "Id": 515,
+    "ticker": "KULR",
+    "company_name": "KULR Technology Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 516,
+    "ticker": "ZNTL",
+    "company_name": "Zentalis Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 517,
+    "ticker": "CSTL",
+    "company_name": "CASTLE BIOSCIENCES INC",
+    "price": null
+  },
+  {
+    "Id": 518,
+    "ticker": "WAI",
+    "company_name": "Top KingWin Ltd",
+    "price": null
+  },
+  {
+    "Id": 519,
+    "ticker": "KRYS",
+    "company_name": "Krystal Biotech, Inc.",
+    "price": null
+  },
+  {
+    "Id": 520,
+    "ticker": "ALXO",
+    "company_name": "ALX ONCOLOGY HOLDINGS INC",
+    "price": null
+  },
+  {
+    "Id": 521,
+    "ticker": "DFTX",
+    "company_name": "Definium Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 522,
+    "ticker": "NXL",
+    "company_name": "Nexalin Technology, Inc.",
+    "price": null
+  },
+  {
+    "Id": 523,
+    "ticker": "NIHK",
+    "company_name": "Video River Networks, Inc.",
+    "price": null
+  },
+  {
+    "Id": 524,
+    "ticker": "MPLT",
+    "company_name": "MapLight Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 525,
+    "ticker": "RAVE",
+    "company_name": "RAVE RESTAURANT GROUP, INC.",
+    "price": null
+  },
+  {
+    "Id": 526,
+    "ticker": "VGAS",
+    "company_name": "Verde Clean Fuels, Inc.",
+    "price": null
+  },
+  {
+    "Id": 527,
+    "ticker": "VGASW",
+    "company_name": "Verde Clean Fuels, Inc.",
+    "price": null
+  },
+  {
+    "Id": 528,
+    "ticker": "OLED",
+    "company_name": "UNIVERSAL DISPLAY CORP \\PA\\",
+    "price": null
+  },
+  {
+    "Id": 529,
+    "ticker": "CRBU",
+    "company_name": "Caribou Biosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 530,
+    "ticker": "INSP",
+    "company_name": "Inspire Medical Systems, Inc.",
+    "price": null
+  },
+  {
+    "Id": 531,
+    "ticker": "ASST",
+    "company_name": "Strive, Inc.",
+    "price": null
+  },
+  {
+    "Id": 532,
+    "ticker": "SATA",
+    "company_name": "Strive, Inc.",
+    "price": null
+  },
+  {
+    "Id": 533,
+    "ticker": "CEVA",
+    "company_name": "CEVA INC",
+    "price": null
+  },
+  {
+    "Id": 534,
+    "ticker": "NN",
+    "company_name": "NEXTNAV INC.",
+    "price": null
+  },
+  {
+    "Id": 535,
+    "ticker": "NNAVW",
+    "company_name": "NEXTNAV INC.",
+    "price": null
+  },
+  {
+    "Id": 536,
+    "ticker": "NXNVW",
+    "company_name": "NEXTNAV INC.",
+    "price": null
+  },
+  {
+    "Id": 537,
+    "ticker": "CRDF",
+    "company_name": "Cardiff Oncology, Inc.",
+    "price": null
+  },
+  {
+    "Id": 538,
+    "ticker": "SRTA",
+    "company_name": "Strata Critical Medical, Inc.",
+    "price": null
+  },
+  {
+    "Id": 539,
+    "ticker": "LYEL",
+    "company_name": "Lyell Immunopharma, Inc.",
+    "price": null
+  },
+  {
+    "Id": 540,
+    "ticker": "APRE",
+    "company_name": "Aprea Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 541,
+    "ticker": "PPTA",
+    "company_name": "PERPETUA RESOURCES CORP.",
+    "price": null
+  },
+  {
+    "Id": 542,
+    "ticker": "SKIN",
+    "company_name": "SkinHealth Systems Inc.",
+    "price": null
+  },
+  {
+    "Id": 543,
+    "ticker": "TK",
+    "company_name": "TEEKAY CORP LTD",
+    "price": null
+  },
+  {
+    "Id": 544,
+    "ticker": "SPCB",
+    "company_name": "SuperCom Ltd",
+    "price": null
+  },
+  {
+    "Id": 545,
+    "ticker": "KIDS",
+    "company_name": "ORTHOPEDIATRICS CORP",
+    "price": null
+  },
+  {
+    "Id": 546,
+    "ticker": "IPGP",
+    "company_name": "IPG PHOTONICS CORP",
+    "price": null
+  },
+  {
+    "Id": 547,
+    "ticker": "TNGX",
+    "company_name": "Tango Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 548,
+    "ticker": "SOBR",
+    "company_name": "SOBR Safe, Inc.",
+    "price": null
+  },
+  {
+    "Id": 549,
+    "ticker": "CAMP",
+    "company_name": "Camp4 Therapeutics Corp",
+    "price": null
+  },
+  {
+    "Id": 550,
+    "ticker": "MGX",
+    "company_name": "Metagenomi Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 551,
+    "ticker": "GOSS",
+    "company_name": "Gossamer Bio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 552,
+    "ticker": "TAYD",
+    "company_name": "TAYLOR DEVICES, INC.",
+    "price": null
+  },
+  {
+    "Id": 553,
+    "ticker": "PETZ",
+    "company_name": "TDH Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 554,
+    "ticker": "LCTC",
+    "company_name": "Lifeloc Technologies, Inc",
+    "price": null
+  },
+  {
+    "Id": 555,
+    "ticker": "TALK",
+    "company_name": "Talkspace, Inc.",
+    "price": null
+  },
+  {
+    "Id": 556,
+    "ticker": "TALKW",
+    "company_name": "Talkspace, Inc.",
+    "price": null
+  },
+  {
+    "Id": 557,
+    "ticker": "ENLV",
+    "company_name": "Enlivex Ltd.",
+    "price": null
+  },
+  {
+    "Id": 558,
+    "ticker": "YALA",
+    "company_name": "Yalla Group Ltd",
+    "price": null
+  },
+  {
+    "Id": 559,
+    "ticker": "MYSE",
+    "company_name": "Myseum.AI, Inc.",
+    "price": null
+  },
+  {
+    "Id": 560,
+    "ticker": "MYSEW",
+    "company_name": "Myseum.AI, Inc.",
+    "price": null
+  },
+  {
+    "Id": 561,
+    "ticker": "KZR",
+    "company_name": "Kezar Life Sciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 562,
+    "ticker": "FBRX",
+    "company_name": "Forte Biosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 563,
+    "ticker": "AI",
+    "company_name": "C3.ai, Inc.",
+    "price": null
+  },
+  {
+    "Id": 564,
+    "ticker": "RBOT",
+    "company_name": "Vicarious Surgical Inc.",
+    "price": null
+  },
+  {
+    "Id": 565,
+    "ticker": "RBOTW",
+    "company_name": "Vicarious Surgical Inc.",
+    "price": null
+  },
+  {
+    "Id": 566,
+    "ticker": "KOD",
+    "company_name": "Kodiak Sciences Inc.",
+    "price": null
+  },
+  {
+    "Id": 567,
+    "ticker": "CORZ",
+    "company_name": "Core Scientific, Inc./tx",
+    "price": null
+  },
+  {
+    "Id": 568,
+    "ticker": "CORZW",
+    "company_name": "Core Scientific, Inc./tx",
+    "price": null
+  },
+  {
+    "Id": 569,
+    "ticker": "CORZR",
+    "company_name": "Core Scientific, Inc./tx",
+    "price": null
+  },
+  {
+    "Id": 570,
+    "ticker": "CORZZ",
+    "company_name": "Core Scientific, Inc./tx",
+    "price": null
+  },
+  {
+    "Id": 571,
+    "ticker": "KRP",
+    "company_name": "Kimbell Royalty Partners, LP",
+    "price": null
+  },
+  {
+    "Id": 572,
+    "ticker": "CIX",
+    "company_name": "COMPX INTERNATIONAL INC",
+    "price": null
+  },
+  {
+    "Id": 573,
+    "ticker": "AMLX",
+    "company_name": "Amylyx Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 574,
+    "ticker": "ZIP",
+    "company_name": "ZIPRECRUITER, INC.",
+    "price": null
+  },
+  {
+    "Id": 575,
+    "ticker": "SCIA",
+    "company_name": "SCI Engineered Materials, Inc.",
+    "price": null
+  },
+  {
+    "Id": 576,
+    "ticker": "UG",
+    "company_name": "UNITED GUARDIAN INC",
+    "price": null
+  },
+  {
+    "Id": 577,
+    "ticker": "XNCR",
+    "company_name": "Xencor Inc",
+    "price": null
+  },
+  {
+    "Id": 578,
+    "ticker": "KTTA",
+    "company_name": "Pasithea Therapeutics Corp.",
+    "price": null
+  },
+  {
+    "Id": 579,
+    "ticker": "KTTAW",
+    "company_name": "Pasithea Therapeutics Corp.",
+    "price": null
+  },
+  {
+    "Id": 580,
+    "ticker": "UMAC",
+    "company_name": "Unusual Machines, Inc.",
+    "price": null
+  },
+  {
+    "Id": 581,
+    "ticker": "MBLY",
+    "company_name": "Mobileye Global Inc.",
+    "price": null
+  },
+  {
+    "Id": 582,
+    "ticker": "GBR",
+    "company_name": "New Concept Energy, Inc.",
+    "price": null
+  },
+  {
+    "Id": 583,
+    "ticker": "PSNL",
+    "company_name": "Personalis, Inc.",
+    "price": null
+  },
+  {
+    "Id": 584,
+    "ticker": "TNXP",
+    "company_name": "Tonix Pharmaceuticals Holding Corp.",
+    "price": null
+  },
+  {
+    "Id": 585,
+    "ticker": "QDMI",
+    "company_name": "QDM International Inc.",
+    "price": null
+  },
+  {
+    "Id": 586,
+    "ticker": "BIO",
+    "company_name": "BIO-RAD LABORATORIES, INC.",
+    "price": null
+  },
+  {
+    "Id": 587,
+    "ticker": "BIO-B",
+    "company_name": "BIO-RAD LABORATORIES, INC.",
+    "price": null
+  },
+  {
+    "Id": 588,
+    "ticker": "MRAM",
+    "company_name": "EVERSPIN TECHNOLOGIES INC.",
+    "price": null
+  },
+  {
+    "Id": 589,
+    "ticker": "NRIX",
+    "company_name": "Nurix Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 590,
+    "ticker": "ABOS",
+    "company_name": "Acumen Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 591,
+    "ticker": "XTGRF",
+    "company_name": "XTRA-GOLD RESOURCES CORP",
+    "price": null
+  },
+  {
+    "Id": 592,
+    "ticker": "ALF",
+    "company_name": "Centurion Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 593,
+    "ticker": "ALFUU",
+    "company_name": "Centurion Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 594,
+    "ticker": "ALFUW",
+    "company_name": "Centurion Acquisition Corp.",
+    "price": null
+  },
+  {
+    "Id": 595,
+    "ticker": "SMCI",
+    "company_name": "Super Micro Computer, Inc.",
+    "price": null
+  },
+  {
+    "Id": 596,
+    "ticker": "FENC",
+    "company_name": "FENNEC PHARMACEUTICALS INC.",
+    "price": null
+  },
+  {
+    "Id": 597,
+    "ticker": "MRKR",
+    "company_name": "Marker Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 598,
+    "ticker": "DTIL",
+    "company_name": "PRECISION BIOSCIENCES INC",
+    "price": null
+  },
+  {
+    "Id": 599,
+    "ticker": "FCEL",
+    "company_name": "FUELCELL ENERGY INC",
+    "price": null
+  },
+  {
+    "Id": 600,
+    "ticker": "FCELB",
+    "company_name": "FUELCELL ENERGY INC",
+    "price": null
+  },
+  {
+    "Id": 601,
+    "ticker": "CWCO",
+    "company_name": "Consolidated Water Co. Ltd.",
+    "price": null
+  },
+  {
+    "Id": 602,
+    "ticker": "CLIR",
+    "company_name": "ClearSign Technologies Corp",
+    "price": null
+  },
+  {
+    "Id": 603,
+    "ticker": "ODYS",
+    "company_name": "Odysight.ai Inc.",
+    "price": null
+  },
+  {
+    "Id": 604,
+    "ticker": "PRM",
+    "company_name": "Perimeter Solutions, Inc.",
+    "price": null
+  },
+  {
+    "Id": 605,
+    "ticker": "MP",
+    "company_name": "MP Materials Corp. / DE",
+    "price": null
+  },
+  {
+    "Id": 606,
+    "ticker": "BBNX",
+    "company_name": "Beta Bionics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 607,
+    "ticker": "TOFB",
+    "company_name": "TOFUTTI BRANDS INC",
+    "price": null
+  },
+  {
+    "Id": 608,
+    "ticker": "COHU",
+    "company_name": "COHU INC",
+    "price": null
+  },
+  {
+    "Id": 609,
+    "ticker": "SLDP",
+    "company_name": "Solid Power, Inc.",
+    "price": null
+  },
+  {
+    "Id": 610,
+    "ticker": "SLDPW",
+    "company_name": "Solid Power, Inc.",
+    "price": null
+  },
+  {
+    "Id": 611,
+    "ticker": "INHD",
+    "company_name": "INNO HOLDINGS INC.",
+    "price": null
+  },
+  {
+    "Id": 612,
+    "ticker": "TGTX",
+    "company_name": "TG THERAPEUTICS, INC.",
+    "price": null
+  },
+  {
+    "Id": 613,
+    "ticker": "ZBIO",
+    "company_name": "Zenas BioPharma, Inc.",
+    "price": null
+  },
+  {
+    "Id": 614,
+    "ticker": "VNOV",
+    "company_name": "VitaNova Life Sciences Corp",
+    "price": null
+  },
+  {
+    "Id": 615,
+    "ticker": "ILAG",
+    "company_name": "Intelligent Living Application Group Inc.",
+    "price": null
+  },
+  {
+    "Id": 616,
+    "ticker": "TSEM",
+    "company_name": "TOWER SEMICONDUCTOR LTD",
+    "price": null
+  },
+  {
+    "Id": 617,
+    "ticker": "RCAT",
+    "company_name": "Red Cat Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 618,
+    "ticker": "CYTK",
+    "company_name": "CYTOKINETICS INC",
+    "price": null
+  },
+  {
+    "Id": 619,
+    "ticker": "LSTA",
+    "company_name": "LISATA THERAPEUTICS, INC.",
+    "price": null
+  },
+  {
+    "Id": 620,
+    "ticker": "CABA",
+    "company_name": "Cabaletta Bio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 621,
+    "ticker": "HYPR",
+    "company_name": "Hyperfine, Inc.",
+    "price": null
+  },
+  {
+    "Id": 622,
+    "ticker": "SLAB",
+    "company_name": "SILICON LABORATORIES INC.",
+    "price": null
+  },
+  {
+    "Id": 623,
+    "ticker": "RSKD",
+    "company_name": "RISKIFIED LTD.",
+    "price": null
+  },
+  {
+    "Id": 624,
+    "ticker": "NOBH",
+    "company_name": "NOBILITY HOMES INC",
+    "price": null
+  },
+  {
+    "Id": 625,
+    "ticker": "QBTS",
+    "company_name": "D-Wave Quantum Inc.",
+    "price": null
+  },
+  {
+    "Id": 626,
+    "ticker": "MLGO",
+    "company_name": "MicroAlgo Inc.",
+    "price": null
+  },
+  {
+    "Id": 627,
+    "ticker": "VENAF",
+    "company_name": "MicroAlgo Inc.",
+    "price": null
+  },
+  {
+    "Id": 628,
+    "ticker": "LAW",
+    "company_name": "CS Disco, Inc.",
+    "price": null
+  },
+  {
+    "Id": 629,
+    "ticker": "TWFG",
+    "company_name": "TWFG, Inc.",
+    "price": null
+  },
+  {
+    "Id": 630,
+    "ticker": "MDGL",
+    "company_name": "MADRIGAL PHARMACEUTICALS, INC.",
+    "price": null
+  },
+  {
+    "Id": 631,
+    "ticker": "ARWR",
+    "company_name": "ARROWHEAD PHARMACEUTICALS, INC.",
+    "price": null
+  },
+  {
+    "Id": 632,
+    "ticker": "ABEO",
+    "company_name": "ABEONA THERAPEUTICS INC.",
+    "price": null
+  },
+  {
+    "Id": 633,
+    "ticker": "GRCE",
+    "company_name": "Grace Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 634,
+    "ticker": "QNCX",
+    "company_name": "Quince Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 635,
+    "ticker": "BJDX",
+    "company_name": "Bluejay Diagnostics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 636,
+    "ticker": "IMVT",
+    "company_name": "Immunovant, Inc.",
+    "price": null
+  },
+  {
+    "Id": 637,
+    "ticker": "LRN",
+    "company_name": "Stride, Inc.",
+    "price": null
+  },
+  {
+    "Id": 638,
+    "ticker": "HAO",
+    "company_name": "Haoxi Health Technology Ltd",
+    "price": null
+  },
+  {
+    "Id": 639,
+    "ticker": "ALMS",
+    "company_name": "ALUMIS INC.",
+    "price": null
+  },
+  {
+    "Id": 640,
+    "ticker": "URGN",
+    "company_name": "UroGen Pharma Ltd.",
+    "price": null
+  },
+  {
+    "Id": 641,
+    "ticker": "PEN",
+    "company_name": "Penumbra Inc",
+    "price": null
+  },
+  {
+    "Id": 642,
+    "ticker": "GRTX",
+    "company_name": "Galera Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 643,
+    "ticker": "XAEIU",
+    "company_name": "AEI INCOME & GROWTH FUND XXII LTD PARTNERSHIP",
+    "price": null
+  },
+  {
+    "Id": 644,
+    "ticker": "KLIC",
+    "company_name": "KULICKE & SOFFA INDUSTRIES INC",
+    "price": null
+  },
+  {
+    "Id": 645,
+    "ticker": "GKOS",
+    "company_name": "GLAUKOS Corp",
+    "price": null
+  },
+  {
+    "Id": 646,
+    "ticker": "URG",
+    "company_name": "UR-ENERGY INC",
+    "price": null
+  },
+  {
+    "Id": 647,
+    "ticker": "ORKT",
+    "company_name": "ORANGEKLOUD TECHNOLOGY INC.",
+    "price": null
+  },
+  {
+    "Id": 648,
+    "ticker": "ADMA",
+    "company_name": "ADMA BIOLOGICS, INC.",
+    "price": null
+  },
+  {
+    "Id": 649,
+    "ticker": "PLTR",
+    "company_name": "Palantir Technologies Inc.",
+    "price": null
+  },
+  {
+    "Id": 650,
+    "ticker": "SWKS",
+    "company_name": "SKYWORKS SOLUTIONS, INC.",
+    "price": null
+  },
+  {
+    "Id": 651,
+    "ticker": "CRUS",
+    "company_name": "CIRRUS LOGIC, INC.",
+    "price": null
+  },
+  {
+    "Id": 652,
+    "ticker": "SLGL",
+    "company_name": "Sol-Gel Technologies Ltd.",
+    "price": null
+  },
+  {
+    "Id": 653,
+    "ticker": "CMPS",
+    "company_name": "COMPASS Pathways plc",
+    "price": null
+  },
+  {
+    "Id": 654,
+    "ticker": "MGPI",
+    "company_name": "MGP INGREDIENTS INC",
+    "price": null
+  },
+  {
+    "Id": 655,
+    "ticker": "PCSC",
+    "company_name": "Perceptive Capital Solutions Corp",
+    "price": null
+  },
+  {
+    "Id": 656,
+    "ticker": "CTKB",
+    "company_name": "Cytek Biosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 657,
+    "ticker": "LPRO",
+    "company_name": "Open Lending Corp",
+    "price": null
+  },
+  {
+    "Id": 658,
+    "ticker": "LTRN",
+    "company_name": "Lantern Pharma Inc.",
+    "price": null
+  },
+  {
+    "Id": 659,
+    "ticker": "CYCN",
+    "company_name": "Cyclerion Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 660,
+    "ticker": "SNDX",
+    "company_name": "Syndax Pharmaceuticals Inc",
+    "price": null
+  },
+  {
+    "Id": 661,
+    "ticker": "IRTC",
+    "company_name": "iRhythm Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 662,
+    "ticker": "MPX",
+    "company_name": "MARINE PRODUCTS GROUP, LLC",
+    "price": null
+  },
+  {
+    "Id": 663,
+    "ticker": "STOK",
+    "company_name": "Stoke Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 664,
+    "ticker": "JBIO",
+    "company_name": "Jade Biosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 665,
+    "ticker": "BETA",
+    "company_name": "BETA Technologies, Inc.",
+    "price": null
+  },
+  {
+    "Id": 666,
+    "ticker": "MNDO",
+    "company_name": "MIND CTI LTD",
+    "price": null
+  },
+  {
+    "Id": 667,
+    "ticker": "GAFC",
+    "company_name": "Guru App Factory Corp",
+    "price": null
+  },
+  {
+    "Id": 668,
+    "ticker": "CAPN",
+    "company_name": "Cayson Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 669,
+    "ticker": "CAPNR",
+    "company_name": "Cayson Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 670,
+    "ticker": "CAPNU",
+    "company_name": "Cayson Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 671,
+    "ticker": "NTLA",
+    "company_name": "Intellia Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 672,
+    "ticker": "NVTS",
+    "company_name": "Navitas Semiconductor Corp",
+    "price": null
+  },
+  {
+    "Id": 673,
+    "ticker": "IVDN",
+    "company_name": "INNOVATIVE DESIGNS INC",
+    "price": null
+  },
+  {
+    "Id": 674,
+    "ticker": "YHNA",
+    "company_name": "YHN Acquisition I Ltd",
+    "price": null
+  },
+  {
+    "Id": 675,
+    "ticker": "YHNAR",
+    "company_name": "YHN Acquisition I Ltd",
+    "price": null
+  },
+  {
+    "Id": 676,
+    "ticker": "YHNAU",
+    "company_name": "YHN Acquisition I Ltd",
+    "price": null
+  },
+  {
+    "Id": 677,
+    "ticker": "CCCC",
+    "company_name": "C4 Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 678,
+    "ticker": "LAB",
+    "company_name": "STANDARD BIOTOOLS INC.",
+    "price": null
+  },
+  {
+    "Id": 679,
+    "ticker": "MPTI",
+    "company_name": "M-tron Industries, Inc.",
+    "price": null
+  },
+  {
+    "Id": 680,
+    "ticker": "OM",
+    "company_name": "Outset Medical, Inc.",
+    "price": null
+  },
+  {
+    "Id": 681,
+    "ticker": "NDRA",
+    "company_name": "ENDRA Life Sciences Inc.",
+    "price": null
+  },
+  {
+    "Id": 682,
+    "ticker": "CVR",
+    "company_name": "CHICAGO RIVET & MACHINE CO",
+    "price": null
+  },
+  {
+    "Id": 683,
+    "ticker": "LASR",
+    "company_name": "NLIGHT, INC.",
+    "price": null
+  },
+  {
+    "Id": 684,
+    "ticker": "OPEN",
+    "company_name": "Opendoor Technologies Inc.",
+    "price": null
+  },
+  {
+    "Id": 685,
+    "ticker": "OPENW",
+    "company_name": "Opendoor Technologies Inc.",
+    "price": null
+  },
+  {
+    "Id": 686,
+    "ticker": "OPENL",
+    "company_name": "Opendoor Technologies Inc.",
+    "price": null
+  },
+  {
+    "Id": 687,
+    "ticker": "OPENZ",
+    "company_name": "Opendoor Technologies Inc.",
+    "price": null
+  },
+  {
+    "Id": 688,
+    "ticker": "TNK",
+    "company_name": "TEEKAY TANKERS LTD.",
+    "price": null
+  },
+  {
+    "Id": 689,
+    "ticker": "PLAB",
+    "company_name": "PHOTRONICS INC",
+    "price": null
+  },
+  {
+    "Id": 690,
+    "ticker": "PHIO",
+    "company_name": "Phio Pharmaceuticals Corp.",
+    "price": null
+  },
+  {
+    "Id": 691,
+    "ticker": "NNOX",
+    "company_name": "Nano-X Imaging Ltd.",
+    "price": null
+  },
+  {
+    "Id": 692,
+    "ticker": "OPXS",
+    "company_name": "Optex Systems Holdings Inc",
+    "price": null
+  },
+  {
+    "Id": 693,
+    "ticker": "GEOS",
+    "company_name": "GEOSPACE TECHNOLOGIES CORP",
+    "price": null
+  },
+  {
+    "Id": 694,
+    "ticker": "API",
+    "company_name": "Agora, Inc.",
+    "price": null
+  },
+  {
+    "Id": 695,
+    "ticker": "DNA",
+    "company_name": "Ginkgo Bioworks Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 696,
+    "ticker": "DNABW",
+    "company_name": "Ginkgo Bioworks Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 697,
+    "ticker": "CARL",
+    "company_name": "CARLSMED, INC.",
+    "price": null
+  },
+  {
+    "Id": 698,
+    "ticker": "ALDX",
+    "company_name": "Aldeyra Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 699,
+    "ticker": "PRME",
+    "company_name": "Prime Medicine, Inc.",
+    "price": null
+  },
+  {
+    "Id": 700,
+    "ticker": "LUNG",
+    "company_name": "Pulmonx Corp",
+    "price": null
+  },
+  {
+    "Id": 701,
+    "ticker": "GERN",
+    "company_name": "GERON CORP",
+    "price": null
+  },
+  {
+    "Id": 702,
+    "ticker": "VYGR",
+    "company_name": "Voyager Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 703,
+    "ticker": "ATHM",
+    "company_name": "Autohome Inc.",
+    "price": null
+  },
+  {
+    "Id": 704,
+    "ticker": "DFDV",
+    "company_name": "DeFi Development Corp.",
+    "price": null
+  },
+  {
+    "Id": 705,
+    "ticker": "DFDVW",
+    "company_name": "DeFi Development Corp.",
+    "price": null
+  },
+  {
+    "Id": 706,
+    "ticker": "DFUKF",
+    "company_name": "DeFi Development Corp.",
+    "price": null
+  },
+  {
+    "Id": 707,
+    "ticker": "LXEO",
+    "company_name": "Lexeo Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 708,
+    "ticker": "CHCI",
+    "company_name": "Comstock Holding Companies, Inc.",
+    "price": null
+  },
+  {
+    "Id": 709,
+    "ticker": "LNTH",
+    "company_name": "Lantheus Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 710,
+    "ticker": "LAES",
+    "company_name": "SEALSQ Corp",
+    "price": null
+  },
+  {
+    "Id": 711,
+    "ticker": "ENVX",
+    "company_name": "Enovix Corp",
+    "price": null
+  },
+  {
+    "Id": 712,
+    "ticker": "ATYR",
+    "company_name": "aTYR PHARMA INC",
+    "price": null
+  },
+  {
+    "Id": 713,
+    "ticker": "ENTA",
+    "company_name": "ENANTA PHARMACEUTICALS INC",
+    "price": null
+  },
+  {
+    "Id": 714,
+    "ticker": "SYRA",
+    "company_name": "Syra Health Corp",
+    "price": null
+  },
+  {
+    "Id": 715,
+    "ticker": "CALM",
+    "company_name": "CAL-MAINE FOODS INC",
+    "price": null
+  },
+  {
+    "Id": 716,
+    "ticker": "SODI",
+    "company_name": "SOLITRON DEVICES INC",
+    "price": null
+  },
+  {
+    "Id": 717,
+    "ticker": "ACHV",
+    "company_name": "ACHIEVE LIFE SCIENCES, INC.",
+    "price": null
+  },
+  {
+    "Id": 718,
+    "ticker": "INSM",
+    "company_name": "INSMED Inc",
+    "price": null
+  },
+  {
+    "Id": 719,
+    "ticker": "HSTA",
+    "company_name": "Hestia Insight Inc.",
+    "price": null
+  },
+  {
+    "Id": 720,
+    "ticker": "LXRX",
+    "company_name": "LEXICON PHARMACEUTICALS, INC.",
+    "price": null
+  },
+  {
+    "Id": 721,
+    "ticker": "PSQH",
+    "company_name": "PSQ Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 722,
+    "ticker": "PSQH-WT",
+    "company_name": "PSQ Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 723,
+    "ticker": "WULF",
+    "company_name": "TERAWULF INC.",
+    "price": null
+  },
+  {
+    "Id": 724,
+    "ticker": "TSHA",
+    "company_name": "Taysha Gene Therapies, Inc.",
+    "price": null
+  },
+  {
+    "Id": 725,
+    "ticker": "DSNY",
+    "company_name": "DESTINY MEDIA TECHNOLOGIES INC",
+    "price": null
+  },
+  {
+    "Id": 726,
+    "ticker": "ACLS",
+    "company_name": "AXCELIS TECHNOLOGIES INC",
+    "price": null
+  },
+  {
+    "Id": 727,
+    "ticker": "DV",
+    "company_name": "DoubleVerify Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 728,
+    "ticker": "SHAZ",
+    "company_name": "SharonAI Holdings Inc.",
+    "price": null
+  },
+  {
+    "Id": 729,
+    "ticker": "SHAZW",
+    "company_name": "SharonAI Holdings Inc.",
+    "price": null
+  },
+  {
+    "Id": 730,
+    "ticker": "MREO",
+    "company_name": "Mereo BioPharma Group plc",
+    "price": null
+  },
+  {
+    "Id": 731,
+    "ticker": "BTBT",
+    "company_name": "Bit Digital, Inc",
+    "price": null
+  },
+  {
+    "Id": 732,
+    "ticker": "NPCE",
+    "company_name": "NeuroPace Inc",
+    "price": null
+  },
+  {
+    "Id": 733,
+    "ticker": "CALC",
+    "company_name": "CalciMedica, Inc.",
+    "price": null
+  },
+  {
+    "Id": 734,
+    "ticker": "BMRN",
+    "company_name": "BIOMARIN PHARMACEUTICAL INC",
+    "price": null
+  },
+  {
+    "Id": 735,
+    "ticker": "SRZN",
+    "company_name": "Surrozen, Inc./DE",
+    "price": null
+  },
+  {
+    "Id": 736,
+    "ticker": "SRZNW",
+    "company_name": "Surrozen, Inc./DE",
+    "price": null
+  },
+  {
+    "Id": 737,
+    "ticker": "COGT",
+    "company_name": "Cogent Biosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 738,
+    "ticker": "GDRX",
+    "company_name": "GoodRx Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 739,
+    "ticker": "OVID",
+    "company_name": "Ovid Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 740,
+    "ticker": "AMIX",
+    "company_name": "Autonomix Medical, Inc.",
+    "price": null
+  },
+  {
+    "Id": 741,
+    "ticker": "MPWR",
+    "company_name": "MONOLITHIC POWER SYSTEMS INC",
+    "price": null
+  },
+  {
+    "Id": 742,
+    "ticker": "NEPH",
+    "company_name": "NEPHROS INC",
+    "price": null
+  },
+  {
+    "Id": 743,
+    "ticker": "VHC",
+    "company_name": "VirnetX Holding Corp",
+    "price": null
+  },
+  {
+    "Id": 744,
+    "ticker": "MODD",
+    "company_name": "Modular Medical, Inc.",
+    "price": null
+  },
+  {
+    "Id": 745,
+    "ticker": "APPF",
+    "company_name": "APPFOLIO INC",
+    "price": null
+  },
+  {
+    "Id": 746,
+    "ticker": "PRLD",
+    "company_name": "Prelude Therapeutics Inc",
+    "price": null
+  },
+  {
+    "Id": 747,
+    "ticker": "PSHG",
+    "company_name": "Performance Shipping Inc.",
+    "price": null
+  },
+  {
+    "Id": 748,
+    "ticker": "CYRX",
+    "company_name": "Cryoport, Inc.",
+    "price": null
+  },
+  {
+    "Id": 749,
+    "ticker": "CLRO",
+    "company_name": "CLEARONE INC",
+    "price": null
+  },
+  {
+    "Id": 750,
+    "ticker": "LOAR",
+    "company_name": "Loar Holdings Inc.",
+    "price": null
+  },
+  {
+    "Id": 751,
+    "ticker": "NSPR",
+    "company_name": "InspireMD, Inc.",
+    "price": null
+  },
+  {
+    "Id": 752,
+    "ticker": "IMRX",
+    "company_name": "Immuneering Corp",
+    "price": null
+  },
+  {
+    "Id": 753,
+    "ticker": "EVEX",
+    "company_name": "Eve Holding, Inc.",
+    "price": null
+  },
+  {
+    "Id": 754,
+    "ticker": "EVEX-WT",
+    "company_name": "Eve Holding, Inc.",
+    "price": null
+  },
+  {
+    "Id": 755,
+    "ticker": "APYX",
+    "company_name": "Apyx Medical Corp",
+    "price": null
+  },
+  {
+    "Id": 756,
+    "ticker": "MHUAF",
+    "company_name": "Meihua International Medical Technologies Co., Ltd.",
+    "price": null
+  },
+  {
+    "Id": 757,
+    "ticker": "CGEN",
+    "company_name": "COMPUGEN LTD",
+    "price": null
+  },
+  {
+    "Id": 758,
+    "ticker": "SMR",
+    "company_name": "NUSCALE POWER Corp",
+    "price": null
+  },
+  {
+    "Id": 759,
+    "ticker": "UTHR",
+    "company_name": "UNITED THERAPEUTICS Corp",
+    "price": null
+  },
+  {
+    "Id": 760,
+    "ticker": "STAA",
+    "company_name": "STAAR SURGICAL CO",
+    "price": null
+  },
+  {
+    "Id": 761,
+    "ticker": "SBET",
+    "company_name": "Sharplink, Inc.",
+    "price": null
+  },
+  {
+    "Id": 762,
+    "ticker": "ISSC",
+    "company_name": "INNOVATIVE SOLUTIONS & SUPPORT INC",
+    "price": null
+  },
+  {
+    "Id": 763,
+    "ticker": "DWTX",
+    "company_name": "Dogwood Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 764,
+    "ticker": "HCC",
+    "company_name": "WARRIOR MET COAL, INC.",
+    "price": null
+  },
+  {
+    "Id": 765,
+    "ticker": "MDB",
+    "company_name": "MongoDB, Inc.",
+    "price": null
+  },
+  {
+    "Id": 766,
+    "ticker": "SLDB",
+    "company_name": "Solid Biosciences Inc.",
+    "price": null
+  },
+  {
+    "Id": 767,
+    "ticker": "LEAT",
+    "company_name": "Leatt Corp",
+    "price": null
+  },
+  {
+    "Id": 768,
+    "ticker": "VOR",
+    "company_name": "Vor Biopharma Inc.",
+    "price": null
+  },
+  {
+    "Id": 769,
+    "ticker": "TRAK",
+    "company_name": "ReposiTrak, Inc.",
+    "price": null
+  },
+  {
+    "Id": 770,
+    "ticker": "CPRX",
+    "company_name": "CATALYST PHARMACEUTICALS, INC.",
+    "price": null
+  },
+  {
+    "Id": 771,
+    "ticker": "UAMY",
+    "company_name": "UNITED STATES ANTIMONY CORP",
+    "price": null
+  },
+  {
+    "Id": 772,
+    "ticker": "XOMA",
+    "company_name": "XOMA Royalty Corp",
+    "price": null
+  },
+  {
+    "Id": 773,
+    "ticker": "XOMAO",
+    "company_name": "XOMA Royalty Corp",
+    "price": null
+  },
+  {
+    "Id": 774,
+    "ticker": "XOMAP",
+    "company_name": "XOMA Royalty Corp",
+    "price": null
+  },
+  {
+    "Id": 775,
+    "ticker": "IDR",
+    "company_name": "Idaho Strategic Resources, Inc.",
+    "price": null
+  },
+  {
+    "Id": 776,
+    "ticker": "TLF",
+    "company_name": "TANDY LEATHER FACTORY INC",
+    "price": null
+  },
+  {
+    "Id": 777,
+    "ticker": "FABC",
+    "company_name": "Fabric.AI, Inc.",
+    "price": null
+  },
+  {
+    "Id": 778,
+    "ticker": "ELMD",
+    "company_name": "Electromed, Inc.",
+    "price": null
+  },
+  {
+    "Id": 779,
+    "ticker": "HIT",
+    "company_name": "Health In Tech, Inc.",
+    "price": null
+  },
+  {
+    "Id": 780,
+    "ticker": "FTEK",
+    "company_name": "FUEL TECH, INC.",
+    "price": null
+  },
+  {
+    "Id": 781,
+    "ticker": "ON",
+    "company_name": "ON SEMICONDUCTOR CORP",
+    "price": null
+  },
+  {
+    "Id": 782,
+    "ticker": "MLI",
+    "company_name": "MUELLER INDUSTRIES INC",
+    "price": null
+  },
+  {
+    "Id": 783,
+    "ticker": "DQ",
+    "company_name": "DAQO NEW ENERGY CORP.",
+    "price": null
+  },
+  {
+    "Id": 784,
+    "ticker": "BRID",
+    "company_name": "BRIDGFORD FOODS CORP",
+    "price": null
+  },
+  {
+    "Id": 785,
+    "ticker": "PLUR",
+    "company_name": "Pluri Inc.",
+    "price": null
+  },
+  {
+    "Id": 786,
+    "ticker": "TBPH",
+    "company_name": "Theravance Biopharma, Inc.",
+    "price": null
+  },
+  {
+    "Id": 787,
+    "ticker": "SITM",
+    "company_name": "SITIME Corp",
+    "price": null
+  },
+  {
+    "Id": 788,
+    "ticker": "SNES",
+    "company_name": "SenesTech, Inc.",
+    "price": null
+  },
+  {
+    "Id": 789,
+    "ticker": "AUUD",
+    "company_name": "AUDDIA INC.",
+    "price": null
+  },
+  {
+    "Id": 790,
+    "ticker": "LIVG",
+    "company_name": "Livento Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 791,
+    "ticker": "TELA",
+    "company_name": "TELA Bio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 792,
+    "ticker": "CAMT",
+    "company_name": "CAMTEK LTD",
+    "price": null
+  },
+  {
+    "Id": 793,
+    "ticker": "CWAN",
+    "company_name": "Clearwater Analytics Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 794,
+    "ticker": "CMMB",
+    "company_name": "Chemomab Therapeutics Ltd.",
+    "price": null
+  },
+  {
+    "Id": 795,
+    "ticker": "JSPR",
+    "company_name": "Jasper Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 796,
+    "ticker": "JSPRW",
+    "company_name": "Jasper Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 797,
+    "ticker": "QTTB",
+    "company_name": "Q32 Bio Inc.",
+    "price": null
+  },
+  {
+    "Id": 798,
+    "ticker": "TXG",
+    "company_name": "10x Genomics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 799,
+    "ticker": "LINK",
+    "company_name": "INTERLINK ELECTRONICS INC",
+    "price": null
+  },
+  {
+    "Id": 800,
+    "ticker": "ARM",
+    "company_name": "ARM HOLDINGS PLC /UK",
+    "price": null
+  },
+  {
+    "Id": 801,
+    "ticker": "TWST",
+    "company_name": "Twist Bioscience Corp",
+    "price": null
+  },
+  {
+    "Id": 802,
+    "ticker": "FF",
+    "company_name": "FutureFuel Corp.",
+    "price": null
+  },
+  {
+    "Id": 803,
+    "ticker": "KPRX",
+    "company_name": "KIORA PHARMACEUTICALS INC",
+    "price": null
+  },
+  {
+    "Id": 804,
+    "ticker": "KPHMW",
+    "company_name": "KIORA PHARMACEUTICALS INC",
+    "price": null
+  },
+  {
+    "Id": 805,
+    "ticker": "MARA",
+    "company_name": "MARA Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 806,
+    "ticker": "CLAR",
+    "company_name": "Clarus Corp",
+    "price": null
+  },
+  {
+    "Id": 807,
+    "ticker": "NPK",
+    "company_name": "NATIONAL PRESTO INDUSTRIES INC",
+    "price": null
+  },
+  {
+    "Id": 808,
+    "ticker": "HURC",
+    "company_name": "HURCO COMPANIES INC",
+    "price": null
+  },
+  {
+    "Id": 809,
+    "ticker": "BDTX",
+    "company_name": "Black Diamond Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 810,
+    "ticker": "ALGM",
+    "company_name": "ALLEGRO MICROSYSTEMS, INC.",
+    "price": null
+  },
+  {
+    "Id": 811,
+    "ticker": "KVYO",
+    "company_name": "Klaviyo, Inc.",
+    "price": null
+  },
+  {
+    "Id": 812,
+    "ticker": "UFPI",
+    "company_name": "UFP INDUSTRIES INC",
+    "price": null
+  },
+  {
+    "Id": 813,
+    "ticker": "NTRB",
+    "company_name": "NutriBand Inc.",
+    "price": null
+  },
+  {
+    "Id": 814,
+    "ticker": "NTRBW",
+    "company_name": "NutriBand Inc.",
+    "price": null
+  },
+  {
+    "Id": 815,
+    "ticker": "ANIK",
+    "company_name": "Anika Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 816,
+    "ticker": "VNOM",
+    "company_name": "Viper Energy, Inc.",
+    "price": null
+  },
+  {
+    "Id": 817,
+    "ticker": "BXC",
+    "company_name": "BlueLinx Holdings Inc.",
+    "price": null
+  },
+  {
+    "Id": 818,
+    "ticker": "FLGT",
+    "company_name": "Fulgent Genetics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 819,
+    "ticker": "PRDO",
+    "company_name": "PERDOCEO EDUCATION Corp",
+    "price": null
+  },
+  {
+    "Id": 820,
+    "ticker": "ALCO",
+    "company_name": "ALICO, INC.",
+    "price": null
+  },
+  {
+    "Id": 821,
+    "ticker": "IPI",
+    "company_name": "Intrepid Potash, Inc.",
+    "price": null
+  },
+  {
+    "Id": 822,
+    "ticker": "BEAM",
+    "company_name": "Beam Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 823,
+    "ticker": "INDI",
+    "company_name": "indie Semiconductor, Inc.",
+    "price": null
+  },
+  {
+    "Id": 824,
+    "ticker": "AOUT",
+    "company_name": "American Outdoor Brands, Inc.",
+    "price": null
+  },
+  {
+    "Id": 825,
+    "ticker": "OFLX",
+    "company_name": "Omega Flex, Inc.",
+    "price": null
+  },
+  {
+    "Id": 826,
+    "ticker": "YYAI",
+    "company_name": "AIRWA INC.",
+    "price": null
+  },
+  {
+    "Id": 827,
+    "ticker": "COCP",
+    "company_name": "Cocrystal Pharma, Inc.",
+    "price": null
+  },
+  {
+    "Id": 828,
+    "ticker": "LITE",
+    "company_name": "Lumentum Holdings Inc.",
+    "price": null
+  },
+  {
+    "Id": 829,
+    "ticker": "SCWO",
+    "company_name": "374Water Inc.",
+    "price": null
+  },
+  {
+    "Id": 830,
+    "ticker": "PGEN",
+    "company_name": "PRECIGEN, INC.",
+    "price": null
+  },
+  {
+    "Id": 831,
+    "ticker": "SCND",
+    "company_name": "SCIENTIFIC INDUSTRIES INC",
+    "price": null
+  },
+  {
+    "Id": 832,
+    "ticker": "MX",
+    "company_name": "MAGNACHIP SEMICONDUCTOR Corp",
+    "price": null
+  },
+  {
+    "Id": 833,
+    "ticker": "VCYT",
+    "company_name": "VERACYTE, INC.",
+    "price": null
+  },
+  {
+    "Id": 834,
+    "ticker": "REGN",
+    "company_name": "REGENERON PHARMACEUTICALS, INC.",
+    "price": null
+  },
+  {
+    "Id": 835,
+    "ticker": "BNBX",
+    "company_name": "BNB PLUS CORP.",
+    "price": null
+  },
+  {
+    "Id": 836,
+    "ticker": "SPRS",
+    "company_name": "SURGE COMPONENTS INC",
+    "price": null
+  },
+  {
+    "Id": 837,
+    "ticker": "EBF",
+    "company_name": "ENNIS, INC.",
+    "price": null
+  },
+  {
+    "Id": 838,
+    "ticker": "WKEY",
+    "company_name": "Wisekey International Holding S.A.",
+    "price": null
+  },
+  {
+    "Id": 839,
+    "ticker": "WSKEF",
+    "company_name": "Wisekey International Holding S.A.",
+    "price": null
+  },
+  {
+    "Id": 840,
+    "ticker": "RIVN",
+    "company_name": "Rivian Automotive, Inc. / DE",
+    "price": null
+  },
+  {
+    "Id": 841,
+    "ticker": "SSRM",
+    "company_name": "SSR MINING INC.",
+    "price": null
+  },
+  {
+    "Id": 842,
+    "ticker": "SSRGF",
+    "company_name": "SSR MINING INC.",
+    "price": null
+  },
+  {
+    "Id": 843,
+    "ticker": "JOB",
+    "company_name": "GEE Group Inc.",
+    "price": null
+  },
+  {
+    "Id": 844,
+    "ticker": "IRWD",
+    "company_name": "IRONWOOD PHARMACEUTICALS INC",
+    "price": null
+  },
+  {
+    "Id": 845,
+    "ticker": "BUDA",
+    "company_name": "BUDA JUICE, INC.",
+    "price": null
+  },
+  {
+    "Id": 846,
+    "ticker": "GH",
+    "company_name": "Guardant Health, Inc.",
+    "price": null
+  },
+  {
+    "Id": 847,
+    "ticker": "AQST",
+    "company_name": "Aquestive Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 848,
+    "ticker": "FAST",
+    "company_name": "FASTENAL CO",
+    "price": null
+  },
+  {
+    "Id": 849,
+    "ticker": "ARCT",
+    "company_name": "Arcturus Therapeutics Holdings Inc.",
+    "price": null
+  },
+  {
+    "Id": 850,
+    "ticker": "ABSI",
+    "company_name": "Absci Corp",
+    "price": null
+  },
+  {
+    "Id": 851,
+    "ticker": "SWBI",
+    "company_name": "SMITH & WESSON BRANDS, INC.",
+    "price": null
+  },
+  {
+    "Id": 852,
+    "ticker": "BBIO",
+    "company_name": "BridgeBio Pharma, Inc.",
+    "price": null
+  },
+  {
+    "Id": 853,
+    "ticker": "GRWG",
+    "company_name": "GrowGeneration Corp.",
+    "price": null
+  },
+  {
+    "Id": 854,
+    "ticker": "BYND",
+    "company_name": "BEYOND MEAT, INC.",
+    "price": null
+  },
+  {
+    "Id": 855,
+    "ticker": "ARVN",
+    "company_name": "ARVINAS, INC.",
+    "price": null
+  },
+  {
+    "Id": 856,
+    "ticker": "EDHL",
+    "company_name": "Everbright Digital Holding Ltd.",
+    "price": null
+  },
+  {
+    "Id": 857,
+    "ticker": "DRDB",
+    "company_name": "Roman DBDR Acquisition Corp. II",
+    "price": null
+  },
+  {
+    "Id": 858,
+    "ticker": "DRDBW",
+    "company_name": "Roman DBDR Acquisition Corp. II",
+    "price": null
+  },
+  {
+    "Id": 859,
+    "ticker": "DRDBU",
+    "company_name": "Roman DBDR Acquisition Corp. II",
+    "price": null
+  },
+  {
+    "Id": 860,
+    "ticker": "TMCI",
+    "company_name": "TREACE MEDICAL CONCEPTS, INC.",
+    "price": null
+  },
+  {
+    "Id": 861,
+    "ticker": "FORM",
+    "company_name": "FORMFACTOR INC",
+    "price": null
+  },
+  {
+    "Id": 862,
+    "ticker": "RPID",
+    "company_name": "RAPID MICRO BIOSYSTEMS, INC.",
+    "price": null
+  },
+  {
+    "Id": 863,
+    "ticker": "SKLZ",
+    "company_name": "Skillz Inc.",
+    "price": null
+  },
+  {
+    "Id": 864,
+    "ticker": "SI",
+    "company_name": "SHOULDER INNOVATIONS, INC.",
+    "price": null
+  },
+  {
+    "Id": 865,
+    "ticker": "MITK",
+    "company_name": "MITEK SYSTEMS INC",
+    "price": null
+  },
+  {
+    "Id": 866,
+    "ticker": "ARDX",
+    "company_name": "ARDELYX, INC.",
+    "price": null
+  },
+  {
+    "Id": 867,
+    "ticker": "GNLX",
+    "company_name": "GENELUX Corp",
+    "price": null
+  },
+  {
+    "Id": 868,
+    "ticker": "BMI",
+    "company_name": "BADGER METER INC",
+    "price": null
+  },
+  {
+    "Id": 869,
+    "ticker": "AUPH",
+    "company_name": "Aurinia Pharmaceuticals Inc.",
+    "price": null
+  },
+  {
+    "Id": 870,
+    "ticker": "ANY",
+    "company_name": "Sphere 3D Corp.",
+    "price": null
+  },
+  {
+    "Id": 871,
+    "ticker": "VTSI",
+    "company_name": "VirTra, Inc",
+    "price": null
+  },
+  {
+    "Id": 872,
+    "ticker": "ZM",
+    "company_name": "Zoom Communications, Inc.",
+    "price": null
+  },
+  {
+    "Id": 873,
+    "ticker": "EAF",
+    "company_name": "GRAFTECH INTERNATIONAL LTD",
+    "price": null
+  },
+  {
+    "Id": 874,
+    "ticker": "BLFS",
+    "company_name": "BIOLIFE SOLUTIONS INC",
+    "price": null
+  },
+  {
+    "Id": 875,
+    "ticker": "PBSV",
+    "company_name": "Pharma-Bio Serv, Inc.",
+    "price": null
+  },
+  {
+    "Id": 876,
+    "ticker": "SEII",
+    "company_name": "SHARING ECONOMY INTERNATIONAL INC.",
+    "price": null
+  },
+  {
+    "Id": 877,
+    "ticker": "TRT",
+    "company_name": "TRIO-TECH INTERNATIONAL",
+    "price": null
+  },
+  {
+    "Id": 878,
+    "ticker": "NOAH",
+    "company_name": "NOAH HOLDINGS LTD",
+    "price": null
+  },
+  {
+    "Id": 879,
+    "ticker": "WING",
+    "company_name": "Wingstop Inc.",
+    "price": null
+  },
+  {
+    "Id": 880,
+    "ticker": "GCTK",
+    "company_name": "Glucotrack, Inc.",
+    "price": null
+  },
+  {
+    "Id": 881,
+    "ticker": "OABI",
+    "company_name": "OmniAb, Inc.",
+    "price": null
+  },
+  {
+    "Id": 882,
+    "ticker": "OABIW",
+    "company_name": "OmniAb, Inc.",
+    "price": null
+  },
+  {
+    "Id": 883,
+    "ticker": "RELL",
+    "company_name": "RICHARDSON ELECTRONICS, LTD.",
+    "price": null
+  },
+  {
+    "Id": 884,
+    "ticker": "VEEV",
+    "company_name": "VEEVA SYSTEMS INC",
+    "price": null
+  },
+  {
+    "Id": 885,
+    "ticker": "AVR",
+    "company_name": "Anteris Technologies Global Corp.",
+    "price": null
+  },
+  {
+    "Id": 886,
+    "ticker": "ALG",
+    "company_name": "ALAMO GROUP INC",
+    "price": null
+  },
+  {
+    "Id": 887,
+    "ticker": "FRSX",
+    "company_name": "Foresight Autonomous Holdings Ltd.",
+    "price": null
+  },
+  {
+    "Id": 888,
+    "ticker": "RCUS",
+    "company_name": "Arcus Biosciences, Inc.",
+    "price": null
+  },
+  {
+    "Id": 889,
+    "ticker": "SNTI",
+    "company_name": "Senti Biosciences Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 890,
+    "ticker": "RDVT",
+    "company_name": "Red Violet, Inc.",
+    "price": null
+  },
+  {
+    "Id": 891,
+    "ticker": "VERU",
+    "company_name": "VERU INC.",
+    "price": null
+  },
+  {
+    "Id": 892,
+    "ticker": "IZEA",
+    "company_name": "IZEA Worldwide, Inc.",
+    "price": null
+  },
+  {
+    "Id": 893,
+    "ticker": "VPG",
+    "company_name": "Vishay Precision Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 894,
+    "ticker": "CALX",
+    "company_name": "CALIX, INC",
+    "price": null
+  },
+  {
+    "Id": 895,
+    "ticker": "JAZZ",
+    "company_name": "Jazz Pharmaceuticals plc",
+    "price": null
+  },
+  {
+    "Id": 896,
+    "ticker": "DYNC",
+    "company_name": "Dynamix Corp",
+    "price": null
+  },
+  {
+    "Id": 897,
+    "ticker": "DYNCU",
+    "company_name": "Dynamix Corp",
+    "price": null
+  },
+  {
+    "Id": 898,
+    "ticker": "DYNCW",
+    "company_name": "Dynamix Corp",
+    "price": null
+  },
+  {
+    "Id": 899,
+    "ticker": "XCUR",
+    "company_name": "EXICURE, INC.",
+    "price": null
+  },
+  {
+    "Id": 900,
+    "ticker": "RLMD",
+    "company_name": "RELMADA THERAPEUTICS, INC.",
+    "price": null
+  },
+  {
+    "Id": 901,
+    "ticker": "NVDA",
+    "company_name": "NVIDIA CORP",
+    "price": null
+  },
+  {
+    "Id": 902,
+    "ticker": "EPSM",
+    "company_name": "Epsium Enterprise Ltd",
+    "price": null
+  },
+  {
+    "Id": 903,
+    "ticker": "CLGN",
+    "company_name": "CollPlant Biotechnologies Ltd",
+    "price": null
+  },
+  {
+    "Id": 904,
+    "ticker": "CLSDQ",
+    "company_name": "Clearside Biomedical, Inc.",
+    "price": null
+  },
+  {
+    "Id": 905,
+    "ticker": "LQDA",
+    "company_name": "Liquidia Corp",
+    "price": null
+  },
+  {
+    "Id": 906,
+    "ticker": "WEYS",
+    "company_name": "WEYCO GROUP INC",
+    "price": null
+  },
+  {
+    "Id": 907,
+    "ticker": "TARS",
+    "company_name": "Tarsus Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 908,
+    "ticker": "BKHA",
+    "company_name": "Black Hawk Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 909,
+    "ticker": "BKHAR",
+    "company_name": "Black Hawk Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 910,
+    "ticker": "BKHAU",
+    "company_name": "Black Hawk Acquisition Corp",
+    "price": null
+  },
+  {
+    "Id": 911,
+    "ticker": "TPB",
+    "company_name": "Turning Point Brands, Inc.",
+    "price": null
+  },
+  {
+    "Id": 912,
+    "ticker": "AEIS",
+    "company_name": "ADVANCED ENERGY INDUSTRIES INC",
+    "price": null
+  },
+  {
+    "Id": 913,
+    "ticker": "FRPT",
+    "company_name": "Freshpet, Inc.",
+    "price": null
+  },
+  {
+    "Id": 914,
+    "ticker": "CODX",
+    "company_name": "Co-Diagnostics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 915,
+    "ticker": "NEXR",
+    "company_name": "Nexera Technologies Ltd",
+    "price": null
+  },
+  {
+    "Id": 916,
+    "ticker": "NEXRW",
+    "company_name": "Nexera Technologies Ltd",
+    "price": null
+  },
+  {
+    "Id": 917,
+    "ticker": "TNON",
+    "company_name": "Tenon Medical, Inc.",
+    "price": null
+  },
+  {
+    "Id": 918,
+    "ticker": "TNONW",
+    "company_name": "Tenon Medical, Inc.",
+    "price": null
+  },
+  {
+    "Id": 919,
+    "ticker": "VNDA",
+    "company_name": "Vanda Pharmaceuticals Inc.",
+    "price": null
+  },
+  {
+    "Id": 920,
+    "ticker": "FCUV",
+    "company_name": "FOCUS UNIVERSAL INC.",
+    "price": null
+  },
+  {
+    "Id": 921,
+    "ticker": "IMCR",
+    "company_name": "Immunocore Holdings plc",
+    "price": null
+  },
+  {
+    "Id": 922,
+    "ticker": "XMTR",
+    "company_name": "Xometry, Inc.",
+    "price": null
+  },
+  {
+    "Id": 923,
+    "ticker": "CANF",
+    "company_name": "Can-Fite BioPharma Ltd.",
+    "price": null
+  },
+  {
+    "Id": 924,
+    "ticker": "TCNNF",
+    "company_name": "Trulieve Cannabis Corp.",
+    "price": null
+  },
+  {
+    "Id": 925,
+    "ticker": "VREX",
+    "company_name": "Varex Imaging Corp",
+    "price": null
+  },
+  {
+    "Id": 926,
+    "ticker": "TCMD",
+    "company_name": "TACTILE SYSTEMS TECHNOLOGY INC",
+    "price": null
+  },
+  {
+    "Id": 927,
+    "ticker": "ANET",
+    "company_name": "Arista Networks, Inc.",
+    "price": null
+  },
+  {
+    "Id": 928,
+    "ticker": "WLKP",
+    "company_name": "Westlake Chemical Partners LP",
+    "price": null
+  },
+  {
+    "Id": 929,
+    "ticker": "VYNE",
+    "company_name": "VYNE Therapeutics Inc.",
+    "price": null
+  },
+  {
+    "Id": 930,
+    "ticker": "DTST",
+    "company_name": "Data Storage Corp",
+    "price": null
+  },
+  {
+    "Id": 931,
+    "ticker": "DTSTW",
+    "company_name": "Data Storage Corp",
+    "price": null
+  },
+  {
+    "Id": 932,
+    "ticker": "AORT",
+    "company_name": "ARTIVION, INC.",
+    "price": null
+  },
+  {
+    "Id": 933,
+    "ticker": "MOV",
+    "company_name": "MOVADO GROUP INC",
+    "price": null
+  },
+  {
+    "Id": 934,
+    "ticker": "MOVAA",
+    "company_name": "MOVADO GROUP INC",
+    "price": null
+  },
+  {
+    "Id": 935,
+    "ticker": "WHD",
+    "company_name": "Cactus, Inc.",
+    "price": null
+  },
+  {
+    "Id": 936,
+    "ticker": "SILO",
+    "company_name": "Silo Pharma, Inc.",
+    "price": null
+  },
+  {
+    "Id": 937,
+    "ticker": "MMSI",
+    "company_name": "MERIT MEDICAL SYSTEMS INC",
+    "price": null
+  },
+  {
+    "Id": 938,
+    "ticker": "OBIO",
+    "company_name": "Orchestra BioMed Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 939,
+    "ticker": "NKTR",
+    "company_name": "NEKTAR THERAPEUTICS",
+    "price": null
+  },
+  {
+    "Id": 940,
+    "ticker": "APLS",
+    "company_name": "Apellis Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 941,
+    "ticker": "RGR",
+    "company_name": "STURM RUGER & CO INC",
+    "price": null
+  },
+  {
+    "Id": 942,
+    "ticker": "FIGS",
+    "company_name": "FIGS, Inc.",
+    "price": null
+  },
+  {
+    "Id": 943,
+    "ticker": "ASC",
+    "company_name": "Ardmore Shipping Corp",
+    "price": null
+  },
+  {
+    "Id": 944,
+    "ticker": "PGAC",
+    "company_name": "PANTAGES CAPITAL ACQUISITION Corp",
+    "price": null
+  },
+  {
+    "Id": 945,
+    "ticker": "PGACU",
+    "company_name": "PANTAGES CAPITAL ACQUISITION Corp",
+    "price": null
+  },
+  {
+    "Id": 946,
+    "ticker": "PGACR",
+    "company_name": "PANTAGES CAPITAL ACQUISITION Corp",
+    "price": null
+  },
+  {
+    "Id": 947,
+    "ticker": "PAY",
+    "company_name": "Paymentus Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 948,
+    "ticker": "JOUT",
+    "company_name": "JOHNSON OUTDOORS INC",
+    "price": null
+  },
+  {
+    "Id": 949,
+    "ticker": "VCEL",
+    "company_name": "Vericel Corp",
+    "price": null
+  },
+  {
+    "Id": 950,
+    "ticker": "SMPL",
+    "company_name": "Simply Good Foods Co",
+    "price": null
+  },
+  {
+    "Id": 951,
+    "ticker": "GRAF",
+    "company_name": "Graf Global Corp.",
+    "price": null
+  },
+  {
+    "Id": 952,
+    "ticker": "GRAF-UN",
+    "company_name": "Graf Global Corp.",
+    "price": null
+  },
+  {
+    "Id": 953,
+    "ticker": "GRAF-WT",
+    "company_name": "Graf Global Corp.",
+    "price": null
+  },
+  {
+    "Id": 954,
+    "ticker": "AIOS",
+    "company_name": "AIOS Tech Inc.",
+    "price": null
+  },
+  {
+    "Id": 955,
+    "ticker": "AVAV",
+    "company_name": "AeroVironment Inc",
+    "price": null
+  },
+  {
+    "Id": 956,
+    "ticker": "TNYA",
+    "company_name": "Tenaya Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 957,
+    "ticker": "FSLY",
+    "company_name": "Fastly, Inc.",
+    "price": null
+  },
+  {
+    "Id": 958,
+    "ticker": "LIQT",
+    "company_name": "LIQTECH INTERNATIONAL INC",
+    "price": null
+  },
+  {
+    "Id": 959,
+    "ticker": "MDXG",
+    "company_name": "MIMEDX GROUP, INC.",
+    "price": null
+  },
+  {
+    "Id": 960,
+    "ticker": "CARG",
+    "company_name": "CarGurus, Inc.",
+    "price": null
+  },
+  {
+    "Id": 961,
+    "ticker": "TWLO",
+    "company_name": "TWILIO INC",
+    "price": null
+  },
+  {
+    "Id": 962,
+    "ticker": "KAPA",
+    "company_name": "Kairos Pharma, LTD.",
+    "price": null
+  },
+  {
+    "Id": 963,
+    "ticker": "PHAT",
+    "company_name": "Phathom Pharmaceuticals, Inc.",
+    "price": null
+  },
+  {
+    "Id": 964,
+    "ticker": "SRPT",
+    "company_name": "Sarepta Therapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 965,
+    "ticker": "RDCM",
+    "company_name": "RADCOM LTD",
+    "price": null
+  },
+  {
+    "Id": 966,
+    "ticker": "AWRE",
+    "company_name": "AWARE INC /MA/",
+    "price": null
+  },
+  {
+    "Id": 967,
+    "ticker": "AZTA",
+    "company_name": "Azenta, Inc.",
+    "price": null
+  },
+  {
+    "Id": 968,
+    "ticker": "SPCE",
+    "company_name": "Virgin Galactic Holdings, Inc",
+    "price": null
+  },
+  {
+    "Id": 969,
+    "ticker": "CSW",
+    "company_name": "CSW INDUSTRIALS, INC.",
+    "price": null
+  },
+  {
+    "Id": 970,
+    "ticker": "LCID",
+    "company_name": "Lucid Group, Inc.",
+    "price": null
+  },
+  {
+    "Id": 971,
+    "ticker": "CDXS",
+    "company_name": "CODEXIS, INC.",
+    "price": null
+  },
+  {
+    "Id": 972,
+    "ticker": "PXLW",
+    "company_name": "PIXELWORKS, INC",
+    "price": null
+  },
+  {
+    "Id": 973,
+    "ticker": "EW",
+    "company_name": "Edwards Lifesciences Corp",
+    "price": null
+  },
+  {
+    "Id": 974,
+    "ticker": "LONA",
+    "company_name": "LeonaBio, Inc.",
+    "price": null
+  },
+  {
+    "Id": 975,
+    "ticker": "ACU",
+    "company_name": "ACME UNITED CORP",
+    "price": null
+  },
+  {
+    "Id": 976,
+    "ticker": "DAIO",
+    "company_name": "DATA I/O CORP",
+    "price": null
+  },
+  {
+    "Id": 977,
+    "ticker": "PLUT",
+    "company_name": "Plutus Financial Group Ltd",
+    "price": null
+  },
+  {
+    "Id": 978,
+    "ticker": "ADIL",
+    "company_name": "ADIAL PHARMACEUTICALS, INC.",
+    "price": null
+  },
+  {
+    "Id": 979,
+    "ticker": "NCSM",
+    "company_name": "NCS Multistage Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 980,
+    "ticker": "FUFU",
+    "company_name": "Bitfufu Inc.",
+    "price": null
+  },
+  {
+    "Id": 981,
+    "ticker": "FUFUW",
+    "company_name": "Bitfufu Inc.",
+    "price": null
+  },
+  {
+    "Id": 982,
+    "ticker": "SNA",
+    "company_name": "Snap-on Inc",
+    "price": null
+  },
+  {
+    "Id": 983,
+    "ticker": "SLP",
+    "company_name": "Simulations Plus, Inc.",
+    "price": null
+  },
+  {
+    "Id": 984,
+    "ticker": "ARQT",
+    "company_name": "Arcutis Biotherapeutics, Inc.",
+    "price": null
+  },
+  {
+    "Id": 985,
+    "ticker": "TWAV",
+    "company_name": "TaoWeave, Inc.",
+    "price": null
+  },
+  {
+    "Id": 986,
+    "ticker": "ALNT",
+    "company_name": "ALLIENT INC",
+    "price": null
+  },
+  {
+    "Id": 987,
+    "ticker": "FCFS",
+    "company_name": "FirstCash Holdings, Inc.",
+    "price": null
+  },
+  {
+    "Id": 988,
+    "ticker": "NAKA",
+    "company_name": "Nakamoto Inc.",
+    "price": null
+  },
+  {
+    "Id": 989,
+    "ticker": "NAKAW",
+    "company_name": "Nakamoto Inc.",
+    "price": null
+  },
+  {
+    "Id": 990,
+    "ticker": "TRC",
+    "company_name": "TEJON RANCH CO",
+    "price": null
+  },
+  {
+    "Id": 991,
+    "ticker": "TLS",
+    "company_name": "TELOS CORP",
+    "price": null
+  },
+  {
+    "Id": 992,
+    "ticker": "AMR",
+    "company_name": "Alpha Metallurgical Resources, Inc.",
+    "price": null
+  },
+  {
+    "Id": 993,
+    "ticker": "TXN",
+    "company_name": "TEXAS INSTRUMENTS INC",
+    "price": null
+  },
+  {
+    "Id": 994,
+    "ticker": "ELA",
+    "company_name": "Envela Corp",
+    "price": null
+  },
+  {
+    "Id": 995,
+    "ticker": "SBFM",
+    "company_name": "Sunshine Biopharma Inc.",
+    "price": null
+  },
+  {
+    "Id": 996,
+    "ticker": "SBFMW",
+    "company_name": "Sunshine Biopharma Inc.",
+    "price": null
+  },
+  {
+    "Id": 997,
+    "ticker": "SCVL",
+    "company_name": "SHOE CARNIVAL INC",
+    "price": null
+  },
+  {
+    "Id": 998,
+    "ticker": "GNTX",
+    "company_name": "GENTEX CORP",
+    "price": null
+  },
+  {
+    "Id": 999,
+    "ticker": "BKSY",
+    "company_name": "BlackSky Technology Inc.",
+    "price": null
+  },
+  {
+    "Id": 1000,
+    "ticker": "BKSY-WT",
+    "company_name": "BlackSky Technology Inc.",
+    "price": null
+  }
+]

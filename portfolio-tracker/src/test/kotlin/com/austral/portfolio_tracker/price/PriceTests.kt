@@ -11,12 +11,10 @@ import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest
 import org.springframework.dao.DataIntegrityViolationException
-import org.springframework.test.context.ActiveProfiles
 import java.math.BigDecimal
 import java.time.Instant
 
 @DataJpaTest
-@ActiveProfiles("test")
 class PriceTests {
     @Autowired
     private lateinit var priceRepository: PriceRepository
@@ -31,7 +29,6 @@ class PriceTests {
                 Company(
                     ticker = "AAPL",
                     companyName = "Apple Inc.",
-                    cik = "0000320193",
                 ),
             )
 
@@ -58,7 +55,6 @@ class PriceTests {
                 Company(
                     ticker = "MSFT",
                     companyName = "Microsoft Corporation",
-                    cik = "0000789019",
                 ),
             )
 
@@ -90,7 +86,6 @@ class PriceTests {
             Company(
                 ticker = "AMZN",
                 companyName = "Amazon.com, Inc.",
-                cik = "0001018724",
             ).apply {
                 prices.add(
                     Price(
@@ -115,9 +110,10 @@ class PriceTests {
 
         assertEquals(2, priceRepository.findByCompanyIdOrderByTimestampAsc(companyId).size)
 
-        companyRepository.delete(savedCompany)
+        savedCompany.active = false
+        companyRepository.save(savedCompany)
 
-        assertEquals(0, priceRepository.findByCompanyIdOrderByTimestampAsc(companyId).size)
+        assertEquals(2, priceRepository.findByCompanyIdOrderByTimestampAsc(companyId).size)
     }
 
     @Test
@@ -142,7 +138,6 @@ class PriceTests {
                 Company(
                     ticker = "TSLA",
                     companyName = "Tesla, Inc.",
-                    cik = "0001318605",
                 ),
             )
 

@@ -14,12 +14,10 @@ import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest
 import org.springframework.dao.DataIntegrityViolationException
-import org.springframework.test.context.ActiveProfiles
 import java.math.BigDecimal
 import java.time.Instant
 
 @DataJpaTest
-@ActiveProfiles("test")
 class WatchlistTests {
     @Autowired
     private lateinit var watchlistRepository: WatchlistRepository
@@ -47,7 +45,6 @@ class WatchlistTests {
                 Company(
                     ticker = "WST",
                     companyName = "Watch Corp",
-                    cik = "0009100001",
                 ).apply {
                     prices.add(
                         Price(
@@ -80,7 +77,6 @@ class WatchlistTests {
                 Company(
                     ticker = "WST2",
                     companyName = "Watch Two",
-                    cik = "0009100002",
                 ).apply {
                     prices.add(
                         Price(
@@ -139,7 +135,6 @@ class WatchlistTests {
                 Company(
                     ticker = "CWCD",
                     companyName = "Cascade Watch Inc",
-                    cik = "0009100010",
                 ).apply {
                     prices.add(
                         Price(
@@ -186,7 +181,6 @@ class WatchlistTests {
             Company(
                 ticker = "CWCD2",
                 companyName = "Cascade Watch Two",
-                cik = "0009100020",
             ).apply {
                 prices.add(
                     Price(
@@ -210,10 +204,11 @@ class WatchlistTests {
         val all = watchlistRepository.findAll()
         assertEquals(1, all.size)
 
-        companyRepository.delete(savedCompany)
+        savedCompany.active = false
+        companyRepository.save(savedCompany)
 
         val remaining = watchlistRepository.findAll()
-        assertEquals(0, remaining.size)
+        assertEquals(1, remaining.size)
     }
 
     @Test
@@ -243,7 +238,6 @@ class WatchlistTests {
                 Company(
                     ticker = "REL1",
                     companyName = "Relation One",
-                    cik = "0009100100",
                 ).apply {
                     prices.add(
                         Price(
@@ -261,7 +255,6 @@ class WatchlistTests {
                 Company(
                     ticker = "REL2",
                     companyName = "Relation Two",
-                    cik = "0009100200",
                 ).apply {
                     prices.add(
                         Price(
