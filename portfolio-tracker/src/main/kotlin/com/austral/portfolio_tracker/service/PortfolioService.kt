@@ -178,16 +178,27 @@ class PortfolioService(
         userId: Long,
         company: Company,
     ): Int =
-        historyRepository.findByUserIdOrderByTimestampDesc(userId)
+        historyRepository
+            .findByUserIdOrderByTimestampDesc(userId)
             .filter { it.company.id == company.id }
             .sumOf { if (it.transactionTypeEnum == TransactionTypeEnum.BUY) it.numberOfStocks else -it.numberOfStocks }
 
     private fun buildPositions(userId: Long): List<PositionSnapshot> =
-        historyRepository.findByUserIdOrderByTimestampDesc(userId)
+        historyRepository
+            .findByUserIdOrderByTimestampDesc(userId)
             .groupBy { it.company.id }
             .values
             .mapNotNull { entries ->
-                val quantity = entries.sumOf { if (it.transactionTypeEnum == TransactionTypeEnum.BUY) it.numberOfStocks else -it.numberOfStocks }
+                val quantity =
+                    entries.sumOf {
+                        if (it.transactionTypeEnum ==
+                            TransactionTypeEnum.BUY
+                        ) {
+                            it.numberOfStocks
+                        } else {
+                            -it.numberOfStocks
+                        }
+                    }
                 if (quantity <= 0) {
                     null
                 } else {
@@ -195,7 +206,11 @@ class PortfolioService(
                         company = entries.first().company,
                         quantity = quantity,
                         totalBuyQuantity = entries.filter { it.transactionTypeEnum == TransactionTypeEnum.BUY }.sumOf { it.numberOfStocks },
-                        totalBuyValue = entries.filter { it.transactionTypeEnum == TransactionTypeEnum.BUY }.fold(ZERO) { acc, history -> acc.add(history.transactionValue) },
+                        totalBuyValue =
+                            entries
+                                .filter {
+                                    it.transactionTypeEnum == TransactionTypeEnum.BUY
+                                }.fold(ZERO) { acc, history -> acc.add(history.transactionValue) },
                     )
                 }
             }.sortedBy { it.company.ticker }
@@ -228,7 +243,10 @@ class PortfolioService(
                 }?.key
 
         if (negativeTicker != null) {
-            throw ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "History change would leave negative holdings for $negativeTicker")
+            throw ResponseStatusException(
+                HttpStatus.UNPROCESSABLE_ENTITY,
+                "History change would leave negative holdings for $negativeTicker",
+            )
         }
     }
 

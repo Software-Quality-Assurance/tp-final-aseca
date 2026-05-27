@@ -118,7 +118,7 @@ class AuthControllerTests {
         assertEquals(3, token.split('.').size, "JWTs should have three dot-separated segments")
         assertTrue(
             token.all { it.isLetterOrDigit() || it == '.' || it == '-' || it == '_' },
-            "JWT should contain only URL-safe characters"
+            "JWT should contain only URL-safe characters",
         )
     }
 

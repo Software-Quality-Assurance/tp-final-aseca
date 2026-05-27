@@ -61,9 +61,15 @@ class PortfolioFeature4E2ETests {
         apple = companyRepository.save(Company(ticker = "AAPL", companyName = "Apple Inc."))
         tesla = companyRepository.save(Company(ticker = "TSLA", companyName = "Tesla, Inc."))
 
-        priceRepository.save(Price(ticker = "AAPL", unityPrice = BigDecimal("100.00"), timestamp = Instant.parse("2026-05-20T10:00:00Z"), company = apple))
-        priceRepository.save(Price(ticker = "AAPL", unityPrice = BigDecimal("120.00"), timestamp = Instant.parse("2026-05-21T10:00:00Z"), company = apple))
-        priceRepository.save(Price(ticker = "TSLA", unityPrice = BigDecimal("200.00"), timestamp = Instant.parse("2026-05-21T11:00:00Z"), company = tesla))
+        priceRepository.save(
+            Price(ticker = "AAPL", unityPrice = BigDecimal("100.00"), timestamp = Instant.parse("2026-05-20T10:00:00Z"), company = apple),
+        )
+        priceRepository.save(
+            Price(ticker = "AAPL", unityPrice = BigDecimal("120.00"), timestamp = Instant.parse("2026-05-21T10:00:00Z"), company = apple),
+        )
+        priceRepository.save(
+            Price(ticker = "TSLA", unityPrice = BigDecimal("200.00"), timestamp = Instant.parse("2026-05-21T11:00:00Z"), company = tesla),
+        )
     }
 
     @Test
@@ -142,8 +148,12 @@ class PortfolioFeature4E2ETests {
         postOperation(token, "AAPL", "BUY", 10).andExpect { status { isCreated() } }
         postOperation(token, "TSLA", "BUY", 2).andExpect { status { isCreated() } }
 
-        priceRepository.save(Price(ticker = "AAPL", unityPrice = BigDecimal("130.00"), timestamp = Instant.parse("2026-05-22T10:00:00Z"), company = apple))
-        priceRepository.save(Price(ticker = "TSLA", unityPrice = BigDecimal("180.00"), timestamp = Instant.parse("2026-05-22T10:05:00Z"), company = tesla))
+        priceRepository.save(
+            Price(ticker = "AAPL", unityPrice = BigDecimal("130.00"), timestamp = Instant.parse("2026-05-22T10:00:00Z"), company = apple),
+        )
+        priceRepository.save(
+            Price(ticker = "TSLA", unityPrice = BigDecimal("180.00"), timestamp = Instant.parse("2026-05-22T10:05:00Z"), company = tesla),
+        )
 
         mockMvc
             .get("/api/portfolio/value") {
@@ -247,6 +257,10 @@ class PortfolioFeature4E2ETests {
                     status { isOk() }
                 }.andReturn()
 
-        return objectMapper.readTree(response.response.contentAsString).get("token").toString().removeSurrounding("\"")
+        return objectMapper
+            .readTree(response.response.contentAsString)
+            .get("token")
+            .toString()
+            .removeSurrounding("\"")
     }
 }
