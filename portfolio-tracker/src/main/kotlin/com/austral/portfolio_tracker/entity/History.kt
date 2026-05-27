@@ -21,14 +21,14 @@ class History(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     @Column(nullable = false)
-    val numberOfStocks: Int,
+    var numberOfStocks: Int,
     @Column(nullable = false, precision = 19, scale = 2)
-    val transactionValue: BigDecimal,
+    var transactionValue: BigDecimal,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    val transactionTypeEnum: TransactionTypeEnum,
+    var transactionTypeEnum: TransactionTypeEnum,
     @Column(nullable = false)
-    val timestamp: Instant = Instant.now(),
+    var timestamp: Instant = Instant.now(),
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     val user: User,

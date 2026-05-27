@@ -1,6 +1,7 @@
 package com.austral.portfolio_tracker.config
 
 import com.austral.portfolio_tracker.entity.Company
+import com.austral.portfolio_tracker.entity.Price
 import com.austral.portfolio_tracker.repository.CompanyRepository
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.slf4j.LoggerFactory
@@ -9,11 +10,13 @@ import org.springframework.context.annotation.Profile
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Component
 import tools.jackson.databind.ObjectMapper
+import java.math.BigDecimal
 
 data class CompanyData(
     val ticker: String,
     @JsonProperty("company_name")
     val companyName: String,
+    val price: BigDecimal? = null,
 )
 
 @Component
@@ -41,7 +44,17 @@ class DataLoader(
                             Company(
                                 ticker = data.ticker,
                                 companyName = data.companyName,
-                            )
+                            ).apply {
+                                data.price?.let { seedPrice ->
+                                    prices.add(
+                                        Price(
+                                            ticker = data.ticker,
+                                            unityPrice = seedPrice,
+                                            company = this,
+                                        ),
+                                    )
+                                }
+                            }
                         } else {
                             null
                         }
