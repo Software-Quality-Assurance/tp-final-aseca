@@ -1,12 +1,10 @@
-package com.austral.portfolio_tracker.service
+package com.austral.portfolio_tracker.user
 
 import com.austral.portfolio_tracker.dto.RegisterUserRequest
 import com.austral.portfolio_tracker.exception.DuplicateUserException
 import com.austral.portfolio_tracker.repository.UserRepository
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertTrue
+import com.austral.portfolio_tracker.service.UserRegistrationService
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
@@ -36,14 +34,14 @@ class UserRegistrationServiceTests {
 
         val response = userRegistrationService.register(request)
 
-        assertNotNull(response.id)
-        assertEquals("newuser@example.com", response.email)
-        assertNotNull(response.id)
+        Assertions.assertNotNull(response.id)
+        Assertions.assertEquals("newuser@example.com", response.email)
+        Assertions.assertNotNull(response.id)
 
         // Verify user was persisted in database
         val savedUser = userRepository.findByMail("newuser@example.com")
-        assertNotNull(savedUser)
-        assertEquals("newuser@example.com", savedUser?.mail)
+        Assertions.assertNotNull(savedUser)
+        Assertions.assertEquals("newuser@example.com", savedUser?.mail)
     }
 
     @Test
@@ -58,13 +56,13 @@ class UserRegistrationServiceTests {
         val response = userRegistrationService.register(request)
 
         val savedUser = userRepository.findByMail("hashedpwd@example.com")
-        assertNotNull(savedUser)
+        Assertions.assertNotNull(savedUser)
 
         // Password should not be stored as plaintext
-        assertNotEquals(plainPassword, savedUser?.password)
+        Assertions.assertNotEquals(plainPassword, savedUser?.password)
 
         // Password should be hashed
-        assertTrue(passwordEncoder.matches(plainPassword, savedUser?.password))
+        Assertions.assertTrue(passwordEncoder.matches(plainPassword, savedUser?.password))
     }
 
     @Test
@@ -78,12 +76,12 @@ class UserRegistrationServiceTests {
         val response = userRegistrationService.register(request)
 
         // Response should not contain password or hash fields
-        assertNotNull(response)
-        assertEquals("hidden@example.com", response.email)
+        Assertions.assertNotNull(response)
+        Assertions.assertEquals("hidden@example.com", response.email)
 
         // Attempt to access password field should fail or be null/empty
         val hasPasswordProperty = response::class.members.any { it.name == "password" }
-        assertTrue(!hasPasswordProperty, "Response should not expose password field")
+        Assertions.assertTrue(!hasPasswordProperty, "Response should not expose password field")
     }
 
     @Test
@@ -186,9 +184,9 @@ class UserRegistrationServiceTests {
         val response1 = userRegistrationService.register(request1)
         val response2 = userRegistrationService.register(request2)
 
-        assertNotNull(response1.id)
-        assertNotNull(response2.id)
-        assertNotEquals(response1.id, response2.id)
+        Assertions.assertNotNull(response1.id)
+        Assertions.assertNotNull(response2.id)
+        Assertions.assertNotEquals(response1.id, response2.id)
     }
 
     @Test
@@ -202,8 +200,8 @@ class UserRegistrationServiceTests {
         userRegistrationService.register(request)
 
         val savedUser = userRepository.findByMail("newuser2@example.com")
-        assertNotNull(savedUser)
-        assertEquals(0, savedUser?.history?.size)
-        assertEquals(0, savedUser?.watchlist?.size)
+        Assertions.assertNotNull(savedUser)
+        Assertions.assertEquals(0, savedUser?.history?.size)
+        Assertions.assertEquals(0, savedUser?.watchlist?.size)
     }
 }

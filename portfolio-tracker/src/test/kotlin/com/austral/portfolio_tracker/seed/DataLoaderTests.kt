@@ -1,10 +1,12 @@
-package com.austral.portfolio_tracker.config
+package com.austral.portfolio_tracker.seed
 
+import com.austral.portfolio_tracker.config.DataLoader
 import com.austral.portfolio_tracker.entity.Company
 import com.austral.portfolio_tracker.repository.CompanyRepository
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentCaptor
+import org.mockito.ArgumentMatchers
 import org.mockito.Mockito.anyList
 import org.mockito.Mockito.atLeast
 import org.mockito.Mockito.mock
@@ -76,7 +78,7 @@ class DataLoaderTests {
 
         dataLoader.run()
 
-        verify(mockCompanyRepository, atLeast(1)).save(org.mockito.ArgumentMatchers.any())
+        verify(mockCompanyRepository, atLeast(1)).save(ArgumentMatchers.any())
     }
 
     @Test

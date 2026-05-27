@@ -1,4 +1,4 @@
-package com.austral.portfolio_tracker.controller
+package com.austral.portfolio_tracker.auth
 
 import com.austral.portfolio_tracker.dto.RegisterUserRequest
 import com.austral.portfolio_tracker.repository.UserRepository
@@ -116,7 +116,10 @@ class AuthControllerTests {
         assertTrue(token.isNotBlank(), "Token field was missing from the login response")
 
         assertEquals(3, token.split('.').size, "JWTs should have three dot-separated segments")
-        assertTrue(token.all { it.isLetterOrDigit() || it == '.' || it == '-' || it == '_' }, "JWT should contain only URL-safe characters")
+        assertTrue(
+            token.all { it.isLetterOrDigit() || it == '.' || it == '-' || it == '_' },
+            "JWT should contain only URL-safe characters"
+        )
     }
 
     @Test
