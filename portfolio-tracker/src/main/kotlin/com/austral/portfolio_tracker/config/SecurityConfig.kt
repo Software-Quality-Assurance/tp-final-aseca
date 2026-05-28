@@ -9,6 +9,9 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.HttpStatusEntryPoint
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsConfigurationSource
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
 @Configuration
 class SecurityConfig {
@@ -21,6 +24,10 @@ class SecurityConfig {
             csrf.disable()
         }
 
+        // enable CORS support - use corsConfigurationSource bean for configuration
+        http.cors { cors ->
+            cors.configurationSource(corsConfigurationSource())
+        }
         http.sessionManagement { session ->
             session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         }
@@ -38,5 +45,19 @@ class SecurityConfig {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
 
         return http.build()
+    }
+
+    @Bean
+    fun corsConfigurationSource(): CorsConfigurationSource {
+        val configuration = CorsConfiguration()
+        // Allow development origins. Use allowedOriginPatterns so Spring will echo
+        // back the actual request origin (useful when the dev server runs on different hostnames).
+        configuration.allowedOriginPatterns = listOf("*")
+        configuration.allowedMethods = listOf("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+        configuration.allowedHeaders = listOf("*")
+        configuration.allowCredentials = true
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/api/**", configuration)
+        return source
     }
 }
