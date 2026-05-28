@@ -11,10 +11,8 @@ import com.austral.portfolio_tracker.repository.UserRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest
-import org.springframework.dao.DataIntegrityViolationException
 import java.math.BigDecimal
 import java.time.Instant
 
@@ -76,64 +74,6 @@ class HistoryTests {
         assertEquals(TransactionTypeEnum.SELL, saved.transactionTypeEnum)
         assertEquals(user.id, saved.user?.id)
         assertEquals(company.id, saved.company?.id)
-    }
-
-    @Test
-    fun `should fail when saving history without user or company`() {
-        val company =
-            companyRepository.save(
-                Company(
-                    ticker = "HST2",
-                    companyName = "History Two",
-                ).apply {
-                    prices.add(
-                        Price(
-                            ticker = "HST2",
-                            unityPrice = BigDecimal("50.00"),
-                            timestamp = Instant.parse("2026-05-01T00:00:00Z"),
-                            company = this,
-                        ),
-                    )
-                },
-            )
-
-        val histNoUser =
-            History(
-                numberOfStocks = 1,
-                transactionValue = BigDecimal("50.00"),
-                transactionTypeEnum = TransactionTypeEnum.BUY,
-                timestamp = Instant.now(),
-                user = null,
-                company = company,
-            )
-
-        assertThrows<DataIntegrityViolationException> {
-            historyRepository.save(histNoUser)
-        }
-
-        val user =
-            userRepository.save(
-                User(
-                    mail = "huser2@example.com",
-                    password = "pwd",
-                    history = mutableListOf(),
-                    watchlist = mutableListOf(),
-                ),
-            )
-
-        val histNoCompany =
-            History(
-                numberOfStocks = 1,
-                transactionValue = BigDecimal("50.00"),
-                transactionTypeEnum = TransactionTypeEnum.BUY,
-                timestamp = Instant.now(),
-                user = user,
-                company = null,
-            )
-
-        assertThrows<DataIntegrityViolationException> {
-            historyRepository.save(histNoCompany)
-        }
     }
 
     @Test

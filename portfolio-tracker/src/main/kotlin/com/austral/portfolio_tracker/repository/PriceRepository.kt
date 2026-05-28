@@ -6,4 +6,6 @@ interface PriceRepository : JpaRepository<Price, Long> {
     fun findByTicker(ticker: String): List<Price>
 
     fun findByCompanyIdOrderByTimestampAsc(companyId: Long): List<Price>
+
+    fun findFirstByCompanyIdOrderByTimestampDesc(companyId: Long): Price?
 }

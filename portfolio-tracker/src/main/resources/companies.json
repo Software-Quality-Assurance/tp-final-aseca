@@ -3,31 +3,31 @@
     "Id": 1,
     "ticker": "TRWD",
     "company_name": "Tradewinds Universal",
-    "price": null
+    "price": 24.50
   },
   {
     "Id": 2,
     "ticker": "NTCS",
     "company_name": "Natics Corp.",
-    "price": null
+    "price": 18.75
   },
   {
     "Id": 3,
     "ticker": "LMMY",
     "company_name": "Exousia Bio, Inc.",
-    "price": null
+    "price": 12.30
   },
   {
     "Id": 4,
     "ticker": "NEWH",
     "company_name": "NewHydrogen, Inc.",
-    "price": null
+    "price": 9.95
   },
   {
     "Id": 5,
     "ticker": "SMNR",
     "company_name": "Semnur Pharmaceuticals, Inc.",
-    "price": null
+    "price": 31.40
   },
   {
     "Id": 6,

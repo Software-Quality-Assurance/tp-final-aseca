@@ -1,10 +1,9 @@
-package com.austral.portfolio_tracker.controller
+package com.austral.portfolio_tracker.user
 
 import com.austral.portfolio_tracker.dto.RegisterUserRequest
 import com.austral.portfolio_tracker.repository.UserRepository
 import com.austral.portfolio_tracker.security.JwtTokenService
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional
 import tools.jackson.databind.ObjectMapper
 import tools.jackson.databind.node.JsonNodeType
 import java.time.Instant
+import kotlin.test.assertNull
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -66,7 +66,7 @@ class ProfileControllerTests {
                 }.andReturn()
 
         val content = response.response.contentAsString
-        assertNotNull(content)
+        Assertions.assertNotNull(content)
     }
 
     @Test
@@ -271,8 +271,8 @@ class ProfileControllerTests {
             }
 
         val savedUser = userRepository.findByMail(email)
-        assertNotNull(savedUser)
-        assertEquals(email, savedUser?.mail)
+        Assertions.assertNotNull(savedUser)
+        Assertions.assertEquals(email, savedUser?.mail)
     }
 
     @Test
@@ -313,7 +313,7 @@ class ProfileControllerTests {
                 }
         }
 
-        assertEquals(3, userRepository.findAll().count { it.mail.startsWith("sequential") })
+        Assertions.assertEquals(3, userRepository.findAll().count { it.mail.startsWith("sequential") })
     }
 
     @Test
@@ -442,7 +442,7 @@ class ProfileControllerTests {
             }
 
         val saved = userRepository.findByMail("new-$email")
-        assertNotNull(saved)
+        Assertions.assertNotNull(saved)
     }
 
     @Test
@@ -527,7 +527,7 @@ class ProfileControllerTests {
             }
 
         val saved = userRepository.findByMail(email)
-        kotlin.test.assertNull(saved)
+        assertNull(saved)
     }
 
     @Test
@@ -578,7 +578,7 @@ class ProfileControllerTests {
 
         // Ensure userB was not modified
         val afterUserB = requireNotNull(userRepository.findById(requireNotNull(userB.id)).orElse(null))
-        assertEquals(emailB, afterUserB.mail)
+        Assertions.assertEquals(emailB, afterUserB.mail)
     }
 
     @Test
@@ -611,8 +611,8 @@ class ProfileControllerTests {
         // Ensure both users remain unchanged after conflict
         val afterUserA = requireNotNull(userRepository.findById(requireNotNull(userA.id)).orElse(null))
         val afterUserB = requireNotNull(userRepository.findById(requireNotNull(userB.id)).orElse(null))
-        assertEquals(emailA, afterUserA.mail)
-        assertEquals(emailB, afterUserB.mail)
+        Assertions.assertEquals(emailA, afterUserA.mail)
+        Assertions.assertEquals(emailB, afterUserB.mail)
     }
 
     @Test

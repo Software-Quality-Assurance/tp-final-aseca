@@ -1,5 +1,7 @@
-package com.austral.portfolio_tracker.security
+package com.austral.portfolio_tracker.auth
 
+import com.austral.portfolio_tracker.security.JwtTokenService
+import com.austral.portfolio_tracker.security.JwtValidationException
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -7,10 +9,12 @@ import org.springframework.test.context.ActiveProfiles
 import tools.jackson.databind.ObjectMapper
 import java.time.Instant
 import java.util.Base64
+import java.util.UUID
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 
 @SpringBootTest
@@ -315,8 +319,8 @@ class JwtTokenServiceTests {
                 Charsets.UTF_8,
             )
 
-        kotlin.test.assertFalse(payloadText.contains("password", ignoreCase = true))
-        kotlin.test.assertFalse(payloadText.contains("hash", ignoreCase = true))
+        assertFalse(payloadText.contains("password", ignoreCase = true))
+        assertFalse(payloadText.contains("hash", ignoreCase = true))
     }
 
     @Test
@@ -392,7 +396,7 @@ class JwtTokenServiceTests {
         val effectivePayload = payload.toMutableMap()
         if (!effectivePayload.containsKey("jti")) {
             effectivePayload["jti"] =
-                java.util.UUID
+                UUID
                     .randomUUID()
                     .toString()
         }
