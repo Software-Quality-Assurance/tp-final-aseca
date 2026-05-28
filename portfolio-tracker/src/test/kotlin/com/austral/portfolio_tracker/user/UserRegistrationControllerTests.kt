@@ -1,9 +1,8 @@
-package com.austral.portfolio_tracker.controller
+package com.austral.portfolio_tracker.user
 
 import com.austral.portfolio_tracker.dto.RegisterUserRequest
 import com.austral.portfolio_tracker.repository.UserRepository
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -51,7 +50,7 @@ class UserRegistrationControllerTests {
                 }.andReturn()
 
         val content = response.response.contentAsString
-        assertNotNull(content)
+        Assertions.assertNotNull(content)
     }
 
     @Test
@@ -256,8 +255,8 @@ class UserRegistrationControllerTests {
             }
 
         val savedUser = userRepository.findByMail(email)
-        assertNotNull(savedUser)
-        assertEquals(email, savedUser?.mail)
+        Assertions.assertNotNull(savedUser)
+        Assertions.assertEquals(email, savedUser?.mail)
     }
 
     @Test
@@ -298,6 +297,6 @@ class UserRegistrationControllerTests {
                 }
         }
 
-        assertEquals(3, userRepository.findAll().count { it.mail.startsWith("sequential") })
+        Assertions.assertEquals(3, userRepository.findAll().count { it.mail.startsWith("sequential") })
     }
 }

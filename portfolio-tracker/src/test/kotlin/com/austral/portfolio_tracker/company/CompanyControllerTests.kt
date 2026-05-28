@@ -1,4 +1,4 @@
-package com.austral.portfolio_tracker.controller
+package com.austral.portfolio_tracker.company
 
 import com.austral.portfolio_tracker.dto.CreateCompanyRequest
 import com.austral.portfolio_tracker.entity.Company
@@ -13,8 +13,7 @@ import com.austral.portfolio_tracker.repository.PriceRepository
 import com.austral.portfolio_tracker.repository.UserRepository
 import com.austral.portfolio_tracker.repository.WatchlistRepository
 import jakarta.persistence.EntityManager
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,13 +21,14 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc
 import org.springframework.http.MediaType
 import org.springframework.security.test.context.support.WithMockUser
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.delete
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 import org.springframework.transaction.annotation.Transactional
 import tools.jackson.databind.ObjectMapper
+import java.math.BigDecimal
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -74,7 +74,7 @@ class CompanyControllerTests {
 
         mockMvc
             .post("/api/company") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
                 contentType = MediaType.APPLICATION_JSON
                 content = objectMapper.writeValueAsString(request)
             }.andExpect {
@@ -93,7 +93,7 @@ class CompanyControllerTests {
 
         mockMvc
             .post("/api/company") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
                 contentType = MediaType.APPLICATION_JSON
                 content = objectMapper.writeValueAsString(request)
             }.andExpect {
@@ -101,9 +101,9 @@ class CompanyControllerTests {
             }
 
         val savedCompany = companyRepository.findByTickerAndActiveTrue("TSLA")
-        assertNotNull(savedCompany)
-        assertEquals("TSLA", savedCompany?.ticker)
-        assertEquals("Tesla Inc", savedCompany?.companyName)
+        Assertions.assertNotNull(savedCompany)
+        Assertions.assertEquals("TSLA", savedCompany?.ticker)
+        Assertions.assertEquals("Tesla Inc", savedCompany?.companyName)
     }
 
     @Test
@@ -128,7 +128,7 @@ class CompanyControllerTests {
         companies.forEach { company ->
             mockMvc
                 .post("/api/company") {
-                    with(csrf())
+                    with(SecurityMockMvcRequestPostProcessors.csrf())
                     contentType = MediaType.APPLICATION_JSON
                     content = objectMapper.writeValueAsString(company)
                 }.andExpect {
@@ -140,17 +140,17 @@ class CompanyControllerTests {
         val savedAMD = companyRepository.findByTickerAndActiveTrue("AMD")
         val savedINTC = companyRepository.findByTickerAndActiveTrue("INTC")
 
-        assertNotNull(savedNVDA)
-        assertEquals("NVDA", savedNVDA?.ticker)
-        assertEquals("NVIDIA Corporation", savedNVDA?.companyName)
+        Assertions.assertNotNull(savedNVDA)
+        Assertions.assertEquals("NVDA", savedNVDA?.ticker)
+        Assertions.assertEquals("NVIDIA Corporation", savedNVDA?.companyName)
 
-        assertNotNull(savedAMD)
-        assertEquals("AMD", savedAMD?.ticker)
-        assertEquals("Advanced Micro Devices", savedAMD?.companyName)
+        Assertions.assertNotNull(savedAMD)
+        Assertions.assertEquals("AMD", savedAMD?.ticker)
+        Assertions.assertEquals("Advanced Micro Devices", savedAMD?.companyName)
 
-        assertNotNull(savedINTC)
-        assertEquals("INTC", savedINTC?.ticker)
-        assertEquals("Intel Corporation", savedINTC?.companyName)
+        Assertions.assertNotNull(savedINTC)
+        Assertions.assertEquals("INTC", savedINTC?.ticker)
+        Assertions.assertEquals("Intel Corporation", savedINTC?.companyName)
     }
 
     @Test
@@ -172,7 +172,7 @@ class CompanyControllerTests {
 
         mockMvc
             .post("/api/company") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
                 contentType = MediaType.APPLICATION_JSON
                 content = objectMapper.writeValueAsString(duplicateRequest)
             }.andExpect {
@@ -186,7 +186,7 @@ class CompanyControllerTests {
     fun `005_should return 400 Bad Request when ticker is null`() {
         mockMvc
             .post("/api/company") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
                 contentType = MediaType.APPLICATION_JSON
                 content = """{"ticker": null, "companyName": "Valid Company"}"""
             }.andExpect {
@@ -205,7 +205,7 @@ class CompanyControllerTests {
 
         mockMvc
             .post("/api/company") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
                 contentType = MediaType.APPLICATION_JSON
                 content = objectMapper.writeValueAsString(request)
             }.andExpect {
@@ -224,7 +224,7 @@ class CompanyControllerTests {
 
         mockMvc
             .post("/api/company") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
                 contentType = MediaType.APPLICATION_JSON
                 content = objectMapper.writeValueAsString(request)
             }.andExpect {
@@ -237,7 +237,7 @@ class CompanyControllerTests {
     fun `008_should return 400 Bad Request when companyName is null`() {
         mockMvc
             .post("/api/company") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
                 contentType = MediaType.APPLICATION_JSON
                 content = """{"ticker": "VALID", "companyName": null}"""
             }.andExpect {
@@ -256,7 +256,7 @@ class CompanyControllerTests {
 
         mockMvc
             .post("/api/company") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
                 contentType = MediaType.APPLICATION_JSON
                 content = objectMapper.writeValueAsString(request)
             }.andExpect {
@@ -275,7 +275,7 @@ class CompanyControllerTests {
 
         mockMvc
             .post("/api/company") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
                 contentType = MediaType.APPLICATION_JSON
                 content = objectMapper.writeValueAsString(request)
             }.andExpect {
@@ -294,7 +294,7 @@ class CompanyControllerTests {
 
         mockMvc
             .post("/api/company") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
                 contentType = MediaType.APPLICATION_JSON
                 content = objectMapper.writeValueAsString(request)
             }.andExpect {
@@ -302,9 +302,9 @@ class CompanyControllerTests {
             }
 
         val savedCompany = companyRepository.findByTickerAndActiveTrue("GOOG")
-        assertNotNull(savedCompany)
-        assertNotNull(savedCompany?.id)
-        assertEquals(true, savedCompany?.id != null && savedCompany?.id!! > 0)
+        Assertions.assertNotNull(savedCompany)
+        Assertions.assertNotNull(savedCompany?.id)
+        Assertions.assertEquals(true, savedCompany?.id != null && savedCompany?.id!! > 0)
     }
 
     @Test
@@ -807,7 +807,7 @@ class CompanyControllerTests {
 
         mockMvc
             .delete("/api/company/${company.id}") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
             }.andExpect {
                 status { isNoContent() }
             }
@@ -818,7 +818,7 @@ class CompanyControllerTests {
     fun `047_delete_company_non_existent_returns_404_not_found`() {
         mockMvc
             .delete("/api/company/99999") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
             }.andExpect {
                 status { isNotFound() }
             }
@@ -836,18 +836,18 @@ class CompanyControllerTests {
             )
 
         val id = company.id
-        assertNotNull(id)
+        Assertions.assertNotNull(id)
 
         mockMvc
             .delete("/api/company/$id") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
             }.andExpect {
                 status { isNoContent() }
             }
 
         val deleted = companyRepository.findById(id!!).orElse(null)
-        assertNotNull(deleted)
-        assertEquals(false, deleted?.active)
+        Assertions.assertNotNull(deleted)
+        Assertions.assertEquals(false, deleted?.active)
     }
 
     @Test
@@ -863,7 +863,7 @@ class CompanyControllerTests {
 
         mockMvc
             .delete("/api/company/${company.id}") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
             }.andExpect {
                 status { isNoContent() }
             }
@@ -890,7 +890,7 @@ class CompanyControllerTests {
 
         mockMvc
             .delete("/api/company/${company.id}") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
             }.andExpect {
                 status { isNoContent() }
             }
@@ -924,7 +924,7 @@ class CompanyControllerTests {
 
         mockMvc
             .delete("/api/company/${company.id}") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
             }.andExpect {
                 status { isNoContent() }
             }
@@ -965,14 +965,14 @@ class CompanyControllerTests {
 
         mockMvc
             .delete("/api/company/${company1.id}") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
             }.andExpect {
                 status { isNoContent() }
             }
 
         mockMvc
             .delete("/api/company/${company2.id}") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
             }.andExpect {
                 status { isNoContent() }
             }
@@ -987,7 +987,7 @@ class CompanyControllerTests {
 
         mockMvc
             .delete("/api/company/${company3.id}") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
             }.andExpect {
                 status { isNoContent() }
             }
@@ -1013,7 +1013,7 @@ class CompanyControllerTests {
 
         mockMvc
             .delete("/api/company/${company1.id}") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
             }.andExpect {
                 status { isNoContent() }
             }
@@ -1026,7 +1026,7 @@ class CompanyControllerTests {
 
         mockMvc
             .post("/api/company") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
                 contentType = MediaType.APPLICATION_JSON
                 content = objectMapper.writeValueAsString(request)
             }.andExpect {
@@ -1034,9 +1034,9 @@ class CompanyControllerTests {
             }
 
         val recreated = companyRepository.findByTickerAndActiveTrue("RECR")
-        assertNotNull(recreated)
-        assertEquals("RECR", recreated?.ticker)
-        assertEquals("Recreate Test Company New", recreated?.companyName)
+        Assertions.assertNotNull(recreated)
+        Assertions.assertEquals("RECR", recreated?.ticker)
+        Assertions.assertEquals("Recreate Test Company New", recreated?.companyName)
     }
 
     @Test
@@ -1045,13 +1045,13 @@ class CompanyControllerTests {
         val company = companyRepository.save(Company(ticker = "CASC", companyName = "Cascade Test Company"))
         val user = userRepository.save(User(mail = "cascade@test.com", password = "pass"))
 
-        priceRepository.save(Price(ticker = "CASC", unityPrice = java.math.BigDecimal("100.00"), company = company))
-        priceRepository.save(Price(ticker = "CASC", unityPrice = java.math.BigDecimal("105.00"), company = company))
+        priceRepository.save(Price(ticker = "CASC", unityPrice = BigDecimal("100.00"), company = company))
+        priceRepository.save(Price(ticker = "CASC", unityPrice = BigDecimal("105.00"), company = company))
 
         historyRepository.save(
             History(
                 numberOfStocks = 10,
-                transactionValue = java.math.BigDecimal("1000.00"),
+                transactionValue = BigDecimal("1000.00"),
                 transactionTypeEnum = TransactionTypeEnum.BUY,
                 company = company,
                 user = user,
@@ -1066,26 +1066,26 @@ class CompanyControllerTests {
         entityManager.flush()
         entityManager.refresh(company)
 
-        assertEquals(2, company.prices.size)
-        assertEquals(1, company.history.size)
-        assertEquals(1, company.watchlist.size)
+        Assertions.assertEquals(2, company.prices.size)
+        Assertions.assertEquals(1, company.history.size)
+        Assertions.assertEquals(1, company.watchlist.size)
 
         mockMvc
             .delete("/api/company/$companyId") {
-                with(csrf())
+                with(SecurityMockMvcRequestPostProcessors.csrf())
             }.andExpect {
                 status { isNoContent() }
             }
 
         // Verificar soft delete: compañía marcada como inactiva
         val deletedCompany = companyRepository.findById(companyId).orElse(null)
-        assertNotNull(deletedCompany)
-        assertEquals(false, deletedCompany?.active)
+        Assertions.assertNotNull(deletedCompany)
+        Assertions.assertEquals(false, deletedCompany?.active)
 
         // Verificar que relaciones se mantienen (no se eliminan)
-        assertEquals(2, priceRepository.findByCompanyIdOrderByTimestampAsc(companyId).size)
-        assertEquals(1, watchlistRepository.findAll().count { it.company?.id == companyId })
-        assertEquals(1, historyRepository.findAll().count { it.company?.id == companyId })
+        Assertions.assertEquals(2, priceRepository.findByCompanyIdOrderByTimestampAsc(companyId).size)
+        Assertions.assertEquals(1, watchlistRepository.findAll().count { it.company?.id == companyId })
+        Assertions.assertEquals(1, historyRepository.findAll().count { it.company?.id == companyId })
 
         // Verificar que la compañía NO aparece en búsquedas (filtrada por active=true)
         mockMvc
