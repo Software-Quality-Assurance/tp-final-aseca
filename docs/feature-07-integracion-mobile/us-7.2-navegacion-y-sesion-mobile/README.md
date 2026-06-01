@@ -1,6 +1,6 @@
-# User Story 9.2 - Adaptación mobile con Expo
+# User Story 7.2 - Navegación y sesión mobile
 
-**Feature:** 9 - Frontend web y mobile
+**Feature:** 7 - Integración mobile
 
 **Tipo:** Frontend Mobile
 
@@ -8,7 +8,7 @@
 
 **Como** usuario
 
-**Quiero** usar la aplicación desde mobile con navegación, pantallas adaptadas y sesión persistente
+**Quiero** usar la aplicación mobile con navegación, pantallas adaptadas y sesión persistente
 
 **Para** gestionar mi portfolio cómodamente desde el celular.
 
