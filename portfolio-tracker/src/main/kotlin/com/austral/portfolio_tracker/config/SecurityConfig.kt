@@ -36,8 +36,9 @@ class SecurityConfig {
     fun securityFilterChain(
         http: HttpSecurity,
         jwtAuthenticationFilter: JwtAuthenticationFilter,
+        corsConfigurationSource: CorsConfigurationSource,
     ): SecurityFilterChain {
-        http.cors { cors -> cors.configurationSource(corsConfigurationSource()) }
+        http.cors { cors -> cors.configurationSource(corsConfigurationSource) }
 
         http.csrf { csrf ->
             csrf.disable()
