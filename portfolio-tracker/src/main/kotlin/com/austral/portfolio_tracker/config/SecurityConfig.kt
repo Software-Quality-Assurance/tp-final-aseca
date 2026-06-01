@@ -38,6 +38,10 @@ class SecurityConfig {
             csrf.disable()
         }
 
+        // enable CORS support - use corsConfigurationSource bean for configuration
+        http.cors { cors ->
+            cors.configurationSource(corsConfigurationSource())
+        }
         http.sessionManagement { session ->
             session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         }
@@ -55,5 +59,19 @@ class SecurityConfig {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
 
         return http.build()
+    }
+
+    @Bean
+    fun corsConfigurationSource(): CorsConfigurationSource {
+        val configuration = CorsConfiguration()
+        // Allow development origins. Use allowedOriginPatterns so Spring will echo
+        // back the actual request origin (useful when the dev server runs on different hostnames).
+        configuration.allowedOriginPatterns = listOf("*")
+        configuration.allowedMethods = listOf("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+        configuration.allowedHeaders = listOf("*")
+        configuration.allowCredentials = true
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/api/**", configuration)
+        return source
     }
 }
