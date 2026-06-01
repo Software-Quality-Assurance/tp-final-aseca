@@ -31,16 +31,22 @@ class JwtAuthenticationFilter(
         }
 
         val token = authorization.removePrefix("Bearer ").trim()
-        try {
-            val principal = jwtTokenService.authenticate(token)
-            val authentication = UsernamePasswordAuthenticationToken(principal, token, emptyList())
-            SecurityContextHolder.getContext().authentication = authentication
-            filterChain.doFilter(request, response)
-        } catch (_: JwtValidationException) {
-            writeUnauthorized(response)
-        } catch (_: Exception) {
-            writeUnauthorized(response)
-        }
+        val principal =
+            try {
+                jwtTokenService.authenticate(token)
+            } catch (_: JwtValidationException) {
+                writeUnauthorized(response)
+                return
+            } catch (_: Exception) {
+                writeUnauthorized(response)
+                return
+            }
+
+        val authentication = UsernamePasswordAuthenticationToken(principal, token, emptyList())
+        val context = SecurityContextHolder.createEmptyContext()
+        context.authentication = authentication
+        SecurityContextHolder.setContext(context)
+        filterChain.doFilter(request, response)
     }
 
     private fun writeUnauthorized(response: HttpServletResponse) {

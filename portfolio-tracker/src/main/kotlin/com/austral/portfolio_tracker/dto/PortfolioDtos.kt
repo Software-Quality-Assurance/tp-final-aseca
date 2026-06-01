@@ -12,6 +12,7 @@ data class OperationRequest(
     val type: String,
     @field:Min(value = 1, message = "Quantity must be greater than zero")
     val quantity: Int,
+    val timestampMs: Long? = null,
 )
 
 data class UpdateHistoryRequest(

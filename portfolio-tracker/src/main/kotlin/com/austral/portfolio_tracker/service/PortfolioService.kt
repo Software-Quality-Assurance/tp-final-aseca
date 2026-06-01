@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.server.ResponseStatusException
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.time.Instant
 
 private val ZERO = BigDecimal("0.00")
 
@@ -55,9 +56,9 @@ class PortfolioService(
             userRepository.findById(userId).orElse(null)
                 ?: throw ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found")
 
-        if (type == TransactionTypeEnum.SELL && currentQuantity(userId, company) < request.quantity) {
-            throw ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Not enough shares to sell")
-        }
+        if (type == TransactionTypeEnum.SELL) validateSellQuantity(userId, company, request.quantity)
+
+        val timestamp = request.timestampMs?.let { Instant.ofEpochMilli(it) } ?: Instant.now()
 
         val history =
             historyRepository.save(
@@ -65,6 +66,7 @@ class PortfolioService(
                     numberOfStocks = request.quantity,
                     transactionValue = latestPrice.unityPrice.multiply(BigDecimal(request.quantity)).money(),
                     transactionTypeEnum = type,
+                    timestamp = timestamp,
                     user = user,
                     company = company,
                 ),
@@ -172,6 +174,20 @@ class PortfolioService(
 
         ensurePortfolioNeverNegative(userId, excludedHistoryId = historyId)
         historyRepository.deleteById(historyId)
+    }
+
+    private fun validateSellQuantity(
+        userId: Long,
+        company: Company,
+        quantity: Int,
+    ) {
+        val available = currentQuantity(userId, company)
+        if (available < quantity) {
+            throw ResponseStatusException(
+                HttpStatus.UNPROCESSABLE_ENTITY,
+                "Not enough shares to sell: available $available, requested $quantity",
+            )
+        }
     }
 
     private fun currentQuantity(
