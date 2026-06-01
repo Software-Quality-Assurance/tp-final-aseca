@@ -58,15 +58,13 @@ class PortfolioService(
 
         if (type == TransactionTypeEnum.SELL) validateSellQuantity(userId, company, request.quantity)
 
-        val timestamp = request.timestampMs?.let { Instant.ofEpochMilli(it) } ?: Instant.now()
-
         val history =
             historyRepository.save(
                 History(
                     numberOfStocks = request.quantity,
                     transactionValue = latestPrice.unityPrice.multiply(BigDecimal(request.quantity)).money(),
                     transactionTypeEnum = type,
-                    timestamp = timestamp,
+                    timestamp = Instant.now(),
                     user = user,
                     company = company,
                 ),
