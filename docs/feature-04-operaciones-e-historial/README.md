@@ -13,13 +13,15 @@ Permite registrar compras y ventas de acciones, mantener consistencia del portfo
 
 ## Seed temporal de precios
 
-Feature 4 necesita precios almacenados para registrar operaciones, calcular valor actual y calcular P&L. Como la integracion real de precios corresponde a Feature 7, se agrego un seed temporal en `portfolio-tracker/src/main/resources/companies.json`.
+Feature 4 necesita precios almacenados para registrar operaciones, calcular valor actual y calcular P&L. Hasta que la actualización real de precios quede resuelta por las historias `US 4.5 - Valuación con precios de mercado` y `US 4.6 - Actualización auditable de precios`, se mantiene un seed temporal en `portfolio-tracker/src/main/resources/companies.json`.
 
-El `DataLoader` lee el campo opcional `price` de cada compania. Si `price` tiene valor, crea una fila inicial en `prices` asociada a esa compania. Si `price` es `null`, solo crea la compania.
+El objetivo del seed no es reemplazar la integración con Yahoo Finance, sino permitir que los flujos de compra, venta, valor actual y P&L puedan desarrollarse y probarse con precios almacenados desde el arranque de la aplicación.
 
-Companias con precio fijo temporal:
+El `DataLoader` lee el campo opcional `price` de cada compañía. Si `price` tiene valor, crea una fila inicial en `prices` asociada a esa compañía. Si `price` es `null`, solo crea la compañía.
 
-| Ticker | Compania | Precio |
+Compañías con precio fijo temporal:
+
+| Ticker | Compañía | Precio |
 | --- | --- | ---: |
 | TRWD | Tradewinds Universal | 24.50 |
 | NTCS | Natics Corp. | 18.75 |
@@ -27,8 +29,8 @@ Companias con precio fijo temporal:
 | NEWH | NewHydrogen, Inc. | 9.95 |
 | SMNR | Semnur Pharmaceuticals, Inc. | 31.40 |
 
-Este seed existe solo para poder desarrollar y testear Feature 4 sin depender todavia del batch de Yahoo Finance. Cuando Feature 7 este implementada, se debe borrar este workaround:
+Este seed existe solo para poder desarrollar y testear Feature 4 sin depender todavía del proceso real de actualización de precios. Cuando `US 4.5` y `US 4.6` estén implementadas con datos reales/auditables, se debe borrar este workaround:
 
 - Remover los valores fijos de `price` en `companies.json` o volverlos `null`.
-- Quitar del `DataLoader` la creacion automatica de `Price` desde el JSON si ya no se necesita.
-- Ajustar los tests que dependan de estos precios para que preparen sus propios datos o usen el proceso real de actualizacion de precios.
+- Quitar del `DataLoader` la creación automática de `Price` desde el JSON si ya no se necesita.
+- Ajustar los tests que dependan de estos precios para que preparen sus propios datos o usen el proceso real de actualización de precios.
