@@ -1,16 +1,16 @@
-# User Story 8.3 - Adaptación y robustez de datos EDGAR
+# User Story 6.5 - Datos financieros confiables y disponibles
 
-**Feature:** 8 - Integración con SEC EDGAR
+**Feature:** 6 - Watchlist y monitoreo de empresas
 
-**Tipo:** Backend
+**Tipo:** Mixta
 
 ## Historia
 
-**Como** desarrollador
+**Como** usuario
 
-**Quiero** transformar respuestas EDGAR, respetar rate limiting, configurar User-Agent y manejar errores externos
+**Quiero** recibir datos financieros normalizados, claros y tolerantes a fallas del proveedor externo
 
-**Para** ofrecer datos financieros consumibles, confiables y compatibles con las restricciones del proveedor.
+**Para** poder comparar compañías sin interpretar estructuras técnicas ni confundir datos faltantes con valores reales.
 
 ## Criterios de aceptación
 
