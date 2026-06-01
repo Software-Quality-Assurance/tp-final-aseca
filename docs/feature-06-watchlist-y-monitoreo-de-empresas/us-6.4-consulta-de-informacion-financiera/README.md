@@ -1,6 +1,6 @@
-# User Story 8.2 - Consulta de información financiera
+# User Story 6.4 - Consulta de información financiera
 
-**Feature:** 8 - Integración con SEC EDGAR
+**Feature:** 6 - Watchlist y monitoreo de empresas
 
 **Tipo:** Mixta
 
@@ -8,7 +8,7 @@
 
 **Como** usuario
 
-**Quiero** consultar métricas financieras, filings recientes y evolución histórica desde SEC EDGAR
+**Quiero** consultar métricas financieras, filings recientes y evolución histórica de una compañía
 
 **Para** evaluar empresas con información oficial y actualizada.
 
