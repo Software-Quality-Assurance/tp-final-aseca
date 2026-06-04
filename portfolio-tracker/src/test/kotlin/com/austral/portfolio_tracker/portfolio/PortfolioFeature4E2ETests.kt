@@ -1,12 +1,12 @@
 package com.austral.portfolio_tracker.portfolio
 
-import com.austral.portfolio_tracker.dto.RegisterUserRequest
-import com.austral.portfolio_tracker.entity.Company
-import com.austral.portfolio_tracker.entity.Price
-import com.austral.portfolio_tracker.repository.CompanyRepository
-import com.austral.portfolio_tracker.repository.HistoryRepository
-import com.austral.portfolio_tracker.repository.PriceRepository
-import com.austral.portfolio_tracker.repository.UserRepository
+import com.austral.portfolio_tracker.company.CompanyRepository
+import com.austral.portfolio_tracker.entities.Company
+import com.austral.portfolio_tracker.entities.Price
+import com.austral.portfolio_tracker.portfolio.HistoryRepository
+import com.austral.portfolio_tracker.portfolio.PriceRepository
+import com.austral.portfolio_tracker.user.RegisterUserRequest
+import com.austral.portfolio_tracker.user.UserRepository
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

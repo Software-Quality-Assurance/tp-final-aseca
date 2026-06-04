@@ -1,9 +1,9 @@
 package com.austral.portfolio_tracker.price
 
-import com.austral.portfolio_tracker.entity.Company
-import com.austral.portfolio_tracker.entity.Price
-import com.austral.portfolio_tracker.repository.CompanyRepository
-import com.austral.portfolio_tracker.repository.PriceRepository
+import com.austral.portfolio_tracker.company.CompanyRepository
+import com.austral.portfolio_tracker.entities.Company
+import com.austral.portfolio_tracker.entities.Price
+import com.austral.portfolio_tracker.portfolio.PriceRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
