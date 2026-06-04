@@ -1,9 +1,9 @@
 package com.austral.portfolio_tracker.user
 
-import com.austral.portfolio_tracker.dto.RegisterUserRequest
 import com.austral.portfolio_tracker.exception.DuplicateUserException
-import com.austral.portfolio_tracker.repository.UserRepository
-import com.austral.portfolio_tracker.service.UserRegistrationService
+import com.austral.portfolio_tracker.user.RegisterUserRequest
+import com.austral.portfolio_tracker.user.UserRegistrationService
+import com.austral.portfolio_tracker.user.UserRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

@@ -1,13 +1,13 @@
 package com.austral.portfolio_tracker.company
 
-import com.austral.portfolio_tracker.entity.Company
-import com.austral.portfolio_tracker.entity.History
-import com.austral.portfolio_tracker.entity.Price
-import com.austral.portfolio_tracker.entity.TransactionTypeEnum
-import com.austral.portfolio_tracker.entity.User
-import com.austral.portfolio_tracker.entity.Watchlist
-import com.austral.portfolio_tracker.repository.CompanyRepository
-import com.austral.portfolio_tracker.repository.UserRepository
+import com.austral.portfolio_tracker.company.CompanyRepository
+import com.austral.portfolio_tracker.entities.Company
+import com.austral.portfolio_tracker.entities.History
+import com.austral.portfolio_tracker.entities.Price
+import com.austral.portfolio_tracker.entities.TransactionTypeEnum
+import com.austral.portfolio_tracker.entities.User
+import com.austral.portfolio_tracker.entities.Watchlist
+import com.austral.portfolio_tracker.user.UserRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test

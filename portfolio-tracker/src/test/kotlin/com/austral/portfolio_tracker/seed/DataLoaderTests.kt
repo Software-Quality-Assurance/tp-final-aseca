@@ -1,8 +1,8 @@
 package com.austral.portfolio_tracker.seed
 
+import com.austral.portfolio_tracker.company.CompanyRepository
 import com.austral.portfolio_tracker.config.DataLoader
-import com.austral.portfolio_tracker.entity.Company
-import com.austral.portfolio_tracker.repository.CompanyRepository
+import com.austral.portfolio_tracker.entities.Company
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentCaptor
