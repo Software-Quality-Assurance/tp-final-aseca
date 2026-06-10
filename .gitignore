@@ -124,6 +124,14 @@ coverage/
 jacoco/
 *.exec
 
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.egg-info/
+.pg-test/
+
 # Node / frontend if added later
 node_modules/
 .next/

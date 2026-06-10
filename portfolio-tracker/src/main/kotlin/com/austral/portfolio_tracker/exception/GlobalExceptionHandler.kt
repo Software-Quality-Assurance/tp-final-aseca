@@ -1,5 +1,6 @@
 package com.austral.portfolio_tracker.exception
 
+import com.austral.portfolio_tracker.edgar.SecEdgarUnavailableException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
@@ -37,4 +38,8 @@ class GlobalExceptionHandler {
     @ExceptionHandler(InvalidCredentialsException::class)
     fun handleInvalidCredentials(e: InvalidCredentialsException): ResponseEntity<Map<String, String>> =
         ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(mapOf("error" to (e.message ?: "Invalid credentials")))
+
+    @ExceptionHandler(SecEdgarUnavailableException::class)
+    fun handleSecEdgarUnavailable(e: SecEdgarUnavailableException): ResponseEntity<Map<String, String>> =
+        ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(mapOf("error" to (e.message ?: "SEC EDGAR is temporarily unavailable")))
 }

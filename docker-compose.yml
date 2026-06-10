@@ -10,6 +10,11 @@ services:
       - "5433:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U portfolio_user -d portfolio_tracker"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   portfolio-api:
     profiles:
@@ -21,12 +26,31 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/portfolio_tracker
       SPRING_DATASOURCE_USERNAME: portfolio_user
       SPRING_DATASOURCE_PASSWORD: portfolio_pass
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SEC_EDGAR_USER_AGENT: tp-final-aseca fmanfredi@mail.austral.edu.ar
+      SEC_EDGAR_TIMEOUT_SECONDS: 15
+
+  yahoo-finance:
+    profiles:
+      - prices
+    build:
+      context: .
+      dockerfile: yahoo-finance/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://portfolio_user:portfolio_pass@db:5432/portfolio_tracker
+      YAHOO_TIMEOUT_SECONDS: 15
+      LOG_LEVEL: INFO
+      PRICE_UPDATE_TRIGGER: MANUAL
+    restart: "no"
 
 volumes:
   db_data:

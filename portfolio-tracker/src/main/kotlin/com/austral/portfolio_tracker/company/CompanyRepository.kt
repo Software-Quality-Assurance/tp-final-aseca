@@ -10,6 +10,8 @@ interface CompanyRepository : JpaRepository<Company, Long> {
 
     fun findAllByActiveTrue(pageable: Pageable): Page<Company>
 
+    fun findAllByActiveTrue(): List<Company>
+
     fun findByCompanyNameContainingIgnoreCaseAndActiveTrue(name: String): List<Company>
 
     fun findByTickerContainingIgnoreCaseAndActiveTrue(ticker: String): List<Company>

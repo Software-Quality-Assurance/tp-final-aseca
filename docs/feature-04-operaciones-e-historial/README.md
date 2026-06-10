@@ -11,26 +11,20 @@ Permite registrar compras y ventas de acciones, mantener consistencia del portfo
 - [User Story 4.5 - Valuación con precios de mercado](us-4.5-valuacion-con-precios-de-mercado/README.md) - Mixta
 - [User Story 4.6 - Actualización auditable de precios](us-4.6-actualizacion-auditable-de-precios/README.md) - Mixta
 
-## Seed temporal de precios
+## Integración con Yahoo Finance
 
-Feature 4 necesita precios almacenados para registrar operaciones, calcular valor actual y calcular P&L. Hasta que la actualización real de precios quede resuelta por las historias `US 4.5 - Valuación con precios de mercado` y `US 4.6 - Actualización auditable de precios`, se mantiene un seed temporal en `portfolio-tracker/src/main/resources/companies.json`.
+Las historias `US 4.5` y `US 4.6` se implementan mediante el módulo independiente `yahoo-finance/`.
 
-El objetivo del seed no es reemplazar la integración con Yahoo Finance, sino permitir que los flujos de compra, venta, valor actual y P&L puedan desarrollarse y probarse con precios almacenados desde el arranque de la aplicación.
+El batch:
 
-El `DataLoader` lee el campo opcional `price` de cada compañía. Si `price` tiene valor, crea una fila inicial en `prices` asociada a esa compañía. Si `price` es `null`, solo crea la compañía.
+- Busca compañías activas presentes en una watchlist o con una posición neta positiva.
+- Deduplica tickers antes de consultar Yahoo Finance.
+- Descarga los precios mediante `yfinance`.
+- Persiste nuevas filas en `prices` sin eliminar el histórico.
+- Guarda timestamp y fuente `YAHOO_FINANCE`.
+- Registra ejecuciones y errores parciales para auditoría.
+- Puede ejecutarse localmente, con Docker o de forma opcional desde GitHub Actions.
 
-Compañías con precio fijo temporal:
+El seed temporal anterior fue retirado. Los valores `price` de `companies.json` volvieron a `null` y `DataLoader` ya no crea precios. Los tests del backend preparan sus propios precios controlados.
 
-| Ticker | Compañía | Precio |
-| --- | --- | ---: |
-| TRWD | Tradewinds Universal | 24.50 |
-| NTCS | Natics Corp. | 18.75 |
-| LMMY | Exousia Bio, Inc. | 12.30 |
-| NEWH | NewHydrogen, Inc. | 9.95 |
-| SMNR | Semnur Pharmaceuticals, Inc. | 31.40 |
-
-Este seed existe solo para poder desarrollar y testear Feature 4 sin depender todavía del proceso real de actualización de precios. Cuando `US 4.5` y `US 4.6` estén implementadas con datos reales/auditables, se debe borrar este workaround:
-
-- Remover los valores fijos de `price` en `companies.json` o volverlos `null`.
-- Quitar del `DataLoader` la creación automática de `Price` desde el JSON si ya no se necesita.
-- Ajustar los tests que dependan de estos precios para que preparen sus propios datos o usen el proceso real de actualización de precios.
+La configuración y los comandos de ejecución están en [`yahoo-finance/README.md`](../../yahoo-finance/README.md).

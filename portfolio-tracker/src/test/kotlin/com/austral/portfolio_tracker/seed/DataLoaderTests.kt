@@ -52,7 +52,7 @@ class DataLoaderTests {
             assert(company.ticker.isNotBlank())
             assert(company.companyName.isNotBlank())
         }
-        assert(allCompanies.count { it.prices.isNotEmpty() } == 5)
+        assert(allCompanies.all { it.prices.isEmpty() })
     }
 
     @Test
@@ -115,19 +115,4 @@ class DataLoaderIntegrationTests {
         assert(saved.companyName == "Test Company")
     }
 
-    @Test
-    fun `should persist seeded companies with fixed prices from JSON`() {
-        val objectMapper = ObjectMapper()
-        val dataLoader = DataLoader(companyRepository, objectMapper)
-
-        dataLoader.run()
-
-        val seededCompanies =
-            listOf("TRWD", "NTCS", "LMMY", "NEWH", "SMNR").mapNotNull {
-                companyRepository.findByTickerAndActiveTrue(it)
-            }
-
-        assert(seededCompanies.size == 5)
-        assert(seededCompanies.all { it.prices.size == 1 })
-    }
 }

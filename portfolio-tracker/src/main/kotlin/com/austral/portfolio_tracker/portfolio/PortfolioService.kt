@@ -93,6 +93,7 @@ class PortfolioService(
                         quantity = position.quantity,
                         averageCost = null,
                         currentPrice = latestPrice?.unityPrice,
+                        priceSource = latestPrice?.source,
                         investedCost = null,
                         currentValue = latestPrice?.unityPrice?.multiply(BigDecimal(position.quantity))?.money(),
                         profitLoss = null,
@@ -110,6 +111,7 @@ class PortfolioService(
                         quantity = position.quantity,
                         averageCost = averageCost.money(),
                         currentPrice = latestPrice.unityPrice.money(),
+                        priceSource = latestPrice.source,
                         investedCost = investedCost,
                         currentValue = currentValue,
                         profitLoss = profitLoss,
@@ -257,6 +259,7 @@ class PortfolioService(
             currentPrice = latestPrice?.unityPrice?.money(),
             currentValue = currentValue,
             lastUpdatedAt = latestPrice?.timestamp,
+            priceSource = latestPrice?.source,
             warning = if (latestPrice == null) "Missing current price for ${company.ticker}" else null,
         )
     }

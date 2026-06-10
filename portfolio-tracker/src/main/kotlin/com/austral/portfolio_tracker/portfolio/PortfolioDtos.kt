@@ -38,6 +38,7 @@ data class PortfolioPositionResponse(
     val currentPrice: BigDecimal?,
     val currentValue: BigDecimal?,
     val lastUpdatedAt: Instant?,
+    val priceSource: String?,
     val warning: String? = null,
 )
 
@@ -58,6 +59,7 @@ data class ProfitLossPositionResponse(
     val quantity: Int,
     val averageCost: BigDecimal?,
     val currentPrice: BigDecimal?,
+    val priceSource: String?,
     val investedCost: BigDecimal?,
     val currentValue: BigDecimal?,
     val profitLoss: BigDecimal?,

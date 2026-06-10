@@ -37,6 +37,7 @@ class PriceTests {
                 ticker = "AAPL",
                 unityPrice = BigDecimal("150.25"),
                 timestamp = Instant.parse("2026-05-20T10:00:00Z"),
+                source = "YAHOO_FINANCE",
                 company = company,
             )
 
@@ -45,6 +46,7 @@ class PriceTests {
         assertNotNull(saved.id)
         assertEquals("AAPL", saved.ticker)
         assertEquals(BigDecimal("150.25"), saved.unityPrice)
+        assertEquals("YAHOO_FINANCE", saved.source)
         assertEquals(company.id, saved.company?.id)
     }
 
