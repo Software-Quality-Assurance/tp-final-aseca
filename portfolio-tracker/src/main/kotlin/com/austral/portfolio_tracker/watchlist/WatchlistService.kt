@@ -26,6 +26,7 @@ class WatchlistService(
                     companyName = company.companyName,
                     currentPrice = lastPrice?.unityPrice,
                     lastUpdatedAt = lastPrice?.timestamp,
+                    priceSource = lastPrice?.source,
                 )
             }
         return WatchlistResponse(items)

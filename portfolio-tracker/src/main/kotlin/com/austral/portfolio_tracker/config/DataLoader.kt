@@ -2,7 +2,6 @@ package com.austral.portfolio_tracker.config
 
 import com.austral.portfolio_tracker.company.CompanyRepository
 import com.austral.portfolio_tracker.entities.Company
-import com.austral.portfolio_tracker.entities.Price
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
@@ -44,17 +43,7 @@ class DataLoader(
                             Company(
                                 ticker = data.ticker,
                                 companyName = data.companyName,
-                            ).apply {
-                                data.price?.let { seedPrice ->
-                                    prices.add(
-                                        Price(
-                                            ticker = data.ticker,
-                                            unityPrice = seedPrice,
-                                            company = this,
-                                        ),
-                                    )
-                                }
-                            }
+                            )
                         } else {
                             null
                         }

@@ -9,6 +9,7 @@ data class WatchlistItemResponse(
     val companyName: String,
     val currentPrice: BigDecimal?,
     val lastUpdatedAt: Instant?,
+    val priceSource: String?,
 )
 
 data class WatchlistResponse(

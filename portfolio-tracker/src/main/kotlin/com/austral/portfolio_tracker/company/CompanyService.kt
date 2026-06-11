@@ -62,6 +62,7 @@ class CompanyService(
                         Price(
                             ticker = normalizedTicker,
                             unityPrice = initialPrice,
+                            source = "MANUAL",
                             company = this,
                         ),
                     )

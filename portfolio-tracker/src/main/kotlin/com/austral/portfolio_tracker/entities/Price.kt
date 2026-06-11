@@ -24,6 +24,8 @@ class Price(
     val unityPrice: BigDecimal,
     @Column(nullable = false)
     val timestamp: Instant = Instant.now(),
+    @Column(nullable = false, columnDefinition = "varchar(32) default 'UNKNOWN'")
+    val source: String = "UNKNOWN",
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", nullable = false)
     val company: Company? = null,

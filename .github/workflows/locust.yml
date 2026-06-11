@@ -1,0 +1,113 @@
+name: Locust performance tests
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+    paths:
+      - "load-tests/**"
+      - "docker-compose.yml"
+      - ".github/workflows/locust.yml"
+  workflow_dispatch:
+    inputs:
+      scenario:
+        description: "Performance scenario"
+        required: true
+        default: load
+        type: choice
+        options:
+          - load
+          - stress
+      include_edgar:
+        description: "Allow controlled requests through the backend to SEC EDGAR"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: load-tests/requirements.txt
+
+      - name: Install Locust
+        run: python -m pip install -r load-tests/requirements.txt
+
+      - name: Run load-test unit tests
+        working-directory: load-tests
+        run: python -m pytest tests -q
+
+      - name: Validate Docker Compose
+        run: docker compose --profile api --profile load-tests config --quiet
+
+      - name: Build Locust image
+        run: docker compose --profile api --profile load-tests build locust
+
+  performance:
+    if: github.event_name == 'workflow_dispatch'
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      INCLUDE_EDGAR: ${{ inputs.include_edgar }}
+      EDGAR_MAX_REQUESTS_PER_SECOND: "8"
+      LOCUST_WORKER_COUNT: "1"
+      LOCUST_TEST_RUN_ID: ci-${{ github.run_id }}
+      SPRING_PROFILES_ACTIVE: seed
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create report directory
+        run: mkdir -p load-tests/results
+
+      - name: Start API and PostgreSQL
+        run: docker compose --profile api up -d --build
+
+      - name: Wait for API
+        shell: bash
+        run: |
+          for attempt in {1..60}; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/api/company || true)
+            if [ "$status" = "401" ]; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker compose logs portfolio-api
+          exit 1
+
+      - name: Run Locust scenario
+        shell: bash
+        run: |
+          docker compose --profile api --profile load-tests run --rm locust \
+            -f "/load-tests/${{ inputs.scenario }}.py" \
+            --headless \
+            --csv "/load-tests/results/${{ inputs.scenario }}" \
+            --html "/load-tests/results/${{ inputs.scenario }}.html"
+
+      - name: Collect service logs
+        if: always()
+        run: |
+          mkdir -p load-tests/results
+          docker compose logs portfolio-api db > load-tests/results/services.log
+
+      - name: Upload Locust reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: locust-${{ inputs.scenario }}-${{ github.run_id }}
+          path: load-tests/results/
+
+      - name: Stop stack
+        if: always()
+        run: docker compose --profile api --profile load-tests down
