@@ -123,6 +123,15 @@ test-results/
 coverage/
 jacoco/
 *.exec
+load-tests/results/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.egg-info/
+.pg-test/
 
 # Node / frontend if added later
 node_modules/

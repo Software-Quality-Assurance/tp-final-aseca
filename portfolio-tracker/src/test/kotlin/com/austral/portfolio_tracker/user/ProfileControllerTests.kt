@@ -1,8 +1,8 @@
 package com.austral.portfolio_tracker.user
 
-import com.austral.portfolio_tracker.dto.RegisterUserRequest
-import com.austral.portfolio_tracker.repository.UserRepository
 import com.austral.portfolio_tracker.security.JwtTokenService
+import com.austral.portfolio_tracker.user.RegisterUserRequest
+import com.austral.portfolio_tracker.user.UserRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

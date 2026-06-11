@@ -1,9 +1,9 @@
 package com.austral.portfolio_tracker.price
 
-import com.austral.portfolio_tracker.entity.Company
-import com.austral.portfolio_tracker.entity.Price
-import com.austral.portfolio_tracker.repository.CompanyRepository
-import com.austral.portfolio_tracker.repository.PriceRepository
+import com.austral.portfolio_tracker.company.CompanyRepository
+import com.austral.portfolio_tracker.entities.Company
+import com.austral.portfolio_tracker.entities.Price
+import com.austral.portfolio_tracker.portfolio.PriceRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
@@ -37,6 +37,7 @@ class PriceTests {
                 ticker = "AAPL",
                 unityPrice = BigDecimal("150.25"),
                 timestamp = Instant.parse("2026-05-20T10:00:00Z"),
+                source = "YAHOO_FINANCE",
                 company = company,
             )
 
@@ -45,6 +46,7 @@ class PriceTests {
         assertNotNull(saved.id)
         assertEquals("AAPL", saved.ticker)
         assertEquals(BigDecimal("150.25"), saved.unityPrice)
+        assertEquals("YAHOO_FINANCE", saved.source)
         assertEquals(company.id, saved.company?.id)
     }
 

@@ -1,12 +1,12 @@
 package com.austral.portfolio_tracker.portfolio
 
-import com.austral.portfolio_tracker.dto.RegisterUserRequest
-import com.austral.portfolio_tracker.entity.Company
-import com.austral.portfolio_tracker.entity.Price
-import com.austral.portfolio_tracker.repository.CompanyRepository
-import com.austral.portfolio_tracker.repository.HistoryRepository
-import com.austral.portfolio_tracker.repository.PriceRepository
-import com.austral.portfolio_tracker.repository.UserRepository
+import com.austral.portfolio_tracker.company.CompanyRepository
+import com.austral.portfolio_tracker.entities.Company
+import com.austral.portfolio_tracker.entities.Price
+import com.austral.portfolio_tracker.portfolio.HistoryRepository
+import com.austral.portfolio_tracker.portfolio.PriceRepository
+import com.austral.portfolio_tracker.user.RegisterUserRequest
+import com.austral.portfolio_tracker.user.UserRepository
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -149,10 +149,22 @@ class PortfolioFeature4E2ETests {
         postOperation(token, "TSLA", "BUY", 2).andExpect { status { isCreated() } }
 
         priceRepository.save(
-            Price(ticker = "AAPL", unityPrice = BigDecimal("130.00"), timestamp = Instant.parse("2026-05-22T10:00:00Z"), company = apple),
+            Price(
+                ticker = "AAPL",
+                unityPrice = BigDecimal("130.00"),
+                timestamp = Instant.parse("2026-05-22T10:00:00Z"),
+                source = "YAHOO_FINANCE",
+                company = apple,
+            ),
         )
         priceRepository.save(
-            Price(ticker = "TSLA", unityPrice = BigDecimal("180.00"), timestamp = Instant.parse("2026-05-22T10:05:00Z"), company = tesla),
+            Price(
+                ticker = "TSLA",
+                unityPrice = BigDecimal("180.00"),
+                timestamp = Instant.parse("2026-05-22T10:05:00Z"),
+                source = "YAHOO_FINANCE",
+                company = tesla,
+            ),
         )
 
         mockMvc
@@ -163,6 +175,7 @@ class PortfolioFeature4E2ETests {
                 jsonPath("$.totalValue") { value(1660.00) }
                 jsonPath("$.lastUpdatedAt") { value("2026-05-22T10:05:00Z") }
                 jsonPath("$.positions.length()") { value(2) }
+                jsonPath("$.positions[0].priceSource") { value("YAHOO_FINANCE") }
             }
 
         mockMvc

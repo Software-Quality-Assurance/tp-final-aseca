@@ -1,13 +1,13 @@
 package com.austral.portfolio_tracker.watchlist
 
-import com.austral.portfolio_tracker.entity.Company
-import com.austral.portfolio_tracker.entity.Price
-import com.austral.portfolio_tracker.entity.User
-import com.austral.portfolio_tracker.repository.CompanyRepository
-import com.austral.portfolio_tracker.repository.PriceRepository
-import com.austral.portfolio_tracker.repository.UserRepository
-import com.austral.portfolio_tracker.repository.WatchlistRepository
+import com.austral.portfolio_tracker.company.CompanyRepository
+import com.austral.portfolio_tracker.entities.Company
+import com.austral.portfolio_tracker.entities.Price
+import com.austral.portfolio_tracker.entities.User
+import com.austral.portfolio_tracker.portfolio.PriceRepository
 import com.austral.portfolio_tracker.security.JwtTokenService
+import com.austral.portfolio_tracker.user.UserRepository
+import com.austral.portfolio_tracker.watchlist.WatchlistRepository
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

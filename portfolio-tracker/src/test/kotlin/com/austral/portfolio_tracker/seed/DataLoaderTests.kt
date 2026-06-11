@@ -1,8 +1,8 @@
 package com.austral.portfolio_tracker.seed
 
+import com.austral.portfolio_tracker.company.CompanyRepository
 import com.austral.portfolio_tracker.config.DataLoader
-import com.austral.portfolio_tracker.entity.Company
-import com.austral.portfolio_tracker.repository.CompanyRepository
+import com.austral.portfolio_tracker.entities.Company
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentCaptor
@@ -52,7 +52,7 @@ class DataLoaderTests {
             assert(company.ticker.isNotBlank())
             assert(company.companyName.isNotBlank())
         }
-        assert(allCompanies.count { it.prices.isNotEmpty() } == 5)
+        assert(allCompanies.all { it.prices.isEmpty() })
     }
 
     @Test
@@ -113,21 +113,5 @@ class DataLoaderIntegrationTests {
         assert(saved.id!! > 0) { "Company ID should be positive but got ${saved.id}" }
         assert(saved.ticker == "TEST")
         assert(saved.companyName == "Test Company")
-    }
-
-    @Test
-    fun `should persist seeded companies with fixed prices from JSON`() {
-        val objectMapper = ObjectMapper()
-        val dataLoader = DataLoader(companyRepository, objectMapper)
-
-        dataLoader.run()
-
-        val seededCompanies =
-            listOf("TRWD", "NTCS", "LMMY", "NEWH", "SMNR").mapNotNull {
-                companyRepository.findByTickerAndActiveTrue(it)
-            }
-
-        assert(seededCompanies.size == 5)
-        assert(seededCompanies.all { it.prices.size == 1 })
     }
 }

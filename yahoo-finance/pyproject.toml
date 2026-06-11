@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portfolio-yahoo-finance"
+version = "0.1.0"
+description = "Batch de actualizacion de precios de mercado para Portfolio Tracker"
+requires-python = ">=3.12"
+dependencies = [
+    "psycopg[binary]==3.3.4",
+    "yfinance==1.4.1",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest==9.0.2",
+]
+
+[project.scripts]
+update-prices = "yahoo_finance.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: requires a PostgreSQL database",
+    "live: calls Yahoo Finance over the network",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
