@@ -114,5 +114,4 @@ class DataLoaderIntegrationTests {
         assert(saved.ticker == "TEST")
         assert(saved.companyName == "Test Company")
     }
-
 }

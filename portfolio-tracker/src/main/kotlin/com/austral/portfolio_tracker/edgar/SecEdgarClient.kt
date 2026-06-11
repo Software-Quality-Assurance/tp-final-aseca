@@ -115,7 +115,13 @@ class SecEdgarClient(
                 root.properties().mapNotNull { (_, node) ->
                     val ticker = node.get("ticker")?.textOrNull()?.uppercase() ?: return@mapNotNull null
                     val name = node.get("title")?.textOrNull() ?: return@mapNotNull null
-                    val cik = node.get("cik_str")?.asLong()?.toString()?.padStart(10, '0') ?: return@mapNotNull null
+                    val cik =
+                        node
+                            .get("cik_str")
+                            ?.asLong()
+                            ?.toString()
+                            ?.padStart(10, '0')
+                            ?: return@mapNotNull null
                     SecCompanyRecord(cik = cik, ticker = ticker, name = name)
                 }
             cachedDirectory = directory
@@ -127,7 +133,11 @@ class SecEdgarClient(
     private fun getJson(url: String): JsonNode {
         rateLimiter.acquire()
         try {
-            return restClient.get().uri(url).retrieve().body(JsonNode::class.java)
+            return restClient
+                .get()
+                .uri(url)
+                .retrieve()
+                .body(JsonNode::class.java)
                 ?: throw SecEdgarUnavailableException("SEC EDGAR returned an empty response")
         } catch (e: RestClientResponseException) {
             log.warn("SEC EDGAR request failed with status {} for {}", e.statusCode, url)

@@ -178,7 +178,11 @@ class SecEdgarControllerE2ETests {
                 }.andExpect {
                     status { isOk() }
                 }.andReturn()
-        return objectMapper.readTree(response.response.contentAsString).get("token").toString().removeSurrounding("\"")
+        return objectMapper
+            .readTree(response.response.contentAsString)
+            .get("token")
+            .toString()
+            .removeSurrounding("\"")
     }
 
     @TestConfiguration
@@ -201,8 +205,7 @@ class SecEdgarControllerE2ETests {
                 SecCompanyRecord("0000000001", "PRIVATE", "Private Corp"),
             )
 
-        override fun findCompanyByTicker(ticker: String): SecCompanyRecord? =
-            companies.firstOrNull { it.ticker == ticker.uppercase() }
+        override fun findCompanyByTicker(ticker: String): SecCompanyRecord? = companies.firstOrNull { it.ticker == ticker.uppercase() }
 
         override fun searchCompanies(query: String): List<SecCompanyRecord> =
             companies.filter { it.ticker.contains(query, true) || it.name.contains(query, true) }

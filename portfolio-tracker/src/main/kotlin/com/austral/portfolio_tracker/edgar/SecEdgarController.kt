@@ -36,8 +36,7 @@ class SecEdgarController(
     ) = service.history(ticker, parseMetric(metric), quarters)
 
     @GetMapping("/comparison")
-    fun comparison(authentication: Authentication) =
-        service.comparison((authentication.principal as JwtPrincipal).userId)
+    fun comparison(authentication: Authentication) = service.comparison((authentication.principal as JwtPrincipal).userId)
 
     private fun parseMetric(metric: String): FinancialMetric =
         try {

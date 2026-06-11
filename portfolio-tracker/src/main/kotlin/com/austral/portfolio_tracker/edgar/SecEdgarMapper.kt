@@ -150,7 +150,16 @@ class SecEdgarMapper {
                 val parsed =
                     entries.mapNotNull { node ->
                         val value = node.get("val")?.decimalValue() ?: return@mapNotNull null
-                        val end = node.get("end")?.stringValue()?.takeIf { it.isNotBlank() }?.let(LocalDate::parse) ?: return@mapNotNull null
+                        val end =
+                            node
+                                .get("end")
+                                ?.stringValue()
+                                ?.takeIf {
+                                    it.isNotBlank()
+                                }?.let(
+                                    LocalDate::parse,
+                                )
+                                ?: return@mapNotNull null
                         FactEntry(
                             value = value,
                             unit = unit,
@@ -158,7 +167,13 @@ class SecEdgarMapper {
                             fiscalYear = node.get("fy")?.takeUnless { it.isNull }?.asInt(),
                             fiscalPeriod = node.get("fp").textOrNull(),
                             form = node.get("form").textOrNull(),
-                            filed = node.get("filed").textOrNull()?.takeIf { it.isNotBlank() }?.let(LocalDate::parse),
+                            filed =
+                                node
+                                    .get("filed")
+                                    .textOrNull()
+                                    ?.takeIf {
+                                        it.isNotBlank()
+                                    }?.let(LocalDate::parse),
                             frame = node.get("frame").textOrNull(),
                         )
                     }
