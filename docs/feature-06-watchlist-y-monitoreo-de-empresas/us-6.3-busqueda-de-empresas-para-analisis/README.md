@@ -21,4 +21,3 @@
 5. Dado un ticker válido, cuando se consulta el identificador oficial, entonces el sistema devuelve el CIK correcto.
 6. Dado un ticker inexistente, cuando se consulta, entonces responde 404 Not Found.
 7. Dado un CIK obtenido, cuando se consulta Company Facts o Submissions, entonces se usa ese CIK.
-8. Dado un ticker en distinto formato, cuando se procesa, entonces se normaliza antes de consultar.

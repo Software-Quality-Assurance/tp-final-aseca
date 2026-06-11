@@ -90,6 +90,28 @@ El backend consulta SEC EDGAR para búsqueda de empresas, CIK, métricas XBRL, f
 
 El User-Agent debe contener el nombre del proyecto y un email de contacto válido. La integración aplica un límite global de 10 requests por segundo.
 
+## Load y stress testing con Locust
+
+Los escenarios de rendimiento están en `load-tests/` y se ejecutan contra la API real:
+
+```powershell
+$env:SPRING_PROFILES_ACTIVE="seed"
+docker compose --profile api up -d --build
+docker compose --profile api --profile load-tests run --rm locust `
+  -f /load-tests/load.py --headless `
+  --csv /load-tests/results/load `
+  --html /load-tests/results/load.html
+```
+
+Para stress testing, reemplazar `load.py` por `stress.py`. La integración con EDGAR es opt-in mediante `INCLUDE_EDGAR=true` y conserva un presupuesto configurable inferior al límite oficial:
+
+```powershell
+$env:INCLUDE_EDGAR="true"
+$env:EDGAR_MAX_REQUESTS_PER_SECOND="8"
+```
+
+La estrategia, dimensionamiento, umbrales y ejecución en CI están documentados en [`load-tests/README.md`](load-tests/README.md).
+
 ## Activar hooks de Git
 
 Si los hooks del repositorio estan en `.github/hooks`, hay que indicarselo a Git:
