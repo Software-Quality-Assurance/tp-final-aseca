@@ -17,7 +17,7 @@ Las historias `US 4.5` y `US 4.6` se implementan mediante el módulo independien
 
 El batch:
 
-- Busca compañías activas presentes en una watchlist o con una posición neta positiva.
+- Busca todas las compañías activas del catálogo para disponer de precio antes de la primera compra.
 - Deduplica tickers antes de consultar Yahoo Finance.
 - Descarga los precios mediante `yfinance`.
 - Persiste nuevas filas en `prices` sin eliminar el histórico.

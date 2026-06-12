@@ -4,8 +4,8 @@ Modulo batch independiente que implementa `US 4.5` y `US 4.6`.
 
 ## Responsabilidad
 
-- Obtiene los tickers unicos que estan en una watchlist o tienen una posicion neta positiva.
-- Excluye companias inactivas y posiciones totalmente vendidas.
+- Obtiene los tickers unicos de todas las companias activas del catalogo.
+- Excluye solamente companias inactivas.
 - Descarga los precios en una sola invocacion de `yfinance.download`.
 - Inserta una nueva fila en `prices` por cada precio valido, preservando el historico.
 - Guarda `timestamp` y `source = YAHOO_FINANCE`.
@@ -13,7 +13,7 @@ Modulo batch independiente que implementa `US 4.5` y `US 4.6`.
 - Registra fallos por ticker en `price_update_failures`.
 - Continua ante errores parciales y falla con codigo distinto de cero si ningun ticker pudo actualizarse.
 
-El batch no crea companias ni consulta todos los tickers del catalogo. Solo procesa companias activas actualmente utilizadas.
+El batch no crea companias. Procesa todas las companias activas del catalogo para que exista un precio almacenado antes de la primera compra.
 
 ## Configuracion
 

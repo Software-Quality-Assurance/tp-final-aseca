@@ -14,9 +14,9 @@
 
 ## Criterios de aceptación
 
-1. Dado un portfolio o watchlist con tickers, cuando se actualizan precios, entonces el sistema considera los tickers únicos en uso.
-2. Dado tickers repetidos en varios usuarios, cuando se procesan, entonces se consulta una sola vez por ticker.
-3. Dado que no hay tickers en uso, cuando se ejecuta la actualización, entonces no se consulta al proveedor externo.
+1. Dado un catálogo con compañías activas, cuando se actualizan precios, entonces el sistema considera todos sus tickers únicos.
+2. Dado tickers repetidos en el catálogo, cuando se procesan, entonces se consulta una sola vez por ticker.
+3. Dado que no hay compañías activas, cuando se ejecuta la actualización, entonces no se consulta al proveedor externo.
 4. Dado tickers inactivos o eliminados, cuando se actualizan precios, entonces no se incluyen en el cálculo.
 5. Dado un ticker válido, cuando se consulta la fuente de mercado, entonces se obtiene el último precio disponible.
 6. Dado un precio obtenido correctamente, cuando se guarda, entonces queda asociado a la compañía correspondiente.

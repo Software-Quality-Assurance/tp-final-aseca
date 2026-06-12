@@ -69,7 +69,7 @@ Borrar volumenes resetea la base de datos.
 
 ## Actualizar precios con Yahoo Finance
 
-El batch independiente esta en `yahoo-finance/`. Procesa los tickers activos presentes en portfolios o watchlists y guarda precios historicos con fuente y timestamp.
+El batch independiente esta en `yahoo-finance/`. Procesa todos los tickers activos del catalogo y guarda precios historicos con fuente y timestamp.
 
 Con la base y el backend ya inicializados:
 
