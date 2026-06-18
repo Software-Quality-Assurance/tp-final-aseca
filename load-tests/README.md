@@ -6,29 +6,45 @@ Esta carpeta implementa los ensayos de rendimiento requeridos por el TP con Locu
 
 ### Load test
 
-`load.py` verifica el comportamiento bajo la carga esperada:
+`load.py` verifica el comportamiento bajo la carga esperada. Si existe
+`results/capacity.json`, usa por default el 80% del último escalón estable
+descubierto por stress; si todavía no existe, usa 150 usuarios como fallback.
 
 | Etapa | Duración default | Usuarios |
 | --- | ---: | ---: |
-| Ramp-up | 60 s | 1 a 20 |
-| Meseta | 300 s | 20 |
-| Ramp-down | 60 s | 20 a 1 |
+| Ramp-up | 50 s | 1 a 150 |
+| Meseta | 120 s | 150 |
+| Ramp-down | 30 s | 150 a 1 |
 
 El objetivo es comprobar estabilidad durante una meseta representativa: tasa de errores menor o igual al 1% y p95 menor o igual a 1000 ms.
 
 ### Stress test
 
-`stress.py` incrementa concurrencia en escalones para observar cuándo se degradan los tiempos o aparecen errores:
+`stress.py` incrementa concurrencia hasta encontrar el primer escalón que
+incumple el SLO (`p95 > 500 ms` o errores `> 1%`):
 
 | Etapa | Duración default | Usuarios |
 | --- | ---: | ---: |
-| 1 | 120 s | 10 |
-| 2 | 120 s | 30 |
-| 3 | 120 s | 50 |
-| 4 | 120 s | 70 |
-| 5 | 120 s | 90 |
+| 1 | 60 s | 120 |
+| 2 | 60 s | 180 |
+| 3 | 60 s | 270 |
+| 4 | 60 s | 405 |
+| 5 | 60 s | 608 |
+| 6 | 60 s | 911 |
+| 7 | 60 s | 1367 |
+| 8 | 60 s | 2050 |
+| 9 | 60 s | 3075 |
 
-El objetivo no es demostrar que la aplicación soporta tráfico ilimitado, sino identificar el primer escalón que incumple los umbrales y conservar evidencia CSV/HTML para justificar la capacidad observada.
+Al incumplir el SLO, Locust agrega el fallo visible
+`[stress] capacity exceeded`, termina con código `1` y guarda en
+`results/capacity.json` el escalón fallido, el último estable y la cantidad
+recomendada para load.
+
+En `stress`, los usuarios usan un `think time` corto pero no nulo por default (`0.2` a `0.6 s`) para empujar RPS altos sin romper demasiado temprano.
+Ademas, `stress` usa un timeout corto por request (`2 s` por default) para que las caidas del backend se reflejen rapido como fallos en Locust y no queden ocultas como requests colgadas durante demasiado tiempo.
+
+En Docker Compose, la capacidad objetivo actual queda acotada a `1 CPU / 1 GB`
+para `portfolio-api` y `0.5 CPU / 512 MB` para `db`.
 
 Los valores son una línea base para un TP y deben ajustarse después de medir el entorno de defensa. Las curvas son configurables por variables de entorno sin modificar código.
 
@@ -85,27 +101,27 @@ docker compose --profile api up -d --build
 
 El perfil `seed` carga la whitelist de `companies.json` en una base nueva. Puede omitirse únicamente si la base ya contiene las compañías.
 
-Load test:
+Primero ejecutar stress y observarlo en `http://127.0.0.1:8089`:
 
 ```powershell
-docker compose --profile api --profile load-tests run --rm locust `
-  -f /load-tests/load.py `
-  --headless `
-  --csv /load-tests/results/load `
-  --html /load-tests/results/load.html
+docker compose --profile api --profile load-tests up --build --force-recreate locust-stress
 ```
 
-Stress test:
+Cuando termine por incumplir el SLO, ejecutar load con la capacidad descubierta:
 
 ```powershell
-docker compose --profile api --profile load-tests run --rm locust `
-  -f /load-tests/stress.py `
-  --headless `
-  --csv /load-tests/results/stress `
-  --html /load-tests/results/stress.html
+docker compose --profile api --profile load-report run --rm locust-load
 ```
 
 Los resultados se generan en `load-tests/results/` y no se versionan.
+
+La UI visible queda disponible sólo para `stress` en `http://127.0.0.1:8089`, con `autostart`.
+
+`load` queda configurado para ejecutarse headless y generar artifacts. Se puede
+forzar manualmente una cantidad definiendo `LOAD_USERS`; si queda vacío, usa el
+80% de `last_stable_users`.
+
+La comparación entre perfiles queda disponible en `http://127.0.0.1:8089/capacity-comparison`. La vista muestra el perfil activo, las capacidades declaradas de los servicios, una explicación estilo defensa para `load` y `stress`, y un cuadro comparativo para usar como evidencia.
 
 Para incluir EDGAR:
 
@@ -125,16 +141,27 @@ $env:LOCUST_TEST_RUN_ID="edgar-local"
 | `LOCUST_TICKERS` | `ACLS,ACU` | Exactamente dos tickers activos de `companies.json` usados para setup y EDGAR. |
 | `LOCUST_MAX_FAILURE_RATIO` | `0.01` | Máxima proporción de requests fallidas. |
 | `LOCUST_MAX_P95_MS` | `1000` | Máximo p95 permitido para que el proceso finalice exitosamente. |
-| `LOAD_USERS` | `20` | Usuarios de la meseta de load. |
-| `LOAD_RAMP_SECONDS` | `60` | Duración de ramp-up. |
-| `LOAD_STEADY_SECONDS` | `300` | Duración de la meseta. |
-| `LOAD_RAMP_DOWN_SECONDS` | `60` | Duración de ramp-down. |
-| `LOAD_SPAWN_RATE` | `2` | Usuarios creados por segundo. |
-| `STRESS_START_USERS` | `10` | Usuarios del primer escalón. |
-| `STRESS_STEP_USERS` | `20` | Incremento entre escalones. |
-| `STRESS_STAGES` | `5` | Cantidad de escalones. |
-| `STRESS_STAGE_SECONDS` | `120` | Duración de cada escalón. |
-| `STRESS_SPAWN_RATE` | `10` | Usuarios creados por segundo. |
+| `LOCUST_CAPACITY_API` | `1 GB RAM, 1 core para API` | Texto mostrado como capacidad declarada del backend. |
+| `LOCUST_CAPACITY_DB` | `512 MB RAM, 0.5 core para DB` | Texto mostrado como capacidad declarada de la base. |
+| `LOCUST_CAPACITY_EXTERNAL` | `512 MB RAM, 0.5 core para API externa` | Texto mostrado como capacidad declarada de integraciones externas. |
+| `LOAD_USERS` | vacío | Fuerza usuarios de load; vacío usa capacidad descubierta o fallback 150. |
+| `LOAD_CAPACITY_FACTOR` | `0.8` | Porcentaje del último escalón estable usado por load. |
+| `LOAD_RAMP_SECONDS` | `50` | Duración de ramp-up. |
+| `LOAD_STEADY_SECONDS` | `120` | Duración de la meseta. |
+| `LOAD_RAMP_DOWN_SECONDS` | `30` | Duración de ramp-down. |
+| `LOAD_SPAWN_RATE` | `3` | Usuarios creados por segundo. |
+| `LOAD_REQUEST_TIMEOUT_SECONDS` | `5` | Timeout por request del perfil load. |
+| `STRESS_START_USERS` | `120` | Usuarios del primer escalón. |
+| `STRESS_USER_MULTIPLIER` | `1.5` | Multiplicador de usuarios entre escalones. |
+| `STRESS_STAGES` | `9` | Máximo de escalones antes de declarar techo no encontrado. |
+| `STRESS_STAGE_SECONDS` | `60` | Duración de cada escalón. |
+| `STRESS_SPAWN_RATE` | `20` | Usuarios creados por segundo. |
+| `STRESS_WAIT_MIN_SECONDS` | `0.2` | Espera mínima entre requests del perfil stress. |
+| `STRESS_WAIT_MAX_SECONDS` | `0.6` | Espera máxima entre requests del perfil stress. |
+| `STRESS_REQUEST_TIMEOUT_SECONDS` | `2` | Timeout por request del perfil stress. |
+| `STRESS_MAX_FAILURE_RATIO` | `0.01` | Tasa de errores que hace fallar el escalón. |
+| `STRESS_MAX_P95_MS` | `500` | p95 que hace fallar el escalón. |
+| `STRESS_MIN_STAGE_REQUESTS` | `100` | Mínimo de requests para evaluar un escalón. |
 
 ## CI
 
