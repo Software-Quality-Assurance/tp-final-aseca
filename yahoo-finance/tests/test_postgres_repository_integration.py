@@ -19,7 +19,7 @@ def database_url() -> str:
     return value
 
 
-def test_finds_unique_active_tickers_in_portfolios_and_watchlists_and_persists_price(database_url: str) -> None:
+def test_finds_all_unique_active_company_tickers_and_persists_price(database_url: str) -> None:
     import psycopg
 
     with psycopg.connect(database_url) as connection:
@@ -84,9 +84,13 @@ def test_finds_unique_active_tickers_in_portfolios_and_watchlists_and_persists_p
 
     repository = PostgresPriceRepository(database_url)
     repository.ensure_audit_schema()
-    tickers = repository.get_used_tickers()
+    tickers = repository.get_active_tickers()
 
-    assert [(item.company_id, item.ticker) for item in tickers] == [(1, "AAPL"), (2, "MSFT")]
+    assert [(item.company_id, item.ticker) for item in tickers] == [
+        (1, "AAPL"),
+        (2, "MSFT"),
+        (4, "SOLD"),
+    ]
 
     repository.save_price(
         tickers[0],

@@ -69,7 +69,7 @@ Borrar volumenes resetea la base de datos.
 
 ## Actualizar precios con Yahoo Finance
 
-El batch independiente esta en `yahoo-finance/`. Procesa los tickers activos presentes en portfolios o watchlists y guarda precios historicos con fuente y timestamp.
+El batch independiente esta en `yahoo-finance/`. Procesa todos los tickers activos del catalogo y guarda precios historicos con fuente y timestamp.
 
 Con la base y el backend ya inicializados:
 
@@ -97,13 +97,24 @@ Los escenarios de rendimiento están en `load-tests/` y se ejecutan contra la AP
 ```powershell
 $env:SPRING_PROFILES_ACTIVE="seed"
 docker compose --profile api up -d --build
-docker compose --profile api --profile load-tests run --rm locust `
-  -f /load-tests/load.py --headless `
-  --csv /load-tests/results/load `
-  --html /load-tests/results/load.html
+docker compose --profile api --profile load-tests up --build --force-recreate locust-stress
 ```
 
-Para stress testing, reemplazar `load.py` por `stress.py`. La integración con EDGAR es opt-in mediante `INCLUDE_EDGAR=true` y conserva un presupuesto configurable inferior al límite oficial:
+La UI visible queda sólo para `stress` en `http://127.0.0.1:8089`. Stress
+continúa escalando hasta superar `500 ms` de p95 o `1%` de errores y guarda la
+capacidad encontrada en `load-tests/results/capacity.json`.
+
+El stack actual queda limitado a `1 CPU / 1 GB` para `portfolio-api` y
+`0.5 CPU / 512 MB` para PostgreSQL.
+
+Después de stress, el load test toma por default el 80% del último escalón
+estable y genera sus reportes headless:
+
+```powershell
+docker compose --profile api --profile load-report run --rm locust-load
+```
+
+La integración con EDGAR es opt-in mediante `INCLUDE_EDGAR=true` y conserva un presupuesto configurable inferior al límite oficial:
 
 ```powershell
 $env:INCLUDE_EDGAR="true"
