@@ -1,16 +1,26 @@
 from locust import LoadTestShape
 
-from common import EdgarApiUser, PortfolioApiUser, active_user_classes, env_int
+from common import (
+    EdgarApiUser,
+    PortfolioApiUser,
+    active_user_classes,
+    discovered_load_users,
+    env_int,
+    set_active_profile,
+)
+
+
+set_active_profile("load")
 
 
 class ExpectedLoadShape(LoadTestShape):
     """Ramp to expected traffic, hold a stable plateau, then ramp down."""
 
-    ramp_seconds = env_int("LOAD_RAMP_SECONDS", 60)
-    steady_seconds = env_int("LOAD_STEADY_SECONDS", 300)
-    ramp_down_seconds = env_int("LOAD_RAMP_DOWN_SECONDS", 60)
-    users = env_int("LOAD_USERS", 20)
-    spawn_rate = env_int("LOAD_SPAWN_RATE", 2)
+    ramp_seconds = env_int("LOAD_RAMP_SECONDS", 50)
+    steady_seconds = env_int("LOAD_STEADY_SECONDS", 120)
+    ramp_down_seconds = env_int("LOAD_RAMP_DOWN_SECONDS", 30)
+    users = discovered_load_users()
+    spawn_rate = env_int("LOAD_SPAWN_RATE", 3)
 
     def tick(self):
         run_time = self.get_run_time()

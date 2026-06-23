@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class PriceRepository(Protocol):
     def ensure_audit_schema(self) -> None: ...
 
-    def get_used_tickers(self) -> list[UsedTicker]: ...
+    def get_active_tickers(self) -> list[UsedTicker]: ...
 
     def start_run(self, requested_tickers: int, started_at: datetime, trigger: str) -> int: ...
 
@@ -49,7 +49,7 @@ class PriceUpdateService:
 
     def run(self) -> BatchResult:
         self.repository.ensure_audit_schema()
-        companies = self._deduplicate(self.repository.get_used_tickers())
+        companies = self._deduplicate(self.repository.get_active_tickers())
         run_id = self.repository.start_run(len(companies), self.clock(), self.trigger)
 
         if not companies:

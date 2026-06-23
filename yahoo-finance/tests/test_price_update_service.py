@@ -19,7 +19,7 @@ class FakeRepository:
     def ensure_audit_schema(self) -> None:
         pass
 
-    def get_used_tickers(self) -> list[UsedTicker]:
+    def get_active_tickers(self) -> list[UsedTicker]:
         return self.tickers
 
     def start_run(self, requested_tickers: int, started_at: datetime, trigger: str) -> int:

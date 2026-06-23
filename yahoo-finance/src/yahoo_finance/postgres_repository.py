@@ -44,7 +44,7 @@ class PostgresPriceRepository:
                 )
             connection.commit()
 
-    def get_used_tickers(self) -> list[UsedTicker]:
+    def get_active_tickers(self) -> list[UsedTicker]:
         with psycopg.connect(self.database_url) as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
@@ -54,27 +54,6 @@ class PostgresPriceRepository:
                         UPPER(c.ticker)
                     FROM companies c
                     WHERE c.active = TRUE
-                      AND (
-                          EXISTS (
-                              SELECT 1
-                              FROM watchlist w
-                              WHERE w.company_id = c.id
-                          )
-                          OR COALESCE(
-                              (
-                                  SELECT SUM(
-                                      CASE
-                                          WHEN h.transaction_type_enum = 'BUY' THEN h.number_of_stocks
-                                          WHEN h.transaction_type_enum = 'SELL' THEN -h.number_of_stocks
-                                          ELSE 0
-                                      END
-                                  )
-                                  FROM history h
-                                  WHERE h.company_id = c.id
-                              ),
-                              0
-                          ) > 0
-                      )
                     ORDER BY UPPER(c.ticker), c.id
                     """
                 )

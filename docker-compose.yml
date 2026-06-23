@@ -2,6 +2,9 @@ services:
   db:
     image: postgres:16
     container_name: portfolio-postgres
+    cpus: 0.5
+    mem_limit: 512m
+    memswap_limit: 512m
     environment:
       POSTGRES_DB: portfolio_tracker
       POSTGRES_USER: portfolio_user
@@ -23,6 +26,9 @@ services:
       context: .
       dockerfile: portfolio-tracker/Dockerfile
     container_name: portfolio-api
+    cpus: 1.0
+    mem_limit: 1g
+    memswap_limit: 1g
     ports:
       - "8080:8080"
     depends_on:
@@ -53,12 +59,13 @@ services:
       PRICE_UPDATE_TRIGGER: MANUAL
     restart: "no"
 
-  locust:
+  locust-load:
     profiles:
-      - load-tests
+      - load-report
     build:
       context: .
       dockerfile: load-tests/Dockerfile
+    command: -f /load-tests/load.py --headless --csv /load-tests/results/load --html /load-tests/results/load.html
     depends_on:
       portfolio-api:
         condition: service_started
@@ -73,16 +80,76 @@ services:
       LOCUST_WORKER_COUNT: ${LOCUST_WORKER_COUNT:-1}
       LOCUST_MAX_FAILURE_RATIO: ${LOCUST_MAX_FAILURE_RATIO:-0.01}
       LOCUST_MAX_P95_MS: ${LOCUST_MAX_P95_MS:-1000}
-      LOAD_USERS: ${LOAD_USERS:-20}
-      LOAD_RAMP_SECONDS: ${LOAD_RAMP_SECONDS:-60}
-      LOAD_STEADY_SECONDS: ${LOAD_STEADY_SECONDS:-300}
-      LOAD_RAMP_DOWN_SECONDS: ${LOAD_RAMP_DOWN_SECONDS:-60}
-      LOAD_SPAWN_RATE: ${LOAD_SPAWN_RATE:-2}
-      STRESS_START_USERS: ${STRESS_START_USERS:-10}
-      STRESS_STEP_USERS: ${STRESS_STEP_USERS:-20}
-      STRESS_STAGES: ${STRESS_STAGES:-5}
-      STRESS_STAGE_SECONDS: ${STRESS_STAGE_SECONDS:-120}
-      STRESS_SPAWN_RATE: ${STRESS_SPAWN_RATE:-10}
+      LOCUST_CAPACITY_API: ${LOCUST_CAPACITY_API:-1 GB RAM, 1 core para API}
+      LOCUST_CAPACITY_DB: ${LOCUST_CAPACITY_DB:-512 MB RAM, 0.5 core para DB}
+      LOCUST_CAPACITY_EXTERNAL: ${LOCUST_CAPACITY_EXTERNAL:-512 MB RAM, 0.5 core para API externa}
+      LOAD_USERS: ${LOAD_USERS:-}
+      LOAD_CAPACITY_FACTOR: ${LOAD_CAPACITY_FACTOR:-0.8}
+      LOCUST_CAPACITY_RESULT_PATH: /load-tests/results/capacity.json
+      LOAD_RAMP_SECONDS: ${LOAD_RAMP_SECONDS:-50}
+      LOAD_STEADY_SECONDS: ${LOAD_STEADY_SECONDS:-120}
+      LOAD_RAMP_DOWN_SECONDS: ${LOAD_RAMP_DOWN_SECONDS:-30}
+      LOAD_SPAWN_RATE: ${LOAD_SPAWN_RATE:-3}
+      LOAD_REQUEST_TIMEOUT_SECONDS: ${LOAD_REQUEST_TIMEOUT_SECONDS:-5}
+      STRESS_START_USERS: ${STRESS_START_USERS:-120}
+      STRESS_USER_MULTIPLIER: ${STRESS_USER_MULTIPLIER:-1.5}
+      STRESS_STAGES: ${STRESS_STAGES:-9}
+      STRESS_STAGE_SECONDS: ${STRESS_STAGE_SECONDS:-60}
+      STRESS_SPAWN_RATE: ${STRESS_SPAWN_RATE:-20}
+      STRESS_WAIT_MIN_SECONDS: ${STRESS_WAIT_MIN_SECONDS:-0.2}
+      STRESS_WAIT_MAX_SECONDS: ${STRESS_WAIT_MAX_SECONDS:-0.6}
+      STRESS_REQUEST_TIMEOUT_SECONDS: ${STRESS_REQUEST_TIMEOUT_SECONDS:-2}
+      STRESS_MAX_FAILURE_RATIO: ${STRESS_MAX_FAILURE_RATIO:-0.01}
+      STRESS_MAX_P95_MS: ${STRESS_MAX_P95_MS:-500}
+      STRESS_MIN_STAGE_REQUESTS: ${STRESS_MIN_STAGE_REQUESTS:-100}
+    volumes:
+      - ./load-tests/results:/load-tests/results
+
+  locust-stress:
+    profiles:
+      - load-tests
+    build:
+      context: .
+      dockerfile: load-tests/Dockerfile
+    command: -f /load-tests/stress.py --web-host 0.0.0.0 --autostart
+    ports:
+      - "8089:8089"
+    depends_on:
+      portfolio-api:
+        condition: service_started
+    environment:
+      LOCUST_HOST: http://portfolio-api:8080
+      LOCUST_TEST_RUN_ID: ${LOCUST_TEST_RUN_ID:-local-stress}
+      LOCUST_USER_EMAIL: ${LOCUST_USER_EMAIL:-}
+      LOCUST_USER_PASSWORD: ${LOCUST_USER_PASSWORD:-}
+      LOCUST_TICKERS: ${LOCUST_TICKERS:-ACLS,ACU}
+      INCLUDE_EDGAR: ${INCLUDE_EDGAR:-false}
+      EDGAR_MAX_REQUESTS_PER_SECOND: ${EDGAR_MAX_REQUESTS_PER_SECOND:-8}
+      LOCUST_WORKER_COUNT: ${LOCUST_WORKER_COUNT:-1}
+      LOCUST_MAX_FAILURE_RATIO: ${LOCUST_MAX_FAILURE_RATIO:-0.01}
+      LOCUST_MAX_P95_MS: ${LOCUST_MAX_P95_MS:-1000}
+      LOCUST_CAPACITY_API: ${LOCUST_CAPACITY_API:-1 GB RAM, 1 core para API}
+      LOCUST_CAPACITY_DB: ${LOCUST_CAPACITY_DB:-512 MB RAM, 0.5 core para DB}
+      LOCUST_CAPACITY_EXTERNAL: ${LOCUST_CAPACITY_EXTERNAL:-512 MB RAM, 0.5 core para API externa}
+      LOAD_USERS: ${LOAD_USERS:-}
+      LOAD_CAPACITY_FACTOR: ${LOAD_CAPACITY_FACTOR:-0.8}
+      LOCUST_CAPACITY_RESULT_PATH: /load-tests/results/capacity.json
+      LOAD_RAMP_SECONDS: ${LOAD_RAMP_SECONDS:-50}
+      LOAD_STEADY_SECONDS: ${LOAD_STEADY_SECONDS:-120}
+      LOAD_RAMP_DOWN_SECONDS: ${LOAD_RAMP_DOWN_SECONDS:-30}
+      LOAD_SPAWN_RATE: ${LOAD_SPAWN_RATE:-3}
+      LOAD_REQUEST_TIMEOUT_SECONDS: ${LOAD_REQUEST_TIMEOUT_SECONDS:-5}
+      STRESS_START_USERS: ${STRESS_START_USERS:-120}
+      STRESS_USER_MULTIPLIER: ${STRESS_USER_MULTIPLIER:-1.5}
+      STRESS_STAGES: ${STRESS_STAGES:-9}
+      STRESS_STAGE_SECONDS: ${STRESS_STAGE_SECONDS:-60}
+      STRESS_SPAWN_RATE: ${STRESS_SPAWN_RATE:-20}
+      STRESS_WAIT_MIN_SECONDS: ${STRESS_WAIT_MIN_SECONDS:-0.2}
+      STRESS_WAIT_MAX_SECONDS: ${STRESS_WAIT_MAX_SECONDS:-0.6}
+      STRESS_REQUEST_TIMEOUT_SECONDS: ${STRESS_REQUEST_TIMEOUT_SECONDS:-2}
+      STRESS_MAX_FAILURE_RATIO: ${STRESS_MAX_FAILURE_RATIO:-0.01}
+      STRESS_MAX_P95_MS: ${STRESS_MAX_P95_MS:-500}
+      STRESS_MIN_STAGE_REQUESTS: ${STRESS_MIN_STAGE_REQUESTS:-100}
     volumes:
       - ./load-tests/results:/load-tests/results
 

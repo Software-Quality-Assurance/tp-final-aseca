@@ -1,7 +1,18 @@
+import json
+import tempfile
 import unittest
+from pathlib import Path
+from unittest.mock import Mock
 from unittest.mock import patch
 
-from common import AuthenticatedApiUser, RequestBudget, configured_tickers, edgar_budget_rps
+from common import (
+    AuthenticatedApiUser,
+    RequestBudget,
+    configured_tickers,
+    discovered_load_users,
+    edgar_budget_rps,
+    request_timeout_seconds,
+)
 
 
 class RequestBudgetTests(unittest.TestCase):
@@ -79,6 +90,37 @@ class AccountSetupTests(unittest.TestCase):
 
         self.assertIn("load@example.com", AuthenticatedApiUser._registered_accounts)
         self.assertIn("load@example.com", AuthenticatedApiUser._prepared_accounts)
+
+    def test_uses_profile_specific_request_timeouts(self) -> None:
+        with patch.dict("os.environ", {"LOCUST_PROFILE": "load", "LOAD_REQUEST_TIMEOUT_SECONDS": "5"}, clear=False):
+            self.assertEqual(5.0, request_timeout_seconds())
+        with patch.dict("os.environ", {"LOCUST_PROFILE": "stress", "STRESS_REQUEST_TIMEOUT_SECONDS": "2"}, clear=False):
+            self.assertEqual(2.0, request_timeout_seconds())
+
+    def test_api_helpers_forward_timeout(self) -> None:
+        user = object.__new__(AuthenticatedApiUser)
+        user.client = Mock()
+
+        with patch.dict("os.environ", {"LOCUST_PROFILE": "stress", "STRESS_REQUEST_TIMEOUT_SECONDS": "2"}, clear=False):
+            user.api_get("/api/portfolio", name="/api/portfolio")
+            user.api_post("/api/auth/login", json={"email": "a", "password": "b"})
+
+        user.client.get.assert_called_once_with("/api/portfolio", name="/api/portfolio", timeout=2.0)
+        user.client.post.assert_called_once_with("/api/auth/login", json={"email": "a", "password": "b"}, timeout=2.0)
+
+    def test_load_users_are_derived_from_discovered_stable_capacity(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            result_path = Path(directory) / "capacity.json"
+            result_path.write_text(json.dumps({"last_stable_users": 500}), encoding="utf-8")
+            with (
+                patch("common.CAPACITY_RESULT_PATH", result_path),
+                patch.dict(
+                    "os.environ",
+                    {"LOAD_USERS": "", "LOAD_CAPACITY_FACTOR": "0.8"},
+                    clear=False,
+                ),
+            ):
+                self.assertEqual(400, discovered_load_users())
 
 
 if __name__ == "__main__":
