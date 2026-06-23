@@ -7,6 +7,10 @@ import com.austral.portfolio_tracker.watchlist.WatchlistRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.math.BigDecimal
+import java.time.Clock
+import java.time.Duration
+import java.time.Instant
+import java.util.concurrent.ConcurrentHashMap
 
 @Service
 class SecEdgarService(
@@ -15,13 +19,30 @@ class SecEdgarService(
     private val companyRepository: CompanyRepository,
     private val historyRepository: HistoryRepository,
     private val watchlistRepository: WatchlistRepository,
+    private val clock: Clock,
 ) {
+    private val searchCache = ConcurrentHashMap<String, CachedSearchResult>()
+    private val searchTtl: Duration = Duration.ofHours(1)
+
     @Transactional(readOnly = true)
     fun search(query: String): List<EdgarCompanyResponse> {
-        if (query.isBlank()) throw IllegalArgumentException("Search query is required")
+        val normalized = query.trim()
+        if (normalized.isBlank()) throw IllegalArgumentException("Search query is required")
+
+        val cacheKey = normalized.uppercase()
+        val cached = searchCache[cacheKey]
+        val now = Instant.now(clock)
+        val companies =
+            if (cached != null && cached.expiresAt.isAfter(now)) {
+                cached.companies
+            } else {
+                gateway.searchCompanies(normalized).also { companies ->
+                    searchCache[cacheKey] = CachedSearchResult(companies, now.plus(searchTtl))
+                }
+            }
+
         val allowedTickers = companyRepository.findAllByActiveTrue().map { it.ticker.uppercase() }.toSet()
-        return gateway
-            .searchCompanies(query.trim())
+        return companies
             .filter { it.ticker in allowedTickers }
             .map { EdgarCompanyResponse(it.cik, it.ticker, it.name) }
     }
@@ -123,4 +144,9 @@ class SecEdgarService(
             FinancialMetric.TOTAL_ASSETS -> metrics.totalAssets.value
             FinancialMetric.TOTAL_LIABILITIES -> metrics.totalLiabilities.value
         }
+
+    private data class CachedSearchResult(
+        val companies: List<SecCompanyRecord>,
+        val expiresAt: Instant,
+    )
 }
