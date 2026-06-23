@@ -27,6 +27,9 @@ import org.springframework.transaction.annotation.Transactional
 import tools.jackson.databind.JsonNode
 import tools.jackson.databind.ObjectMapper
 import java.math.BigDecimal
+import java.time.Clock
+import java.time.Instant
+import java.time.ZoneOffset
 import kotlin.test.assertEquals
 
 @SpringBootTest
@@ -56,6 +59,9 @@ class SecEdgarControllerE2ETests {
     @Autowired
     private lateinit var gateway: FakeSecEdgarGateway
 
+    @Autowired
+    private lateinit var testClock: MutableTestClock
+
     @BeforeEach
     fun setup() {
         historyRepository.deleteAll()
@@ -63,8 +69,12 @@ class SecEdgarControllerE2ETests {
         companyRepository.deleteAll()
         userRepository.deleteAll()
         gateway.unavailable = false
+        gateway.searchCalls = 0
+        gateway.companyFactsCalls = 0
+        testClock.currentInstant = Instant.parse("2026-01-01T00:00:00Z")
         companyRepository.save(Company(ticker = "AAPL", companyName = "Apple Inc."))
         companyRepository.save(Company(ticker = "MSFT", companyName = "Microsoft Corporation"))
+        companyRepository.save(Company(ticker = "CASH", companyName = "Cache Search Holdings"))
     }
 
     @Test
@@ -162,6 +172,42 @@ class SecEdgarControllerE2ETests {
             }
     }
 
+    @Test
+    fun `search responses are cached for one hour by normalized query`() {
+        val token = registerAndLogin("cached-search@example.com")
+
+        mockMvc
+            .get("/api/edgar/search?query=cache") {
+                header("Authorization", "Bearer $token")
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$.length()") { value(1) }
+            }
+
+        mockMvc
+            .get("/api/edgar/search") {
+                param("query", " CaChE ")
+                header("Authorization", "Bearer $token")
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$.length()") { value(1) }
+            }
+
+        assertEquals(1, gateway.searchCalls)
+
+        testClock.currentInstant = testClock.currentInstant.plusSeconds(3601)
+
+        mockMvc
+            .get("/api/edgar/search?query=CACHE") {
+                header("Authorization", "Bearer $token")
+            }.andExpect {
+                status { isOk() }
+                jsonPath("$.length()") { value(1) }
+            }
+
+        assertEquals(2, gateway.searchCalls)
+    }
+
     private fun registerAndLogin(email: String): String {
         mockMvc
             .post("/api/auth/register") {
@@ -190,6 +236,10 @@ class SecEdgarControllerE2ETests {
         @Bean
         @Primary
         fun fakeSecEdgarGateway(objectMapper: ObjectMapper) = FakeSecEdgarGateway(objectMapper)
+
+        @Bean
+        @Primary
+        fun testClock() = MutableTestClock()
     }
 
     class FakeSecEdgarGateway(
@@ -197,18 +247,22 @@ class SecEdgarControllerE2ETests {
     ) : SecEdgarGateway {
         var unavailable = false
         var companyFactsCalls = 0
+        var searchCalls = 0
 
         private val companies =
             listOf(
                 SecCompanyRecord("0000320193", "AAPL", "Apple Inc."),
                 SecCompanyRecord("0000789019", "MSFT", "Microsoft Corporation"),
+                SecCompanyRecord("0000000002", "CASH", "Cache Search Holdings"),
                 SecCompanyRecord("0000000001", "PRIVATE", "Private Corp"),
             )
 
         override fun findCompanyByTicker(ticker: String): SecCompanyRecord? = companies.firstOrNull { it.ticker == ticker.uppercase() }
 
         override fun searchCompanies(query: String): List<SecCompanyRecord> =
-            companies.filter { it.ticker.contains(query, true) || it.name.contains(query, true) }
+            companies
+                .also { searchCalls++ }
+                .filter { it.ticker.contains(query, true) || it.name.contains(query, true) }
 
         override fun getCompanyFacts(cik: String): JsonNode {
             if (unavailable) throw SecEdgarUnavailableException("SEC EDGAR is temporarily unavailable")
@@ -260,5 +314,15 @@ class SecEdgarControllerE2ETests {
                 }
                 """.trimIndent(),
             )
+    }
+
+    class MutableTestClock(
+        var currentInstant: Instant = Instant.parse("2026-01-01T00:00:00Z"),
+    ) : Clock() {
+        override fun getZone() = ZoneOffset.UTC
+
+        override fun withZone(zone: java.time.ZoneId?): Clock = this
+
+        override fun instant(): Instant = currentInstant
     }
 }
